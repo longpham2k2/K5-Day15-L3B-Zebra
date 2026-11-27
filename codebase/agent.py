@@ -102,7 +102,12 @@ def _ask_model(state, reason, passages):
     if d["buoc"] != "ngoai_pham_vi" and not codes:
         note("gợi ý không có mã đoạn hợp lệ → bỏ gợi ý (G10)")
         return None
-    return d["buoc"], codes, str(d.get("loi_nhan", "")).strip()
+    msg = str(d.get("loi_nhan", "")).strip()
+    if codes and not any("[%s]" % c in msg for c in codes):
+        # Model quên ghi mã đoạn trong lời nhắn → code tự thêm, để học viên luôn thấy chỗ cần xem lại (G11)
+        note("lời nhắn thiếu [mã đoạn] → thêm [%s]" % codes[0])
+        msg = (msg + " Xem [%s]." % codes[0]).strip()
+    return d["buoc"], codes, msg
 
 
 def answer(text: str) -> dict:

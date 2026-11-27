@@ -23,7 +23,7 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 - **Bằng chứng** (chi tiết `evidence/summary.md`, đang làm):
   - Data: 399/1.968 (20,3%) câu ôn tập sai lần đầu, làm lại 2/424, không có câu cùng ý để luyện; 98,9% lời bạn học AI xen vào không được đáp lại.
   - Phỏng vấn học viên khoá 5 (3 người): **1/3 gặp pain một phần** (P4: "chưa kịp hiểu", quên kiến thức buổi trước, ~30 phút nhớ lại); 2/3 không (P1 không nhận ra lần hiểu sai nào; P5 tự kiểm bằng tra mạng, ghi chép, làm lab). Đọc chung: người có thời gian tự kiểm được, người ít thời gian thì không. Ngoài khoá (P2, P3) ghi riêng.
-  - Khảo sát (n = 24, chưa chốt): lần sai gần nhất trong 7 ngày qua 21/23 · có kiểm lại 14/23, chưa kiểm 7/23 · **mất thời gian tìm lại / hỏi lại 19/23 (83%)** · vướng lại về sau 7/23 (phần lớn 16–30 phút) · 2–3 lần / 7 ngày sai mà không chắc đã hiểu lại: 12/24. Trích: *"mất cả buổi chiều để xem hiểu là rốt quộc bài lab muốn làm gì"* (R21).
+  - Khảo sát (n = 25, đã chốt 27/11 ~21:05): lần sai gần nhất trong 7 ngày qua 21/23 · có kiểm lại 14/23, chưa kiểm 7/23 · **mất thời gian tìm lại / hỏi lại 19/23 (83%)** · vướng lại về sau 7/23 (phần lớn 16–30 phút) · có ≥1 lần / 7 ngày sai mà không chắc đã hiểu lại: 19/25 (2–3 lần: 13/25). Trích: *"mất cả buổi chiều để xem hiểu là rốt quộc bài lab muốn làm gì"* (R21).
   - **Độ phủ:** chỉ 77/436 (17,7%) học viên có hoạt động từng làm câu ôn tập, 69 người từng sai ≥1 câu.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
@@ -38,11 +38,11 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
   - **69 người:** học viên từng sai ≥1 câu ôn tập trên pre-class (data, `count.py` mục 10).
   - **~13 lần / người / tháng:** 399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày *(quy đổi tự ước tính)*. Kiểm chéo khảo sát câu 7: phần lớn 2–3 lần / 7 ngày ≈ 9–13 lần / tháng — cùng cỡ.
   - **~6,6 phút / lần sai:** khảo sát câu 6: 7/23 bị vướng lại × câu 6b lấy điểm giữa khoảng (5–15 → 10 · 16–30 → 23 · trên 30 → 40; n = 7: 2×10 + 4×23 + 1×40 = 152 → ~22 phút) *(điểm giữa khoảng, mức "trên 30" tự đặt 40 — tự ước tính)*. **Chưa tính** thời gian tự kiểm lại ngay sau khi sai (19/23 nói mất thời gian, khảo sát không hỏi số phút) → con số này **thấp hơn thực tế**.
-  - **Giả định:** chi phí mỗi lần sai trong khảo sát (mọi chỗ trong khoá) áp được cho câu ôn tập pre-class. Khảo sát chưa chốt.
+  - **Giả định:** chi phí mỗi lần sai trong khảo sát (mọi chỗ trong khoá) áp được cho câu ôn tập pre-class. Khảo sát đã chốt n = 25 (câu 6, 6b không đổi so với n = 24).
 - **Hướng đã loại:**
   - H2: học viên từng đáp lại bạn học AI đúng lần đầu 85,1% vs 82,4% không đáp → chênh 2,7 điểm, không có dấu hiệu đáp lại nhiều hơn làm học tốt hơn. Đẩy tỉ lệ đáp lại không phải chỉ số về học.
   - H3: là bài toán độ phủ / thói quen, không phải "hiểu sâu hơn" của A4.
-- **Số lần / tháng theo kiểu người dùng (cho §8):** khảo sát câu 7 (n = 24): 0 lần: 1 · 1 lần: 3 · 2–3 lần: 12 · 4–6 lần: 3 · không nhớ: 5; data (69 người từng sai, 13 ngày): số câu ôn tập sai / người p25 = 2 · trung vị = 4 · p75 = 7 · cao nhất 37 → gợi ý 3 persona: ít (≈2), vừa (≈4), nhiều (≈7) câu sai / 13 ngày.
+- **Số lần / tháng theo kiểu người dùng (cho §8):** khảo sát câu 7 (n = 25): 0 lần: 1 · 1 lần: 3 · 2–3 lần: 13 · 4–6 lần: 3 · không nhớ: 5; data (69 người từng sai, 13 ngày): số câu ôn tập sai / người p25 = 2 · trung vị = 4 · p75 = 7 · cao nhất 37 → gợi ý 3 persona: ít (≈2), vừa (≈4), nhiều (≈7) câu sai / 13 ngày.
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 - **Lớp học AI hiện có trên pre-class:** đáng học — đã có sẵn bạn học AI nhiều tính cách và bộ điều phối · đáng né — xen vào lúc học viên đang thụ động xem, 98,9% không được đáp · mình khác — chỉ lên tiếng **ngay sau một câu sai**, có việc cụ thể cho học viên làm.
@@ -168,7 +168,8 @@ flowchart TD
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 27/11 ~22:25 | Gộp nhánh `khoa` vào `main` (bảng chấm 1a của người thứ hai, bản chốt khảo sát, R25). Khảo sát chốt **n = 25** (thêm R25, xác nhận ngoài nhóm); cập nhật số khảo sát ở `evidence/summary.md`, §1–§2, `canvas.md` dòng 4: câu 7 thành 13/25 (2–3 lần), 19/25 có ≥1 lần; người dùng pre-class ≥3 ngày 10/25, trả lời bạn học AI 0/10. Câu 3–6 không đổi (R25 chọn "Không nhớ" ở câu 2) | Form đóng ~21:05 theo kế hoạch chốt trước CP3 (`evidence/survey/questions.md` mục Log gửi). Không đổi metric, ngưỡng "đạt" hay câu thử |
+| 27/11 ~22:35 (trước lượt 1) | `codebase/agent.py`: model chọn `goi_y` / `sua_loi_ban` mà lời nhắn không ghi mã đoạn nào trong ngoặc vuông thì code tự thêm "Xem [mã đoạn]." | Metric `goi_y_co_can_cu` phần code (100%) đòi lời nhắn có mã trong ngoặc vuông, mà agent trước đó chỉ kiểm trường `ma_doan`, không kiểm chữ trong lời nhắn — một lần model quên ngoặc là trượt metric 100%. Các lượt thử chưa gặp lỗi này; đây là chặn phòng trước. Sửa hành vi chung (G11), không dựa trên câu chữ của câu thử nào. Model cho lượt 1 và lượt 2: OpenAI `gpt-5.4-nano` |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
