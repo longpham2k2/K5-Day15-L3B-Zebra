@@ -16,7 +16,7 @@
 | Kênh đã gửi | __ (vd Discord khoá · Zalo lớp L3A · Zalo lớp L3B) |
 | Giờ mở | __ |
 | Giờ chốt | __ (chốt trước CP3 10:00 Thứ Bảy 28/11 để kịp ghi `summary.md`) |
-| Số phản hồi lúc chốt | __ · trong đó học viên ngoài nhóm: __ |
+| Số phản hồi lúc chốt | __ · trong đó học viên ngoài nhóm: __ *(bản lưu 3: 24/24 ngoài nhóm — nhóm xác nhận 27/11 không thành viên nào trả lời)* |
 
 ## Cài đặt Google Form
 

@@ -11,7 +11,7 @@
 |---|---|---|
 | Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☑ *(theo tự soát — chờ cả nhóm duyệt)* | `evidence/data-mining.md` · `evidence/count.py` |
 | Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☑ 3 học viên khoá 5 (P1, P4, P5) · thêm 2 người ngoài khoá (P2, P3) không tính | `evidence/interviews/P1.md`… `P5.md` |
-| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☑ **24/20** *(chờ Khoa xác nhận không có thành viên nhóm trả lời — 9/24 là L3B)*, form vẫn mở · form 2 (câu hỏi khác) n = 2, ghi riêng | `evidence/survey/results.csv` · `evidence/survey/count_survey.py` · `evidence/survey/form-2/` |
+| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☑ **24/20** (24/24 học viên ngoài nhóm — nhóm xác nhận không thành viên nào trả lời; 9/24 là L3B), form vẫn mở · form 2 (câu hỏi khác) n = 2, ghi riêng | `evidence/survey/results.csv` · `evidence/survey/count_survey.py` · `evidence/survey/form-2/` |
 
 ## 2. Số chính
 
@@ -76,7 +76,7 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung. Ngư
 - **Sai:** học viên **không** thụ động sau khi sai và **phần lớn có kiểm lại** (61%); họ không bỏ qua câu hỏi giữa video (data 1%); đáp lại bạn học AI không đi kèm học tốt hơn rõ (85,1% vs 82,4%).
 - **Pain sau khi đổi:** sau khi sai, học viên phải **tự xoay xở để kiểm lại** — hỏi ChatGPT, mở lại slide, hỏi người — và việc đó **tốn thời gian (83%)**; dù vậy 30% vẫn bị vướng lại ý đó về sau, phần lớn mất 16–30 phút. Thứ thiếu không phải ý muốn kiểm lại, mà là **một cách kiểm nhanh, đúng chỗ mình sai, có đáp án để biết chắc**.
 - **Lưu ý cách đánh giá:** khảo sát **không có ngưỡng "đúng nếu" viết trước khi mở form** đã commit; ngưỡng viết trước duy nhất là ở `hypothesis.md` (dựa trên data). Các số khảo sát ở trên chỉ mô tả.
-- **Điều vẫn chưa biết:** mỗi lần tự kiểm lại mất bao nhiêu phút (khảo sát không hỏi); 9/24 phản hồi là L3B — chờ xác nhận không có thành viên nhóm.
+- **Điều vẫn chưa biết:** mỗi lần tự kiểm lại mất bao nhiêu phút (khảo sát không hỏi); người "chưa kiểm lại" là vì không có thời gian hay vì nghĩ mình đã hiểu.
 
 ## Lịch hẹn (dùng cho CP2 — chỉ ghi vai và giờ, không tên)
 
