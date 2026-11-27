@@ -13,11 +13,12 @@
 | Bản lưu giữa chừng | 27/11 · 12 phản hồi (mới nhất 16:34) → `results.csv` — chưa chốt |
 | Bản lưu 2 | 27/11 · 22 phản hồi (mới nhất 17:21), 22/22 học viên L3A / L3B → ghi đè `results.csv`; R01–R12 giữ nguyên mã và nội dung, R13–R22 nối thêm theo giờ gửi · đạt ngưỡng ≥20 · form vẫn mở |
 | Bản lưu 3 | 27/11 · 24 phản hồi (mới nhất 17:24), 24/24 học viên L3A / L3B → ghi đè `results.csv`; R01–R22 giữ nguyên, R23–R24 nối thêm · form vẫn mở |
+| Bản chốt | 27/11 · 25 phản hồi → ghi đè `results.csv` lần cuối (xem dòng "Số phản hồi lúc chốt"). Câu 3–6 không đổi so với bản lưu 3 vì R25 chọn "Không nhớ / chưa gặp" ở câu 2 |
 | Kênh đã gửi | Discord server của cohort "[L34] AI20K Build Phase", nhóm kênh CỘNG ĐỒNG, kênh `#chung` (trao đổi chung toàn cohort L3–L4) · một tin, do TV Khoa đăng |
 | Giờ mở | 27/11/2026 12:42 (giờ đăng tin) · phản hồi đầu tiên 12:44 |
 | Tin nhắn thật đã gửi | *"Hi mọi người, nhóm mình đang làm một khảo sát nhỏ về cách mọi người học và ôn bài trong khoá ạ. Mọi người dành giúp tụi em khoảng 3 phút làm form nhé, ẩn danh hoàn toàn nha. Cảm ơn mọi người nhiều ạ 🙏"* + link form (Discord tự hiện tiêu đề và lời mở đầu form bên dưới) |
-| Giờ chốt | __ (chốt trước CP3 10:00 Thứ Bảy 28/11 để kịp ghi `summary.md`) |
-| Số phản hồi lúc chốt | __ · trong đó học viên ngoài nhóm: __ *(bản lưu 3: 24/24 ngoài nhóm — nhóm xác nhận 27/11 không thành viên nào trả lời)* |
+| Giờ chốt | 27/11/2026 ~21:05 (Khoa tắt "Chấp nhận câu trả lời" trên form) · phản hồi cuối lúc 19:30 |
+| Số phản hồi lúc chốt | **25** · trong đó học viên ngoài nhóm: R01–R24 nhóm đã xác nhận (27/11) · **R25 (19:30, L3A) chưa xác nhận** (16 L3A · 9 L3B · 0 "Khác") → `results.csv` bản chốt, R01–R24 giữ nguyên, R25 nối thêm |
 
 ## Cài đặt Google Form
 
