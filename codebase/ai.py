@@ -49,8 +49,79 @@ def call_model(system: str, user: str) -> dict:
         last = (user.strip().splitlines() or [""])[-1]
         return {"text": "[câu trả lời giả — chưa nối model] " + last[:60], "model": "fake", "tokens_in": 0, "tokens_out": 0}
 
-    # NHÓM VIẾT: gọi model thật ở đây (theo MODEL_PROVIDER, MODEL_NAME, API_KEY) rồi trả đúng 4 khoá.
-    # Ví dụ chép được cho từng nhà cung cấp: docs/connect-model.md mục 2.
+    if MODEL_PROVIDER == "openai":
+        return _call_openai(system, user)
+    if MODEL_PROVIDER == "anthropic":
+        return _call_anthropic(system, user)
     raise NotImplementedError(
         "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — xem docs/connect-model.md"
         % MODEL_PROVIDER)
+
+
+URL_OPENAI = "https://api.openai.com/v1/chat/completions"
+
+
+def _post_json(url, headers, body, timeout=60):
+    """Gửi POST JSON, trả JSON phản hồi. Thư viện chuẩn (urllib) — chép từ docs/connect-model.md mục 2."""
+    import json
+    import urllib.error
+    import urllib.request
+
+    req = urllib.request.Request(
+        url, data=json.dumps(body).encode("utf-8"), method="POST",
+        headers=dict({"Content-Type": "application/json"}, **headers))
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        raise RuntimeError("HTTP %d: %s" % (e.code, e.read().decode("utf-8", "replace")[:300]))
+
+
+def _call_openai(system: str, user: str) -> dict:
+    """OpenAI Chat Completions — theo ví dụ đã chạy ở docs/connect-model.md mục 2.1 (không cần pip install).
+
+    .env: MODEL_PROVIDER=openai · MODEL_NAME=<mã model, vd gpt-5.4-nano> · API_KEY=…
+    """
+    messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
+    data = _post_json(URL_OPENAI, {"Authorization": "Bearer " + API_KEY},
+                      {"model": MODEL_NAME, "messages": messages})
+    u = data["usage"]
+    return {"text": data["choices"][0]["message"]["content"] or "", "model": data.get("model", MODEL_NAME),
+            "tokens_in": int(u["prompt_tokens"]), "tokens_out": int(u["completion_tokens"])}
+
+
+def _call_anthropic(system: str, user: str) -> dict:
+    """Claude qua SDK chính thức (`pip install -r requirements.txt`). Import ở đây để chế độ giả không cần cài gì.
+
+    .env: MODEL_PROVIDER=anthropic · MODEL_NAME=claude-haiku-5-5 (hoặc claude-sonnet-5-5 để so sánh) · API_KEY=…
+    effort "low": mỗi lượt chỉ là một quyết định ngắn trả JSON; token suy nghĩ tính vào output_tokens.
+    """
+    import anthropic
+
+    model = MODEL_NAME or "claude-haiku-5-5"
+    client = anthropic.Anthropic(api_key=API_KEY or None)  # None → SDK tự đọc ANTHROPIC_API_KEY / profile
+    kwargs = dict(
+        model=model,
+        max_tokens=4096,
+        output_config={"effort": "low"},
+        messages=[{"role": "user", "content": user}],
+    )
+    if system:
+        kwargs["system"] = system
+
+    if model.startswith(("claude-sonnet-5-5", "claude-opus-5")):
+        # Bị từ chối vì bộ lọc an toàn → máy chủ tự chạy lại trên model dự phòng (Haiku 5.5 không có tính năng này)
+        resp = client.beta.messages.create(betas=["server-side-fallback-2026-07-01"], fallbacks="default", **kwargs)
+    else:
+        resp = client.messages.create(**kwargs)
+
+    if resp.stop_reason == "refusal":
+        text = ""  # agent.py coi như không parse được → bỏ gợi ý, sang thẳng câu tương tự
+    else:
+        text = "".join(b.text for b in resp.content if b.type == "text")
+    return {
+        "text": text,
+        "model": resp.model,
+        "tokens_in": resp.usage.input_tokens,
+        "tokens_out": resp.usage.output_tokens,
+    }
