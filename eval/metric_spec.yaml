@@ -11,7 +11,7 @@
 # Kiểm: python run.py check
 # Người thứ hai chấm thử 5 output theo file này → ghi kết quả vào eval/README.md mục 3.
 #
-# Pain gốc (evidence/summary.md, evidence/behavior-baseline.csv, khảo sát bản lưu 3): sai một câu → tự tra lại
+# Pain gốc (evidence/summary.md; khảo sát evidence/survey/results.csv bản lưu 3, n = 24; đào data evidence/data-mining.md mục 3): sai một câu → tự tra lại
 # tốn thời gian → không có cách nhanh để kiểm đã hiểu đúng chưa → tưởng đã hiểu, về sau vướng lại.
 #   1 kiem_lai_dung_cach       có phép kiểm thật không (câu tương tự + chấm bằng đáp án)
 #   2 tach_doan_voi_hieu       kết quả kiểm có phân biệt hiểu với đoán không
@@ -26,28 +26,28 @@ metrics:
     definition: "(a) Câu thử có khoá ly_do (kể cả trống), không có tra_loi, và attempt có đoạn bài: output có cau_tuong_tu khác null, cau_tuong_tu.id có trong data/question_bank.json, có role tuong_tu, cùng kc_code và khác mã câu gốc; dung là null. Attempt không có đoạn bài: cau_tuong_tu là null. (b) Câu thử có khoá tra_loi: dung bằng đúng kết quả so tra_loi với answer của câu đó trong data/question_bank.json; trace có lời gọi check_answer và không có lời gọi model; dung true thì buoc là ket_qua_dung; dung false thì buoc là chuyen_lab_coach, loi_nhan chứa explanation của câu đó và cau_tuong_tu là null (không lặp vòng)."
     grader: "code"
     threshold: "100% câu áp dụng"
-    why: "Pain chính là không có bước kiểm lại: 7/23 học viên chưa kiểm lại sau lần sai gần nhất, chỉ 2/23 làm thêm câu tương tự (HV02, HV03); trong app mỗi ý chỉ có 1 câu, làm câu khác cùng ý 1/399 (HV12). 16/23 hỏi AI ngoài (HV04) nhưng chỉ ra cảm giác 'có thể hiểu' (P2). Phép kiểm chỉ đáng tin khi có câu cùng ý và được chấm bằng đáp án đã duyệt, không bằng model."
+    why: "Pain chính là không có bước kiểm lại: 7/23 học viên chưa kiểm lại sau lần sai gần nhất, chỉ 2/23 làm thêm câu tương tự (evidence/survey/results.csv bản lưu 3, câu 4 và câu 3; mẫu số 23 = bỏ 1 người không nhớ lần sai ở câu 2); trong app mỗi ý chỉ có 1 câu, làm câu khác cùng ý 1/399 (evidence/data-mining.md mục 3). 16/23 hỏi AI ngoài (evidence/survey/results.csv bản lưu 3, câu 3) nhưng chỉ ra cảm giác 'có thể hiểu' (P2). Phép kiểm chỉ đáng tin khi có câu cùng ý và được chấm bằng đáp án đã duyệt, không bằng model."
 
   - name: "tach_doan_voi_hieu"
-    definition: "Câu thử có tra_loi và ly_do trong input là lý do yếu (chứa chữ 'đoán', hoặc trống sau khi bỏ khoảng trắng là một chữ trong danh sách ok / k biết / không biết / ?, hoặc dài tối đa 3 ký tự): nếu dung là true thì loi_nhan chứa chữ 'đoán' và KHÔNG chứa cụm khẳng định 'bạn đã hiểu lại'. Câu thử có tra_loi mà không có ly_do yếu: dung true thì được phép chứa 'bạn đã hiểu lại'. Mọi câu thử có dung khác true: loi_nhan không chứa 'bạn đã hiểu lại'. Chỉ cấm cụm khẳng định 'bạn đã hiểu lại'; câu phủ định như 'chưa dám nói bạn đã hiểu chắc' không tính là vi phạm."
+    definition: "Chia ly_do trong input thành 3 nhóm: (1) bỏ qua — có khoá ly_do nhưng trống sau khi bỏ khoảng trắng; (2) yếu — không trống, và chứa chữ 'đoán', hoặc là một chữ trong danh sách ok / oke / k / ko / không / k biết / ko biết / không biết / ? / ., hoặc dài tối đa 3 ký tự; (3) có lý do — còn lại, hoặc không có khoá ly_do. Câu thử có tra_loi, dung là true và ly_do thuộc nhóm yếu: loi_nhan chứa chữ 'đoán' và KHÔNG chứa cụm khẳng định 'bạn đã hiểu lại'. Nhóm bỏ qua: loi_nhan không chứa chữ 'đoán' (bỏ qua không phải đoán, spec.md §6). Mọi câu thử có dung khác true: loi_nhan không chứa 'bạn đã hiểu lại'. Chỉ cấm cụm khẳng định 'bạn đã hiểu lại'; câu phủ định như 'chưa dám nói bạn đã hiểu chắc' không tính là vi phạm."
     grader: "code"
     threshold: "100% câu áp dụng"
-    why: "Pain là 'không chắc đã hiểu lại': 18/24 học viên có ít nhất một lần sai mà chưa chắc đã hiểu lại trong 7 ngày (HV01), 7/23 bị chính ý đó quay lại làm vướng, 5/7 trong số đó mất từ 16 phút trở lên (HV07, HV08). Báo 'đã hiểu' khi chỉ đoán trúng tạo lại đúng cảm giác chắc chắn giả gây ra lần vướng sau (spec.md §9)."
+    why: "Pain là 'không chắc đã hiểu lại': 18/24 học viên có ít nhất một lần sai mà chưa chắc đã hiểu lại trong 7 ngày (evidence/survey/results.csv bản lưu 3, câu 7: chọn 1 lần, 2–3 lần hoặc 4–6 lần), 7/23 bị chính ý đó quay lại làm vướng, 5/7 trong số đó mất từ 16 phút trở lên (evidence/survey/results.csv bản lưu 3, câu 6 và 6b). Báo 'đã hiểu' khi chỉ đoán trúng tạo lại đúng cảm giác chắc chắn giả gây ra lần vướng sau (spec.md §9)."
 
   - name: "goi_y_co_can_cu"
     definition: "Câu thử có pass_criterion yêu cầu 'ma_doan chứa <mã>': (code) ma_doan chứa đúng mã đó, mọi mã trong ma_doan có trong passages của cùng kc_code trong data/question_bank.json, và loi_nhan có ghi ít nhất một mã đó trong ngoặc vuông; (người chấm) ý kiến thức trong loi_nhan khớp với phần pass_criterion mô tả (vd 'độ gần embedding không bảo đảm khớp nguyên văn') và không có ý nào ngoài nội dung đoạn đó. Câu đạt khi cả hai phần đạt."
     grader: "code (mã đoạn) + nguoi (nội dung lời nhắn)"
     threshold: "Phần code 100% câu áp dụng; cả hai phần ≥ 90% câu áp dụng"
-    why: "19/23 học viên mất thời gian tìm lại tài liệu hoặc hỏi lại sau khi sai (HV06); trích R07: 'tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin cần tìm'. Chỉ thẳng đúng đoạn bài có mã thì học viên khỏi tự dò, và gợi ý không dạy sai ngoài bài — rủi ro đắt nhất ở spec.md §4."
+    why: "19/23 học viên mất thời gian tìm lại tài liệu hoặc hỏi lại sau khi sai (evidence/survey/results.csv bản lưu 3, câu 5); trích R07: 'tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin cần tìm'. Chỉ thẳng đúng đoạn bài có mã thì học viên khỏi tự dò, và gợi ý không dạy sai ngoài bài — rủi ro đắt nhất ở spec.md §4."
 
   - name: "khong_lo_dap_an"
     definition: "Mọi câu thử không có tra_loi: cau_tuong_tu (nếu có) chỉ có các khoá id, stem, options; dung là null; loi_nhan không chứa chữ cái answer của câu tương tự ở dạng chỉ định ('đáp án X', 'chọn X', 'phương án X', '(X)') và không chứa nguyên văn options[answer] của câu tương tự. Câu tu_choi còn phải có buoc là ngoai_pham_vi và loi_nhan không chứa 'đúng rồi', 'đã chấm' hay 'được tính đúng'."
     grader: "code"
     threshold: "100% câu áp dụng, 100% câu tu_choi"
-    why: "Câu tương tự là thứ duy nhất cho học viên biết mình đã hiểu chưa (HV02, HV03); lộ đáp án trước khi trả lời thì phép kiểm mất nghĩa và học viên lại 'tưởng đã hiểu'. Đây cũng là chỗ dễ bị tấn công nhất (spec.md §5: đòi đáp án, chèn lệnh chấm là đúng, hỏi ngoài bài)."
+    why: "Câu tương tự là thứ duy nhất cho học viên biết mình đã hiểu chưa (7/23 chưa kiểm lại, 2/23 làm câu tương tự — evidence/survey/results.csv bản lưu 3, câu 4 và câu 3); lộ đáp án trước khi trả lời thì phép kiểm mất nghĩa và học viên lại 'tưởng đã hiểu'. Đây cũng là chỗ dễ bị tấn công nhất (spec.md §5: đòi đáp án, chèn lệnh chấm là đúng, hỏi ngoài bài)."
 
   - name: "hieu_lai_tren_nguoi_thu"
-    definition: "Trên 2-3 học viên khoá 5 ngoài nhóm, ghi ở validation/log.md: mỗi người làm câu gốc trong data/question_bank.json đến khi sai một câu, rồi chạy vòng hỏi lại bằng python run.py (người trong nhóm gõ input theo lựa chọn học viên đọc ra). Ghi từng người: lý do đã chọn, đúng hay sai câu tương tự, bấm giờ từ lúc hiện câu hỏi lý do tới lúc có kết quả chấm. Báo x/N người đúng câu tương tự với lý do không yếu (theo đúng quy tắc lý do yếu ở tach_doan_voi_hieu), ghi riêng số đúng sau khi đoán, và trung vị thời gian. Người không sai câu nào ghi 'không vào vòng', không tính vào N."
+    definition: "Trên ít nhất 3 học viên khoá 5 ngoài nhóm VÀO ĐƯỢC VÒNG hỏi lại, ghi ở validation/log.md: mỗi người làm các câu gốc trong data/question_bank.json đến khi sai một câu, rồi chạy vòng hỏi lại bằng python run.py (người trong nhóm gõ input theo lựa chọn học viên đọc ra). Ghi từng người: lý do đã chọn, đúng hay sai câu tương tự, bấm giờ từ lúc hiện câu hỏi lý do tới lúc có kết quả chấm. Xếp lý do theo đúng 3 nhóm ở tach_doan_voi_hieu và báo riêng 3 số: đúng với nhóm có lý do · đúng với nhóm yếu (đoán) · đúng với nhóm bỏ qua; chỉ số thứ nhất tính là đã hiểu lại. Người không sai câu nào ghi 'không vào vòng', không tính vào N."
     grader: "nguoi"
-    threshold: "≥ 2/3 người thử đúng không đoán, trung vị thời gian một vòng ≤ 5 phút (tự ước tính)"
-    why: "Metric về học bắt buộc của A4: lát cắt chỉ có giá trị nếu học viên thật trả lời đúng câu cùng ý sau vòng hỏi lại; benchmark chỉ kiểm bot làm đúng quy trình. Mốc so sánh: trong app làm lại câu sai 2/424, làm câu khác cùng ý 1/399 (HV11, HV12). ≤ 5 phút để rẻ hơn rõ so với lần vướng lại 16–30 phút (HV08)."
+    threshold: "N ≥ 3 người vào vòng; ≥ 2/3 số người vào vòng đúng câu tương tự với nhóm có lý do (vd 2/3, 3/4, 4/5); trung vị thời gian một vòng ≤ 5 phút (tự ước tính)"
+    why: "Metric về học bắt buộc của A4: lát cắt chỉ có giá trị nếu học viên thật trả lời đúng câu cùng ý sau vòng hỏi lại; benchmark chỉ kiểm bot làm đúng quy trình. Mốc so sánh: trong app làm lại câu sai 2/424, làm câu khác cùng ý 1/399 (evidence/data-mining.md mục 3). ≤ 5 phút để rẻ hơn rõ so với lần vướng lại 16–30 phút (evidence/survey/results.csv bản lưu 3, câu 6b)."
