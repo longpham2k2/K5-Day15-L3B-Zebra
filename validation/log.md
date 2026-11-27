@@ -22,7 +22,7 @@ Cách chạy từng người: [quy-trinh.md](quy-trinh.md).
 
 ## Kết quả vòng hỏi lại (metric `hieu_lai_tren_nguoi_thu`)
 
-Model dùng: __ · máy cầm: __
+Model dùng: OpenAI `gpt-5.4-nano` (cùng model với eval lượt 1, lượt 2) · máy cầm: __ · chạy bằng `python codebase/web.py`, mỗi phiên lưu ở `validation/phien-thu/`
 
 | # | Câu gốc sai (lựa chọn) | Mã lượt | Lý do (nguyên văn) | Nhóm lý do (có lý do / yếu / bỏ qua) | Câu tương tự | Trả lời | Đúng? | Thời gian (phút) | Ghi chú |
 |---|---|---|---|---|---|---|---|---|---|

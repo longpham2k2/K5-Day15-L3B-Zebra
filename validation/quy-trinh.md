@@ -27,7 +27,7 @@ Trang gọi đúng `answer()` của agent với cùng định dạng input như 
 ## 1. Chuẩn bị (trước 10:30, ~10 phút)
 
 1. `git pull --rebase origin main` — để có ngân hàng câu mới (Q1–Q6, lượt T01–T15).
-2. Kiểm `.env` trên máy cầm máy: có `MODEL_PROVIDER`, `MODEL_NAME`, `API_KEY`. **Model dùng: __** (thống nhất với Long — nên cùng model với eval lượt 1 / lượt 2; ghi vào log).
+2. Kiểm `.env` trên máy cầm máy: có `MODEL_PROVIDER`, `MODEL_NAME`, `API_KEY`. **Model dùng: OpenAI `gpt-5.4-nano`** — cùng model với eval lượt 1 và lượt 2 (chốt 28/11 ~00:27): `.env` = `MODEL_PROVIDER=openai`, `MODEL_NAME=gpt-5.4-nano`, `API_KEY=<key OpenAI của nhóm>`. Mở giao diện web, dòng đầu trang phải ghi `model gpt-5.4-nano`.
 3. Chạy thử 1 vòng không người: `python run.py` → gõ `attempt=T05` → phải thấy agent hỏi lý do. Gõ `Enter` 2 lần để thoát.
 4. Mở sẵn: link họp online · `data/question_bank.json` (để đọc câu gốc) · `validation/log.md` (để ghi) · đồng hồ bấm giờ.
 5. **`python run.py` không tự lưu trace** → sau mỗi người, **chép toàn bộ chữ trong terminal** vào một file tạm (vd `validation/raw-U1.txt`, KHÔNG có tên người thử) để làm bằng chứng.
