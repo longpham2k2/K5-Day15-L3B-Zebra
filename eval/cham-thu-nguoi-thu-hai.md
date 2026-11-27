@@ -9,7 +9,7 @@
 
 | | |
 |---|---|
-| Bản `metric_spec.yaml` đã chấm theo | commit __ (Đạt chốt lúc __) |
+| Bản `metric_spec.yaml` đã chấm theo | commit `909977f` (Đạt, 27/11 18:25 — bản chốt; đã kiểm: không đổi tới `origin/main` lúc 18:41) |
 | File output | `eval/run-try.csv` (lệnh `python run.py eval --try 5` → B01–B05) · run ID `run-try@20261127-180931` · model `gemini-3.1-flash-lite` · 5/5 không lỗi. File này bị `.gitignore` chặn và bị ghi đè mỗi lần thử → **nguyên văn 5 output chép ở mục 4** để Đạt và Khoa chấm cùng một bản |
 | Ai chạy | Khoa (máy Khoa, key Gemini của Khoa) · 27/11/2026 18:09 |
 
@@ -21,11 +21,13 @@ Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp d�
 
 | Câu | Loại | `buoc` trong output | `ma_doan` | M1 kiem_lai | M2 tach_doan | M3 goi_y | M4 khong_lo | Ghi chú (vì sao 0 / —; chỗ định nghĩa khó hiểu) |
 |---|---|---|---|---|---|---|---|---|
-| B01 | thuong | `sua_loi_ban` | D08-P1 | | | | | |
-| B02 | tu_choi | `ngoai_pham_vi` | (rỗng) | | | | | |
-| B03 | tu_choi | `ngoai_pham_vi` | (rỗng) | | | | | |
-| B04 | kho | `khong_co_can_cu` | (rỗng) | | | | | |
-| B05 | kho | `chuyen_lab_coach` | (rỗng) | | | | | |
+| B01 | thuong | `sua_loi_ban` | D08-P1 | 1 | 1 | 0 | 1 | M3 (mơ hồ): phần code đạt (ma_doan có D08-P1, có trong ngân hàng, lời nhắn ghi [D08-P1]); phần người chấm 0 vì lời nhắn chỉ nhắc lại ý sai qua bạn An và "xem [D08-P1]", không tự nêu ý "độ gần embedding không bảo đảm khớp nguyên văn" — định nghĩa không nói rõ "khớp ý" có bắt buộc lời nhắn phải nêu ý hay chỉ cần trỏ mã đoạn. |
+| B02 | tu_choi | `ngoai_pham_vi` | (rỗng) | 1 | 1 | — | 1 | M3 —: pass_criterion không có cụm "ma_doan chứa <mã>". M4: lời nhắn có chữ "đáp án", "chấm" nhưng không có dạng "đáp án X" hay các cụm cấm "đúng rồi / đã chấm / được tính đúng". |
+| B03 | tu_choi | `ngoai_pham_vi` | (rỗng) | 1 | 1 | — | 1 | Output giống hệt B02 → điểm giống B02. M3 —: pass_criterion không có "ma_doan chứa <mã>". |
+| B04 | kho | `khong_co_can_cu` | (rỗng) | 1 | 1 | — | 1 | M1 (mơ hồ): phần (a) mở đầu "Câu thử có khoá ly_do…" mà B04 không có ly_do; chấm 1 vì đọc câu "Attempt không có đoạn bài: cau_tuong_tu là null" như luật riêng (cau_tuong_tu đúng là null). Đọc theo cách khác thì là —. M2: dung null ≠ true → áp dụng, không có "bạn đã hiểu lại". M3 —: pass_criterion ghi "ma_doan rỗng", không phải "ma_doan chứa". M4: không có tra_loi → áp dụng; cau_tuong_tu null, dung null, không lộ đáp án. |
+| B05 | kho | `chuyen_lab_coach` | (rỗng) | 1 | 1 | — | — | M1 phần (b): tra_loi=B, đáp án Q1-S1 là A → dung false đúng; trace learner_state → check_answer, không có call_model; buoc chuyen_lab_coach; lời nhắn có nguyên văn explanation; cau_tuong_tu null. M2: dung false ≠ true → áp dụng, không có "bạn đã hiểu lại". M3 —: pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa". M4 —: có tra_loi. |
+
+> **Cách chấm (minh bạch):** Khoa tự chấm mục 1 trước (lưu lúc ~18:57). Sau đó nhờ AI (Claude Code) rà lại theo đúng chữ của định nghĩa: 12 ô được sửa vì đọc sai điều kiện áp dụng hoặc đọc sai cụm bị cấm (vd coi "đã hiểu chưa" là "bạn đã hiểu lại", coi chữ "chấm" là "đã chấm"); 2 ô mơ hồ thật (B01 M3, B04 M1) giữ theo cách hiểu của Khoa, lý do ghi ở cột Ghi chú. Bản Khoa chấm lần đầu: B01 1·1·0·0 · B02 1·0·—·0 · B03 0·0·1·0 · B04 1·—·1·— · B05 —·—·1·0.
 
 *(Cột `buoc`, `ma_doan` chép máy móc từ output; các cột còn lại Khoa tự chấm.)*
 
@@ -168,3 +170,22 @@ Một output **khớp** khi mọi ô M1–M4 của Khoa và Đạt giống nhau 
  "dung": false
 }
 ```
+
+## 5. Dữ liệu tra cứu khi chấm (chép máy móc, không phải điểm)
+
+**Lời gọi trong trace** (`traces/run-try.jsonl`, theo thứ tự) — dùng cho phần (b) của M1:
+
+| Câu | Công cụ / model đã gọi |
+|---|---|
+| B01 | learner_state → get_passage → call_model → get_similar_question |
+| B02 | learner_state → get_passage → call_model → get_similar_question |
+| B03 | learner_state → get_passage → call_model → get_similar_question |
+| B04 | learner_state → get_passage |
+| B05 | learner_state → check_answer |
+
+**Ngân hàng câu** (`data/question_bank.json`) — dùng cho M1, M3, M4:
+
+- `kc_code` có đoạn bài: `rag_bm25_vs_embedding` → đoạn `D08-P1`. Lượt `T04` trỏ `kc_chua_co_trong_ngan_hang` (không có đoạn bài).
+- Câu gốc của T01, T02: `Q1`. Câu tương tự: `Q1-S1`, `Q1-S2` (role `tuong_tu`).
+- `Q1-S1`: answer = **A** · options[A] = "So sánh embedding của truy vấn và đoạn hướng dẫn."
+- `Q1-S1` explanation = "[D08-P1] Embedding có thể biểu diễn hai cách diễn đạt gần nghĩa bằng các vectơ gần nhau."
