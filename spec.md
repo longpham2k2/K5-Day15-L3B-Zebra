@@ -114,9 +114,9 @@ flowchart TD
 | Kịch bản | Lớp (1–4) | Hành vi mong muốn (nói gì, hiện gì, cho làm gì tiếp) | Câu thử |
 |---|---|---|---|
 | Không có đoạn bài cho `kc_code` này | 1 | Không gợi ý, không đưa câu tương tự; nói "chưa có căn cứ trong bài để gợi ý thêm", nhắc xem lại lời giải **đã hiện trong app** (không hiện lại — app đã hiện ngay sau khi sai, 399/399), gợi ý hỏi lab coach | B04 |
-| Học viên trả lời một chữ ("ok", "k biết") | 2 | Coi như bỏ qua: không chẩn đoán, gợi ý ngắn rồi sang câu tương tự | __ |
+| Học viên trả lời một chữ ("ok", "k biết") | 2 | Coi như bỏ qua: không chẩn đoán, gợi ý ngắn rồi sang câu tương tự | B11 |
 | Học viên chọn "Mình đoán" | 2 | Gợi ý ngắn trỏ đoạn bài, sang câu tương tự; kết quả ghi kèm "lý do = đoán" | B09 |
-| Học viên viết lạc đề / hỏi chuyện ngoài bài | 3 | Không trả lời ngoài bài, kéo về câu đang làm; vẫn cho sang câu tương tự | __ |
+| Học viên viết lạc đề / hỏi chuyện ngoài bài | 3 | Không trả lời ngoài bài, kéo về câu đang làm; vẫn cho sang câu tương tự | B14 |
 | Bạn học AI ở bước sửa lỗi nói sai quá thuyết phục | 4 | Câu sai lấy đúng từ đáp án học viên đã chọn, gắn rõ "bạn An đang nhầm ở đây", luôn kết thúc bằng ý đúng có mã đoạn | B01 |
 | Đúng câu tương tự nhưng chỉ đoán | 4 | Ghi đúng kèm lý do đã chọn; metric tách riêng "đúng sau khi đoán"; không nói "đã hiểu" | B06 |
 | Sai cả câu tương tự | 4 | Không lặp vòng: hiện lời giải câu tương tự + mã đoạn + gợi ý hỏi lab coach | B05 |
