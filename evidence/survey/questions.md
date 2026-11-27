@@ -11,6 +11,8 @@
 |---|---|
 | Link form | https://docs.google.com/forms/d/e/1FAIpQLSe74TZJOAm8vjt7Zzya2L0NWm2RjgIUR2uNMz0nedayr1g_GA/viewform |
 | Bản lưu giữa chừng | 27/11 · 12 phản hồi (mới nhất 16:34) → `results.csv` — chưa chốt |
+| Bản lưu 2 | 27/11 · 22 phản hồi (mới nhất 17:21), 22/22 học viên L3A / L3B → ghi đè `results.csv`; R01–R12 giữ nguyên mã và nội dung, R13–R22 nối thêm theo giờ gửi · đạt ngưỡng ≥20 · form vẫn mở |
+| Bản lưu 3 | 27/11 · 24 phản hồi (mới nhất 17:24), 24/24 học viên L3A / L3B → ghi đè `results.csv`; R01–R22 giữ nguyên, R23–R24 nối thêm · form vẫn mở |
 | Kênh đã gửi | __ (vd Discord khoá · Zalo lớp L3A · Zalo lớp L3B) |
 | Giờ mở | __ |
 | Giờ chốt | __ (chốt trước CP3 10:00 Thứ Bảy 28/11 để kịp ghi `summary.md`) |
