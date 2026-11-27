@@ -87,7 +87,14 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 - Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
+- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"):
+  - **Bằng chứng & bài toán** (`evidence/`, §0–§2, `canvas.md`, tới CP3): Long chốt · Khoa phỏng vấn + khảo sát
+  - **Thiết kế** (§3–§6, §9; §4 tới CP2): Long
+  - **Bản chạy thử** (`codebase/`; khung CP2, AI thật CP3): Long luồng + prompt · Huy công cụ (`tools.py`)
+  - **Đánh giá** (§7, `eval/`, `data/DATA_CARD.md`; metric chốt CP2): Đạt · Long duyệt lát cắt + metric về học
+  - **Chi phí** (§8, `cost/`; thử CP3, đủ CP4): Huy · Đạt kiểm số
+  - **Demo** (`slides/`, video dự phòng, `validation/log.md`; CP4): Khoa
+  - **Changelog §10, `docs/ai-usage.md`**: Long · **reflection**: mỗi người tự viết (23:59 28/11)
 - Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 

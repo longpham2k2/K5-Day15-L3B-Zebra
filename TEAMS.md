@@ -11,10 +11,10 @@
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | Phạm Ngọc Long | 2A202604111 | Đội trưởng | ____ |
-| 2 | Trần Trọng Đạt | 2A202604030 | Thành viên | ____ |
-| 3 | Nguyễn Lê Đăng Khoa | 2A202603847 | Thành viên | ____ |
-| 3 | Nguyễn Công Huy | 2A202604086 | Thành viên | ____ |
+| 1 | Phạm Ngọc Long | 2A202604111 | Đội trưởng | Chốt bài toán & bằng chứng, thiết kế giải pháp, luồng agent + prompt |
+| 2 | Trần Trọng Đạt | 2A202604030 | Thành viên | Đánh giá: metric, bộ câu thử, chạy và chấm eval, DATA_CARD |
+| 3 | Nguyễn Lê Đăng Khoa | 2A202603847 | Thành viên | Phỏng vấn + khảo sát học viên, slide, demo, video dự phòng |
+| 4 | Nguyễn Công Huy | 2A202604086 | Thành viên | Công cụ của agent (codebase/tools.py), mô phỏng chi phí |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.
