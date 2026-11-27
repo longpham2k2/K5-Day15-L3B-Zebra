@@ -16,7 +16,7 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 - Công cụ / AI đang dùng: trợ giảng AI + 4 bạn học AI trên pre-class (theo `chat.csv`, `class_events.csv`); ChatGPT ngoài (P1, P2). Ảnh chụp màn hình: chưa có — nhóm chưa dùng pre-class.
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- **Người dùng chính:** học viên AI20K khoá 5 đang làm build phase, ít thời gian tự học ngoài giờ (P1: ~30 phút / tuần), **có làm câu ôn tập cuối ngày trên pre-class và vừa trả lời sai một câu**.
+- **Người dùng chính:** học viên AI20K khoá 5 đang làm build phase, ít thời gian tự học ngoài giờ (P1: ~30 phút / tuần), **vừa trả lời sai một câu kiểm tra trong khoá** (bản chạy thử: câu ôn tập cuối ngày trên pre-class — nơi có data để đo).
 - **Việc họ cố làm xong:** hiểu đúng một ý của bài ngay sau khi trả lời sai, trước khi lên lớp và làm lab.
 - **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** đọc lời giải rồi học tiếp, hoặc hỏi ChatGPT. Hỏng ở chỗ **không có gì kiểm xem đã hiểu lại đúng chưa**: app không có câu thứ hai cùng ý, ChatGPT giảng lại nhưng không hỏi lại (P2: tra xong chỉ "có thể hiểu"). Chưa bỏ vì nhanh, sẵn có, và không ai biết mình chưa hiểu cho tới khi bị hỏi lại.
 - **Pain (không chữ AI):** học viên khoá 5 trả lời sai câu ôn tập cuối ngày → đọc lời giải rồi học tiếp → không có cách nhanh để kiểm xem mình đã hiểu lại đúng chưa → dễ mang hiểu sai vào buổi học, lab và build phase.
@@ -53,7 +53,7 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
   - Không tự sinh câu hỏi mới khi chạy: chỉ lấy câu tương tự **đã được duyệt** trong ngân hàng.
   - Không để AI chấm đúng / sai, không giảng nội dung ngoài đoạn bài có mã.
   - Không hội thoại nhiều lượt: tối đa một vòng (hỏi lý do → gợi ý / sửa lỗi bạn → câu tương tự).
-  - Chưa làm câu giữa video và bước lab (bước sau: cùng vòng, thêm điểm bắt đầu).
+  - Chưa nối vào quiz trên lớp, bước lab, câu giữa video — cùng một vòng, chỉ thêm điểm bắt đầu (bước sau). Vòng hỏi lại không phụ thuộc pre-class: chỉ cần câu kiểm tra, đáp án học viên chọn, đoạn bài và câu tương tự.
 - **Sơ đồ:**
 
 ```mermaid
