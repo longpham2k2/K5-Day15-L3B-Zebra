@@ -1,4 +1,4 @@
-# AI SPEC — Học từ lỗi: hỏi lại ngay sau câu sai · Nhóm Zebra · Phòng C401 · Zone __
+# AI SPEC — Học từ lỗi: hỏi lại ngay sau câu sai · Nhóm Zebra · Phòng C401 · Zone 4
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 
