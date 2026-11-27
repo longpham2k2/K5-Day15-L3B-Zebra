@@ -1,23 +1,24 @@
-# Data card — dữ liệu bản chạy thử dùng
+# Data card — dữ liệu bản chạy thử
 
-> Điền ở guide bước 2.4 (bản đầu ở CP2, đủ ở CP3). Ôn lại: ngày 6 · lab ngày 6. Chấm ở rubric R4.
-> Một trang. Mỗi dataset một mục. Dữ liệu chạy thử (bài mẫu, thông báo mẫu, đoạn transcript…) để trong thư mục `data/` này.
-> Không commit nguyên tài liệu khoá, dữ liệu cá nhân thật hay nguyên file data BTC cấp — chỉ đoạn trích ngắn, bản viết lại, hoặc số đã tổng hợp.
+## Ngân hàng câu hỏi
 
-## Dataset 1 · [tên]
-
-| | |
+| Mục | Chi tiết |
 |---|---|
-| Dùng để làm gì | nguồn cho công cụ `…` · bộ câu thử · đào bằng chứng |
-| Từ đâu | data BTC cấp (`…` trong repo đề) · tài liệu khoá (trích / viết lại) · nhóm tự viết · sinh có seed |
-| Xử lý những bước gì | lọc __ · làm sạch __ · ẩn danh __ · chia __ (script: `…`) |
-| Số dòng / số đoạn | __ |
-| Phiên bản / ngày lấy | __ |
-| Nhãn | thật · `synthetic` |
-| Giới hạn | thiếu gì, lệch về phía nào |
+| File | `data/question_bank.json` |
+| Công cụ | `get_passage`, `get_similar_question`, `check_answer`, `learner_state` |
+| Nội dung | Một ý mẫu `rag_bm25_vs_embedding`, một đoạn bài `D08-P1`, một câu gốc và hai câu tương tự |
+| Nguồn | Nội dung mẫu do Codex soạn theo chủ đề người dùng cung cấp, ngày 27/11/2026 |
+| Nhãn | `synthetic`, ví dụ viết trực tiếp, không dùng seed |
+| Bổ sung | Long hoặc Khoa điền thêm 2–4 ý từ slide khoá. Mỗi ý có mã riêng và câu hỏi có ID duy nhất. Nhóm kiểm và duyệt trước khi đưa câu hỏi thật vào ngân hàng. |
 
-**Data `synthetic` (nhóm tự sinh):** ghi cách sinh (prompt / script), seed, người kiểm, số dòng đã kiểm tay. Data tự dựng **không phải bằng chứng pain**.
+## Lượt trả lời sai mẫu
 
-## Dataset 2 · [tên]
+| Mục | Chi tiết |
+|---|---|
+| File | `data/learner_states.json` |
+| Công cụ | `learner_state` |
+| Nội dung | Ba lượt sai `T01`–`T03` tham chiếu câu `Q1`, gồm ví dụ sai lần đầu và lần thứ hai |
+| Nguồn | Ví dụ do Codex tạo ngày 27/11/2026 để thử tra cứu cục bộ |
+| Nhãn | `synthetic`, không dùng seed |
 
-…
+Hai file phục vụ demo. Nhóm còn cần đối chiếu ý mẫu với slide, kiểm tay câu hỏi và đáp án trước khi dùng với học viên. Lượt sai mẫu chỉ minh họa cấu trúc dữ liệu.

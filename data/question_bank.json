@@ -1,0 +1,55 @@
+{
+  "concepts": [
+    {
+      "kc_code": "rag_bm25_vs_embedding",
+      "passages": [
+        {
+          "code": "D08-P1",
+          "text": "BM25 xếp hạng tài liệu dựa trên mức khớp từ giữa truy vấn và tài liệu, nên hữu ích khi cần tìm mã hoặc thuật ngữ viết đúng. Tìm kiếm bằng embedding xếp hạng theo độ gần giữa các vectơ biểu diễn, nên có thể tìm nội dung cùng nghĩa dù dùng cách diễn đạt khác."
+        }
+      ],
+      "questions": [
+        {
+          "id": "Q1",
+          "role": "goc",
+          "stem": "Hệ thống cần tìm tài liệu có đúng mã lỗi E417. Phương án nào tận dụng trực tiếp việc mã xuất hiện nguyên văn trong tài liệu?",
+          "options": {
+            "A": "Dùng BM25 để tìm những đoạn cùng nghĩa dù không chứa mã.",
+            "B": "Dùng BM25 để xếp hạng các đoạn chứa mã E417.",
+            "C": "Xếp hạng bằng embedding vì hai vectơ gần nhau bảo đảm trùng từng ký tự."
+          },
+          "answer": "B",
+          "explanation": "[D08-P1] BM25 dựa trên các từ khớp giữa truy vấn và tài liệu. Độ gần embedding không bảo đảm trùng mã ký tự.",
+          "misconception": {
+            "A": "Nhầm BM25 với tìm kiếm theo nghĩa.",
+            "C": "Nhầm độ gần embedding với khớp nguyên văn."
+          }
+        },
+        {
+          "id": "Q1-S1",
+          "role": "tuong_tu",
+          "stem": "Người dùng tìm “đổi mật khẩu”, còn đoạn hướng dẫn viết “cập nhật thông tin đăng nhập”. Cách xếp hạng nào tận dụng trực tiếp sự gần nhau về nghĩa?",
+          "options": {
+            "A": "So sánh embedding của truy vấn và đoạn hướng dẫn.",
+            "B": "Ưu tiên đoạn lặp lại nguyên văn cụm “đổi mật khẩu”.",
+            "C": "Xếp hạng đoạn chỉ theo số ký tự."
+          },
+          "answer": "A",
+          "explanation": "[D08-P1] Embedding có thể biểu diễn hai cách diễn đạt gần nghĩa bằng các vectơ gần nhau."
+        },
+        {
+          "id": "Q1-S2",
+          "role": "tuong_tu",
+          "stem": "Chỉ mục giữ nguyên mã sản phẩm ZX204. Bạn muốn ưu tiên tài liệu chứa mã này khi truy vấn ZX204. Cách nào dựa trực tiếp trên từ khớp?",
+          "options": {
+            "A": "Ưu tiên tài liệu có tiêu đề ngắn nhất.",
+            "B": "Xếp hạng theo độ gần embedding để gom các mã cùng dòng sản phẩm.",
+            "C": "Xếp hạng bằng BM25 trên truy vấn ZX204."
+          },
+          "answer": "C",
+          "explanation": "[D08-P1] Khi chỉ mục giữ nguyên mã, BM25 có thể dùng mã khớp giữa truy vấn và tài liệu để xếp hạng."
+        }
+      ]
+    }
+  ]
+}
