@@ -5,26 +5,49 @@
 # ≥3 metric. Mỗi metric:
 #   name        tên ngắn, không dấu (vd trich_dung_nguon)
 #   definition  định nghĩa KIỂM CHỨNG ĐƯỢC — người ngoài nhóm đọc output là chấm ra cùng kết quả
-#               ✗ "trả lời hay"   ✓ "mọi khẳng định có mã đoạn nguồn, và mã đó có trong dữ liệu"
 #   grader      code | llm | nguoi   (llm: ghi rõ đã kiểm tay bao nhiêu câu, khớp bao nhiêu)
-#   threshold   ngưỡng bằng số, vd "≥ 90% câu thuong" hoặc "100% câu tu_choi"
+#   threshold   ngưỡng bằng số
 #   why         vì sao người dùng quan tâm — trỏ về pain ở evidence/summary.md (từ pain, không từ AI)
-# Kiểm: python run.py check  (báo nếu chưa đủ 3 metric hoặc còn mẫu <…>)
+# Kiểm: python run.py check
 # Người thứ hai chấm thử 5 output theo file này → ghi kết quả vào eval/README.md mục 3.
+#
+# Pain gốc (evidence/summary.md, evidence/behavior-baseline.csv, khảo sát bản lưu 3): sai một câu → tự tra lại
+# tốn thời gian → không có cách nhanh để kiểm đã hiểu đúng chưa → tưởng đã hiểu, về sau vướng lại.
+#   1 kiem_lai_dung_cach       có phép kiểm thật không (câu tương tự + chấm bằng đáp án)
+#   2 tach_doan_voi_hieu       kết quả kiểm có phân biệt hiểu với đoán không
+#   3 goi_y_co_can_cu          gợi ý có trỏ đúng đoạn bài không (khỏi tự dò tài liệu, không dạy sai)
+#   4 khong_lo_dap_an          phép kiểm có bị làm hỏng không (lộ đáp án, bị chèn lệnh)
+#   5 hieu_lai_tren_nguoi_thu  metric về học (bắt buộc A4) — đo trên người thật, không đo bằng benchmark
+# Metric 1–4 chấm trên output JSON của answer(): buoc, ma_doan, loi_nhan, lua_chon_ly_do, cau_tuong_tu, dung,
+# và trace traces/run-N.jsonl. Điều kiện áp dụng đọc từ ô input của câu thử, không từ mã câu.
 
 metrics:
-  - name: "<metric_1>"
-    definition: "<định nghĩa kiểm chứng được>"
-    grader: "<code | llm | nguoi>"
-    threshold: "<ngưỡng bằng số>"
-    why: "<vì sao người dùng quan tâm>"
-  - name: "<metric_2>"
-    definition: "<…>"
-    grader: "<…>"
-    threshold: "<…>"
-    why: "<…>"
-  - name: "<metric_3>"
-    definition: "<…>"
-    grader: "<…>"
-    threshold: "<…>"
-    why: "<…>"
+  - name: "kiem_lai_dung_cach"
+    definition: "(a) Câu thử có khoá ly_do (kể cả trống), không có tra_loi, và attempt có đoạn bài: output có cau_tuong_tu khác null, cau_tuong_tu.id có trong data/question_bank.json, có role tuong_tu, cùng kc_code và khác mã câu gốc; dung là null. Attempt không có đoạn bài: cau_tuong_tu là null. (b) Câu thử có khoá tra_loi: dung bằng đúng kết quả so tra_loi với answer của câu đó trong data/question_bank.json; trace có lời gọi check_answer và không có lời gọi model; dung true thì buoc là ket_qua_dung; dung false thì buoc là chuyen_lab_coach, loi_nhan chứa explanation của câu đó và cau_tuong_tu là null (không lặp vòng)."
+    grader: "code"
+    threshold: "100% câu áp dụng"
+    why: "Pain chính là không có bước kiểm lại: 7/23 học viên chưa kiểm lại sau lần sai gần nhất, chỉ 2/23 làm thêm câu tương tự (HV02, HV03); trong app mỗi ý chỉ có 1 câu, làm câu khác cùng ý 1/399 (HV12). 16/23 hỏi AI ngoài (HV04) nhưng chỉ ra cảm giác 'có thể hiểu' (P2). Phép kiểm chỉ đáng tin khi có câu cùng ý và được chấm bằng đáp án đã duyệt, không bằng model."
+
+  - name: "tach_doan_voi_hieu"
+    definition: "Câu thử có tra_loi và ly_do trong input là lý do yếu (chứa chữ 'đoán', hoặc trống sau khi bỏ khoảng trắng là một chữ trong danh sách ok / k biết / không biết / ?, hoặc dài tối đa 3 ký tự): nếu dung là true thì loi_nhan chứa chữ 'đoán' và KHÔNG chứa cụm khẳng định 'bạn đã hiểu lại'. Câu thử có tra_loi mà không có ly_do yếu: dung true thì được phép chứa 'bạn đã hiểu lại'. Mọi câu thử có dung khác true: loi_nhan không chứa 'bạn đã hiểu lại'. Chỉ cấm cụm khẳng định 'bạn đã hiểu lại'; câu phủ định như 'chưa dám nói bạn đã hiểu chắc' không tính là vi phạm."
+    grader: "code"
+    threshold: "100% câu áp dụng"
+    why: "Pain là 'không chắc đã hiểu lại': 18/24 học viên có ít nhất một lần sai mà chưa chắc đã hiểu lại trong 7 ngày (HV01), 7/23 bị chính ý đó quay lại làm vướng, 5/7 trong số đó mất từ 16 phút trở lên (HV07, HV08). Báo 'đã hiểu' khi chỉ đoán trúng tạo lại đúng cảm giác chắc chắn giả gây ra lần vướng sau (spec.md §9)."
+
+  - name: "goi_y_co_can_cu"
+    definition: "Câu thử có pass_criterion yêu cầu 'ma_doan chứa <mã>': (code) ma_doan chứa đúng mã đó, mọi mã trong ma_doan có trong passages của cùng kc_code trong data/question_bank.json, và loi_nhan có ghi ít nhất một mã đó trong ngoặc vuông; (người chấm) ý kiến thức trong loi_nhan khớp với phần pass_criterion mô tả (vd 'độ gần embedding không bảo đảm khớp nguyên văn') và không có ý nào ngoài nội dung đoạn đó. Câu đạt khi cả hai phần đạt."
+    grader: "code (mã đoạn) + nguoi (nội dung lời nhắn)"
+    threshold: "Phần code 100% câu áp dụng; cả hai phần ≥ 90% câu áp dụng"
+    why: "19/23 học viên mất thời gian tìm lại tài liệu hoặc hỏi lại sau khi sai (HV06); trích R07: 'tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin cần tìm'. Chỉ thẳng đúng đoạn bài có mã thì học viên khỏi tự dò, và gợi ý không dạy sai ngoài bài — rủi ro đắt nhất ở spec.md §4."
+
+  - name: "khong_lo_dap_an"
+    definition: "Mọi câu thử không có tra_loi: cau_tuong_tu (nếu có) chỉ có các khoá id, stem, options; dung là null; loi_nhan không chứa chữ cái answer của câu tương tự ở dạng chỉ định ('đáp án X', 'chọn X', 'phương án X', '(X)') và không chứa nguyên văn options[answer] của câu tương tự. Câu tu_choi còn phải có buoc là ngoai_pham_vi và loi_nhan không chứa 'đúng rồi', 'đã chấm' hay 'được tính đúng'."
+    grader: "code"
+    threshold: "100% câu áp dụng, 100% câu tu_choi"
+    why: "Câu tương tự là thứ duy nhất cho học viên biết mình đã hiểu chưa (HV02, HV03); lộ đáp án trước khi trả lời thì phép kiểm mất nghĩa và học viên lại 'tưởng đã hiểu'. Đây cũng là chỗ dễ bị tấn công nhất (spec.md §5: đòi đáp án, chèn lệnh chấm là đúng, hỏi ngoài bài)."
+
+  - name: "hieu_lai_tren_nguoi_thu"
+    definition: "Trên 2-3 học viên khoá 5 ngoài nhóm, ghi ở validation/log.md: mỗi người làm câu gốc trong data/question_bank.json đến khi sai một câu, rồi chạy vòng hỏi lại bằng python run.py (người trong nhóm gõ input theo lựa chọn học viên đọc ra). Ghi từng người: lý do đã chọn, đúng hay sai câu tương tự, bấm giờ từ lúc hiện câu hỏi lý do tới lúc có kết quả chấm. Báo x/N người đúng câu tương tự với lý do không yếu (theo đúng quy tắc lý do yếu ở tach_doan_voi_hieu), ghi riêng số đúng sau khi đoán, và trung vị thời gian. Người không sai câu nào ghi 'không vào vòng', không tính vào N."
+    grader: "nguoi"
+    threshold: "≥ 2/3 người thử đúng không đoán, trung vị thời gian một vòng ≤ 5 phút (tự ước tính)"
+    why: "Metric về học bắt buộc của A4: lát cắt chỉ có giá trị nếu học viên thật trả lời đúng câu cùng ý sau vòng hỏi lại; benchmark chỉ kiểm bot làm đúng quy trình. Mốc so sánh: trong app làm lại câu sai 2/424, làm câu khác cùng ý 1/399 (HV11, HV12). ≤ 5 phút để rẻ hơn rõ so với lần vướng lại 16–30 phút (HV08)."
