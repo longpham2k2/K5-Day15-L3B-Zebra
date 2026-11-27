@@ -1,6 +1,6 @@
 # Khảo sát — hiểu sai rồi có sửa được không (A4)
 
-> *(Bản nháp do coding agent soạn từ `TEMPLATE.md`, `../interviews/SCRIPT.md` và `../data-mining.md`; bản 2 chỉnh cách trình bày sau khi tham khảo form của một nhóm khác — chỉ học cách trình bày, không chép câu hỏi. Nhóm duyệt / sửa trước khi gửi. Ghi vào `docs/ai-usage.md` dòng "Rà câu hỏi phỏng vấn / khảo sát".)*
+> *(Bản nháp do coding agent soạn từ `TEMPLATE.md`, `../interviews/SCRIPT.md` và `../data-mining.md`; bản 2 chỉnh cách trình bày sau khi tham khảo form của một nhóm khác — chỉ học cách trình bày, không chép câu hỏi. Nhóm đã duyệt và gửi form lúc 12:42 27/11; file này ghi lại **đúng bộ câu đã hỏi** (khác bản nháp ở câu 1, xem ghi chú dưới câu đó). Ghi vào `docs/ai-usage.md` dòng "Rà câu hỏi phỏng vấn / khảo sát".)*
 >
 > **Vai trò:** khảo sát dùng để **đếm** (bao nhiêu người gặp, mấy lần, mất gì), còn phỏng vấn dùng để hiểu **vì sao**. Hai nguồn kiểm chéo nhau, không thay nhau.
 > **Ngưỡng R1:** ≥20 người **ngoài nhóm**, đúng người dùng (học viên khoá 5). Không gửi cho 4 thành viên nhóm. Câu 1 khác "học viên" thì không tính vào mẫu số chính.
@@ -13,8 +13,9 @@
 | Bản lưu giữa chừng | 27/11 · 12 phản hồi (mới nhất 16:34) → `results.csv` — chưa chốt |
 | Bản lưu 2 | 27/11 · 22 phản hồi (mới nhất 17:21), 22/22 học viên L3A / L3B → ghi đè `results.csv`; R01–R12 giữ nguyên mã và nội dung, R13–R22 nối thêm theo giờ gửi · đạt ngưỡng ≥20 · form vẫn mở |
 | Bản lưu 3 | 27/11 · 24 phản hồi (mới nhất 17:24), 24/24 học viên L3A / L3B → ghi đè `results.csv`; R01–R22 giữ nguyên, R23–R24 nối thêm · form vẫn mở |
-| Kênh đã gửi | __ (vd Discord khoá · Zalo lớp L3A · Zalo lớp L3B) |
-| Giờ mở | __ |
+| Kênh đã gửi | Discord server của cohort "[L34] AI20K Build Phase", nhóm kênh CỘNG ĐỒNG, kênh `#chung` (trao đổi chung toàn cohort L3–L4) · một tin, do TV Khoa đăng |
+| Giờ mở | 27/11/2026 12:42 (giờ đăng tin) · phản hồi đầu tiên 12:44 |
+| Tin nhắn thật đã gửi | *"Hi mọi người, nhóm mình đang làm một khảo sát nhỏ về cách mọi người học và ôn bài trong khoá ạ. Mọi người dành giúp tụi em khoảng 3 phút làm form nhé, ẩn danh hoàn toàn nha. Cảm ơn mọi người nhiều ạ 🙏"* + link form (Discord tự hiện tiêu đề và lời mở đầu form bên dưới) |
 | Giờ chốt | __ (chốt trước CP3 10:00 Thứ Bảy 28/11 để kịp ghi `summary.md`) |
 | Số phản hồi lúc chốt | __ · trong đó học viên ngoài nhóm: __ *(bản lưu 3: 24/24 ngoài nhóm — nhóm xác nhận 27/11 không thành viên nào trả lời)* |
 
@@ -22,8 +23,9 @@
 
 - **Tạo nhanh:** chạy [`create_form.gs`](create_form.gs) trên script.google.com. Script tạo đủ câu hỏi, nhánh, tắt thu email và nối sẵn một Sheet phản hồi. Cách chạy ghi ở đầu file.
 - **Số câu trong form = số câu trong file này** ("Câu 1." … "Câu 11."). Câu có nhánh thì đi theo hướng ghi bên dưới, người làm có thể không thấy một số câu, nhưng số không bao giờ chạy lùi.
-- Script không bật được "trộn thứ tự lựa chọn". Sau khi tạo, vào câu 3 → ⋮ → **Trộn thứ tự tuỳ chọn** để bật tay (riêng "Khác" luôn ở cuối).
+- Script không bật được "trộn thứ tự lựa chọn". Sau khi tạo, vào câu 3 → ⋮ → **Trộn thứ tự tuỳ chọn** để bật tay (riêng "Khác" luôn ở cuối). *Bản đã gửi: __ (chưa xác nhận đã bật hay chưa — nếu chưa thì thứ tự lựa chọn câu 3 cố định như danh sách bên dưới).*
 - **Thu thập email: Tắt.** Không bật "Giới hạn 1 phản hồi" vì việc đó bắt đăng nhập.
+  - *Thực tế:* form tạo ra lúc đầu có ô Email bắt buộc; nhóm đã tắt trước phản hồi đầu tiên (12:44). Sheet phản hồi vẫn còn cột "Địa chỉ email" nhưng **trống ở cả 24/24 dòng** (kiểm 27/11 17:29) → không thu email của ai. Cột này cùng cột câu 11 bị bỏ khi xuất `results.csv`.
 - Không có câu hỏi về tên, mã học viên, SĐT, tuổi hay điểm số.
 
 ## Tiêu đề và lời mở đầu form
@@ -44,7 +46,7 @@
 
 ## Tin nhắn gửi kèm link
 
-> *"Chào mọi người, nhóm Zebra (L3B) xin 3 phút làm form ẩn danh về chuyện mọi người làm gì sau khi trả lời sai một câu trong khoá — không hỏi tên, không hỏi điểm, không bán gì. Cảm ơn nhiều ạ! [link]"*
+Bản đã gửi thật: xem dòng "Tin nhắn thật đã gửi" ở bảng Log. Tin nhắn không nhắc tới sản phẩm hay AI, để không dẫn dắt câu trả lời.
 
 ---
 
@@ -55,9 +57,9 @@
 **Câu 1. Bạn đang là:** *(chọn một, bắt buộc)*
 - Học viên lớp L3A
 - Học viên lớp L3B
-- Học viên lớp khác của khoá 5
-- Lab coach / TA / giảng viên
 - Khác
+
+> Bản nháp (và `create_form.gs`) có 5 lựa chọn: thêm "Học viên lớp khác của khoá 5" và "Lab coach / TA / giảng viên". Form đã gửi chỉ có 3 lựa chọn trên (nhóm sửa tay trên form trước khi gửi; kiểm trên form đang chạy, 27/11). "Khác" có thể lẫn cả lab coach lẫn học viên lớp khác → không tính vào mẫu số chính. Bản lưu 3: 0/24 chọn "Khác".
 
 ### Phần 2 — Lần hiểu sai gần nhất *(kiểm D2, phần chính)*
 
