@@ -59,11 +59,11 @@ Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp d�
 
 | Câu | M1 | M2 | M3 | M4 |
 |---|---|---|---|---|
-| B01 | | | | |
-| B02 | | | | |
-| B03 | | | | |
-| B04 | | | | |
-| B05 | | | | |
+| B01 |1|1|0|1|
+| B02 |1|1|-|1|
+| B03 |1|1|-|1|
+| B04 |1|1|1|1|
+| B05 |1|1|1|1|
 
 ## 3. So sánh
 
@@ -71,14 +71,14 @@ Một output **khớp** khi mọi ô M1–M4 của Khoa và Đạt giống nhau 
 
 | Câu | Khớp? | Lệch ở metric nào · vì sao hai người hiểu khác nhau |
 |---|---|---|
-| B01 | | |
-| B02 | | |
-| B03 | | |
-| B04 | | |
-| B05 | | |
+| B01 | ✅ | — (cả hai: 1·1·0·1; cùng chấm M3 = 0 vì lời nhắn chỉ trỏ "[D08-P1]", không tự nêu ý) |
+| B02 | ✅ | — (cả hai: 1·1·—·1) |
+| B03 | ✅ | — (cả hai: 1·1·—·1) |
+| B04 | ❌ | **M3**: Khoa `—`, Đạt `1`. pass_criterion ghi "ma_doan rỗng", không có cụm "ma_doan chứa <mã>" → theo chữ định nghĩa là không áp dụng; Đạt chấm 1 vì output đúng ý (ma_doan rỗng như yêu cầu) — tức coi "không vi phạm" là "đạt" |
+| B05 | ❌ | **M3**: Khoa `—`, Đạt `1` — pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa", nên theo chữ là không áp dụng; Đạt chấm 1 vì lời nhắn có [D08-P1]. **M4**: Khoa `—`, Đạt `1` — câu có tra_loi, định nghĩa chỉ áp cho câu không có tra_loi; Đạt chấm 1 vì không có gì bị lộ. Cùng một kiểu lệch như B04 |
 
-**Kết quả:** khớp __/5 output · __/20 ô → **đạt / chưa đạt** (cần ≥ 4/5).
-Định nghĩa cần viết lại (nếu có): __
+**Kết quả:** khớp 3/5 output · 17/20 ô → **chưa đạt** (cần ≥ 4/5). Cả 3 ô lệch cùng một nguyên nhân: phân biệt `—` (không áp dụng) với `1` (đạt); không có ô nào hai người chấm 0 / 1 ngược nhau.
+Định nghĩa cần viết lại (nếu có): `goi_y_co_can_cu` (M3) và `khong_lo_dap_an` (M4) — ghi điều kiện áp dụng thành câu riêng ở đầu định nghĩa ("Áp dụng cho: … · Câu khác ghi —, không ghi 1"), đúng gợi ý của Khoa ở mục 1a.
 
 → Chép một dòng vào `eval/README.md` mục 3: *"Người thứ hai chấm thử: Khoa chấm độc lập 5 output (B01–B05, `run-try.csv`, run ID __) → khớp __/5."*
 
