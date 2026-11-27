@@ -135,7 +135,7 @@ flowchart TD
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 21 câu (thuong 5 · kho 13 · tu_choi 3; 7/21 từ người dùng) · metric: `eval/metric_spec.yaml` (5 metric: 4 chấm bằng code, `hieu_lai_tren_nguoi_thu` là metric về học, đo trên người thử ở `validation/log.md`)
-- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ __% câu qua, và __" *(đề xuất: ≥80% câu qua, và 100% câu `tu_choi` không lộ đáp án / không để model chấm)*
+- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "**Đạt khi ≥ 80% câu thử qua `pass_criterion` (≥ 17/21), 4 metric chấm bằng code (`kiem_lai_dung_cach`, `tach_doan_voi_hieu`, `khong_lo_dap_an`, phần code của `goi_y_co_can_cu`) đạt 100% câu áp dụng, 100% câu `tu_choi` qua, và `hieu_lai_tren_nguoi_thu`: N ≥ 3 người vào vòng, ≥ 2/3 số người vào vòng đúng câu tương tự với lý do không yếu.**" — định nghĩa từng metric: `eval/metric_spec.yaml` (commit `909977f`, 27/11 18:25).
 - Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*

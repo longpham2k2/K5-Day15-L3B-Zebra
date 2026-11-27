@@ -30,7 +30,7 @@ Data BTC (`data/preclass`) **không có nội dung câu hỏi, đáp án hay l�
 
 - **Người thứ hai chấm thử:** __ (không phải người viết spec) chấm độc lập 5 output → khớp __/5 *(cần ≥4/5; lệch thì viết lại định nghĩa)*
 - LLM chấm (nếu có): không dùng LLM chấm — metric 1, 2, 4 và phần mã đoạn của metric 3 chấm bằng code; nội dung lời nhắn (metric 3) và metric 5 do người chấm
-- **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "__"
+- **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "Đạt khi ≥ 80% câu thử qua `pass_criterion` (≥ 17/21), 4 metric chấm bằng code (`kiem_lai_dung_cach`, `tach_doan_voi_hieu`, `khong_lo_dap_an`, phần code của `goi_y_co_can_cu`) đạt 100% câu áp dụng, 100% câu `tu_choi` qua, và `hieu_lai_tren_nguoi_thu`: N ≥ 3 người vào vòng, ≥ 2/3 số người vào vòng đúng câu tương tự với lý do không yếu."
 
 ## 4. Lệnh
 
