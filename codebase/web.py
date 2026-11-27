@@ -3,17 +3,23 @@
 Chỉ thư viện chuẩn. Gọi đúng answer() trong agent.py (cùng input "attempt=…; ly_do=…; cau=…; tra_loi=…"
 như bộ câu thử), nên hành vi giống hệt `python run.py` / `run.py eval`. Không sửa khung.
 
-- Chỉ nghe trên 127.0.0.1 (máy người cầm máy). Người thử xem qua chia sẻ màn hình, đọc to lựa chọn.
+- Chạy trên máy: nghe 127.0.0.1:8765. Chạy trên Render (có biến PORT): nghe 0.0.0.0:$PORT và BẮT BUỘC có
+  APP_PASSCODE (thiếu thì không khởi động) — mọi /api/* phải gửi đúng mã ở header X-Passcode.
+- Giới hạn MAX_AGENT_CALLS_PER_MIN lượt gọi agent / phút cho cả máy chủ (mặc định 20) để khỏi bị xài hết key.
+- Ổ đĩa Render bị xoá khi khởi động lại → mỗi phiên còn được giữ trong bộ nhớ, in ra log ("[phien] …"),
+  và tải được cả bộ ở GET /api/sessions (có mã). Tải về rồi commit vào validation/phien-thu/ sau buổi thử.
 - Đáp án câu gốc KHÔNG gửi xuống trình duyệt: máy chủ tự chấm câu gốc và tra mã lượt sai trong
   data/learner_states.json.
 - Mỗi phiên lưu một file JSON ở validation/phien-thu/ (mã người thử U1…, không tên): câu gốc sai, mã lượt,
   lý do nguyên văn + nhóm lý do (đúng quy tắc tach_doan_voi_hieu), câu tương tự, đúng/sai, số giây,
   nhận xét, và tóm tắt trace (số lần gọi model, token) của từng bước.
 """
+import hmac
 import json
 import os
 import sys
 import time
+from collections import deque
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -30,7 +36,13 @@ import tracing  # noqa: E402
 from agent import answer  # noqa: E402
 from ai import MODEL_PROVIDER, MODEL_NAME  # noqa: E402
 
-PORT = 8765
+ON_HOST = bool(os.environ.get("PORT"))          # Render (và đa số nền tảng) đặt PORT
+PORT = int(os.environ.get("PORT") or 8765)
+HOST = "0.0.0.0" if ON_HOST else "127.0.0.1"
+PASSCODE = (os.environ.get("APP_PASSCODE") or "").strip()
+MAX_CALLS = int(os.environ.get("MAX_AGENT_CALLS_PER_MIN") or 20)
+_calls = deque()     # thời điểm các lượt gọi agent trong 60 giây gần nhất
+SESSIONS = []        # mọi phiên đã lưu từ lúc máy chủ khởi động
 # Thứ tự câu gốc theo validation/quy-trinh.md (Q1 → Q4 → Q5 → Q6). Muốn đổi thì sửa danh sách này.
 ROOT_ORDER = ["Q1", "Q4", "Q5", "Q6"]
 SAVE_DIR = os.path.join(ROOT, "validation", "phien-thu")
@@ -61,6 +73,30 @@ def reason_group(reason):
     if "đoán" in low or low in WEAK or len(r) <= 3:
         return "yếu"
     return "có lý do"
+
+
+def rate_ok():
+    now = time.time()
+    while _calls and now - _calls[0] > 60:
+        _calls.popleft()
+    if len(_calls) >= MAX_CALLS:
+        return False
+    _calls.append(now)
+    return True
+
+
+def all_sessions():
+    """Phiên trong bộ nhớ + phiên còn trên đĩa (khi chạy trên máy), không trùng file."""
+    out = {s["_file"]: s for s in SESSIONS}
+    if os.path.isdir(SAVE_DIR):
+        for name in sorted(os.listdir(SAVE_DIR)):
+            if name.endswith(".json") and "validation/phien-thu/" + name not in out:
+                try:
+                    with open(os.path.join(SAVE_DIR, name), encoding="utf-8") as f:
+                        out["validation/phien-thu/" + name] = dict(json.load(f), _file="validation/phien-thu/" + name)
+                except (OSError, json.JSONDecodeError):
+                    pass
+    return list(out.values())
 
 
 def run_agent(text):
@@ -96,15 +132,28 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         return json.loads(self.rfile.read(n).decode("utf-8") or "{}")
 
+    def _authed(self):
+        if not PASSCODE:
+            return True
+        return hmac.compare_digest((self.headers.get("X-Passcode") or "").encode("utf-8"), PASSCODE.encode("utf-8"))
+
     def do_GET(self):
         if self.path in ("/", "/index.html"):
             return self._send(200, PAGE.encode("utf-8"), "text/html; charset=utf-8")
+        if self.path == "/api/config":
+            return self._send(200, {"need_code": bool(PASSCODE), "model": MODEL_NAME or MODEL_PROVIDER})
+        if not self._authed():
+            return self._send(401, {"error": "Sai mã vào trang"})
         if self.path == "/api/roots":
             roots = [{"id": r["q"]["id"], "stem": r["q"]["stem"], "options": r["q"]["options"]} for r in _roots()]
             return self._send(200, {"roots": roots, "model": MODEL_NAME or MODEL_PROVIDER})
+        if self.path == "/api/sessions":
+            return self._send(200, {"model": MODEL_NAME or MODEL_PROVIDER, "sessions": all_sessions()})
         self._send(404, {"error": "không có"})
 
     def do_POST(self):
+        if not self._authed():
+            return self._send(401, {"error": "Sai mã vào trang"})
         try:
             body = self._json()
         except Exception:
@@ -112,6 +161,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/root_answer":
             return self._send(200, self.root_answer(body))
         if self.path == "/api/agent":
+            if not rate_ok():
+                return self._send(429, {"error": "Quá %d lượt gọi / phút — chờ một chút rồi thử lại" % MAX_CALLS,
+                                        "result": {}, "trace": {"model_calls": 0, "tokens_in": 0, "tokens_out": 0},
+                                        "input": ""})
             text = str(body.get("text", ""))[:2000]
             return self._send(200, run_agent(text))
         if self.path == "/api/save":
@@ -139,12 +192,17 @@ class Handler(BaseHTTPRequestHandler):
         body["reason_group"] = reason_group(body.get("reason")) if body.get("entered_loop") else ""
         body["model"] = MODEL_NAME or MODEL_PROVIDER
         body["saved_at"] = datetime.now().isoformat(timespec="seconds")
-        os.makedirs(SAVE_DIR, exist_ok=True)
-        path = os.path.join(SAVE_DIR, "%s-%s.json" % (tester, datetime.now().strftime("%Y%m%d-%H%M%S")))
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(body, f, ensure_ascii=False, indent=2)
-        return {"ok": True, "file": os.path.relpath(path, ROOT).replace(os.sep, "/"),
-                "reason_group": body["reason_group"]}
+        rel = "validation/phien-thu/%s-%s.json" % (tester, datetime.now().strftime("%Y%m%d-%H%M%S"))
+        SESSIONS.append(dict(body, _file=rel))
+        print("[phien] " + json.dumps(dict(body, _file=rel), ensure_ascii=False), flush=True)  # bản dự phòng trong log
+        try:
+            os.makedirs(SAVE_DIR, exist_ok=True)
+            with open(os.path.join(ROOT, rel), "w", encoding="utf-8") as f:
+                json.dump(body, f, ensure_ascii=False, indent=2)
+        except OSError as e:
+            print("[phien] không ghi được file: %s" % e, flush=True)
+        return {"ok": True, "file": rel, "reason_group": body["reason_group"],
+                "on_host": ON_HOST}
 
 
 PAGE = r"""<!doctype html>
@@ -197,11 +255,22 @@ details pre{white-space:pre-wrap;font-family:'JetBrains Mono',monospace;font-siz
 <script>
 const $app = document.getElementById('app');
 const S = {tester:'', roots:[], idx:0, rootLog:[], attempt:null, rootWrong:null, reason:null,
-           similar:null, answer:null, correct:null, t0:null, seconds:null, calls:[], model:''};
+           similar:null, answer:null, correct:null, t0:null, seconds:null, calls:[], model:'', needCode:false,
+           code: sessionStorage.getItem('passcode')||''};
 const el = (tag, attrs={}, ...kids) => { const e=document.createElement(tag);
   for (const [k,v] of Object.entries(attrs)) { if (k==='class') e.className=v; else if (k.startsWith('on')) e.addEventListener(k.slice(2),v); else e.setAttribute(k,v); }
   for (const k of kids) e.append(k instanceof Node ? k : document.createTextNode(k)); return e; };
-const post = (url, body) => fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json());
+const hdr = () => ({'Content-Type':'application/json','X-Passcode':S.code});
+const post = (url, body) => fetch(url,{method:'POST',headers:hdr(),body:JSON.stringify(body)}).then(r=>r.json());
+const get = url => fetch(url,{headers:hdr()}).then(async r=>({status:r.status, data:await r.json()}));
+async function downloadAll(){
+  const r=await get('/api/sessions');
+  if (r.status!==200) { alert(r.data.error||'Không tải được'); return; }
+  const blob=new Blob([JSON.stringify(r.data,null,2)],{type:'application/json'});
+  const a=el('a',{href:URL.createObjectURL(blob),download:'phien-thu-'+new Date().toISOString().slice(0,16).replace(/[:T]/g,'')+'.json'});
+  document.body.append(a); a.click(); a.remove();
+}
+const dlButton = () => el('button',{class:'ghost',onclick:downloadAll},'Tải toàn bộ phiên (JSON)');
 let tick=null;
 function startTimer(){ S.t0=performance.now(); tick=setInterval(()=>{const t=document.getElementById('timer'); if(t) t.textContent=((performance.now()-S.t0)/1000).toFixed(0)+' giây';},500); }
 function stopTimer(){ S.seconds=Math.round((performance.now()-S.t0)/100)/10; clearInterval(tick); }
@@ -213,11 +282,17 @@ function screenStart(){
     el('p',{class:'step'},'BẮT ĐẦU PHIÊN'),
     el('h1',{},'Thử công cụ, ', el('span',{class:'pen'},'không chấm bạn')),
     el('p',{class:'muted'},'Bạn trả lời vài câu ngắn. Sai là bình thường — thậm chí giúp nhóm hơn. Không ghi tên, không quay. Cứ nói to lựa chọn và nghĩ gì thì nói nấy.'),
+    ...(S.needCode ? [el('label',{for:'code'},'Mã vào trang (nhóm giữ, không đưa người thử)'),
+                      el('input',{type:'password',id:'code',value:S.code})] : []),
     el('label',{for:'tester'},'Mã người thử (người cầm máy điền, vd U1)'),
     el('input',{type:'text',id:'tester',placeholder:'U1'}),
-    el('div',{class:'row'}, el('button',{class:'primary',onclick:()=>{
+    el('p',{class:'err',id:'starterr'}),
+    el('div',{class:'row'}, el('button',{class:'primary',onclick:async ()=>{
+      if (S.needCode) { S.code=(document.getElementById('code').value||'').trim(); sessionStorage.setItem('passcode',S.code); }
       S.tester=(document.getElementById('tester').value||'').trim(); if(!S.tester){alert('Điền mã người thử, vd U1');return;}
-      screenRoot(); }},'Bắt đầu')));
+      const r=await get('/api/roots');
+      if (r.status!==200) { document.getElementById('starterr').textContent=r.data.error||'Lỗi'; return; }
+      S.roots=r.data.roots; screenRoot(); }},'Bắt đầu'), dlButton()));
 }
 
 function screenRoot(){
@@ -239,7 +314,10 @@ function screenRoot(){
     el('p',{class:'stem'},r.stem), opts);
 }
 
-async function callAgent(text){ const c=await post('/api/agent',{text}); S.calls.push(c); return c; }
+async function callAgent(text){
+  const c=await post('/api/agent',{text});
+  c.result=c.result||{}; c.trace=c.trace||{model_calls:0,tokens_in:0,tokens_out:0}; c.input=c.input||text;
+  S.calls.push(c); return c; }
 
 async function askReason(){
   const c=await callAgent('attempt='+S.attempt);
@@ -304,20 +382,27 @@ async function save(entered){
   const res=await post('/api/save',body);
   const row = entered ? ['| '+S.tester, S.rootWrong, S.attempt, S.reason||'(bỏ qua)', res.reason_group, S.similar||'—', S.answer||'—', S.correct===true?'đúng':(S.correct===false?'sai':'—'), S.seconds!=null?(S.seconds/60).toFixed(1):'—', ' |'].join(' | ')
                       : '| '+S.tester+' | không vào vòng |  |  |  |  |  |  |  |  |';
-  $app.replaceChildren(el('p',{class:'step'},'ĐÃ LƯU'), el('h2',{},'Phiên đã lưu vào '+res.file),
+  if (!res.ok) { $app.append(el('p',{class:'err'},'Chưa lưu được: '+(res.error||'lỗi'))); return; }
+  $app.replaceChildren(el('p',{class:'step'},'ĐÃ LƯU'), el('h2',{},'Phiên đã lưu: '+res.file),
+    ...(res.on_host ? [el('p',{class:'err'},'Đang chạy trên Render: ổ đĩa bị xoá khi máy chủ khởi động lại. Bấm "Tải toàn bộ phiên" sau mỗi người thử và cuối buổi.')] : []),
     el('p',{class:'muted'},'Dòng để dán vào bảng "Kết quả vòng hỏi lại" trong validation/log.md:'), el('div',{class:'summary'},row),
-    el('div',{class:'row'},el('button',{class:'primary',onclick:()=>location.reload()},'Phiên mới')), techBox());
+    el('div',{class:'row'},el('button',{class:'primary',onclick:()=>location.reload()},'Phiên mới'), dlButton()), techBox());
 }
 
-fetch('/api/roots').then(r=>r.json()).then(d=>{ S.roots=d.roots; S.model=d.model; document.getElementById('meta').textContent='Phiên thử · nhóm Zebra · model '+d.model; screenStart(); });
+fetch('/api/config').then(r=>r.json()).then(d=>{ S.needCode=d.need_code; S.model=d.model; document.getElementById('meta').textContent='Phiên thử · nhóm Zebra · model '+d.model; screenStart(); });
 </script>
 </body></html>
 """
 
 
 def main():
-    server = HTTPServer(("127.0.0.1", PORT), Handler)
-    print("Giao diện phiên thử: http://127.0.0.1:%d  (model: %s) — Ctrl+C để dừng" % (PORT, MODEL_NAME or MODEL_PROVIDER))
+    if ON_HOST and not PASSCODE:
+        print("Đang chạy trên máy chủ công khai (có PORT) mà thiếu APP_PASSCODE — dừng để khỏi lộ key. "
+              "Đặt biến môi trường APP_PASSCODE rồi chạy lại.", flush=True)
+        return 1
+    server = HTTPServer((HOST, PORT), Handler)
+    print("Giao diện phiên thử: http://%s:%d  (model: %s · mã vào trang: %s · tối đa %d lượt/phút) — Ctrl+C để dừng"
+          % (HOST, PORT, MODEL_NAME or MODEL_PROVIDER, "có" if PASSCODE else "không", MAX_CALLS), flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

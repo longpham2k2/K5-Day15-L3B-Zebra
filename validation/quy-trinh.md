@@ -17,6 +17,24 @@ Thay cho việc gõ tay vào `python run.py` (mục 2–3 bên dưới giữ là
 
 Trang gọi đúng `answer()` của agent với cùng định dạng input như bộ câu thử, nên kết quả giống `run.py`. Đáp án câu gốc không gửi xuống trình duyệt.
 
+### Chạy trên Render (nếu cần mở bằng link)
+
+Render → **New → Web Service** → nối repo GitHub của nhóm, nhánh `main`:
+
+| Mục | Giá trị |
+|---|---|
+| Runtime | Python 3 · Region: Singapore · Instance: Free |
+| Build Command | `pip install -r requirements.txt` |
+| Start Command | `python codebase/web.py` |
+| Health Check Path | `/` |
+| Environment | `MODEL_PROVIDER=openai` · `MODEL_NAME=gpt-5.4-nano` · `API_KEY=<key OpenAI của nhóm>` · `APP_PASSCODE=<mã nhóm tự đặt>` · `PYTHON_VERSION=3.12` · (tuỳ chọn) `MAX_AGENT_CALLS_PER_MIN=20` |
+
+- Thiếu `APP_PASSCODE` thì máy chủ **không khởi động** (tránh lộ key). Mã chỉ nhóm giữ, người cầm máy nhập ở màn hình đầu; không gửi mã cho người thử.
+- Gói Free **ngủ sau 15 phút** không dùng, lần mở đầu mất ~50 giây → mở trang trước giờ hẹn mỗi người.
+- **Ổ đĩa Render bị xoá khi khởi động lại / deploy lại** → sau mỗi người thử bấm **"Tải toàn bộ phiên (JSON)"**; cuối buổi tải lần nữa, tách thành file `validation/phien-thu/<mã>-<giờ>.json` rồi commit. Bản dự phòng: mỗi phiên in một dòng `[phien] …` trong Logs của Render.
+- Máy chủ xử lý **một người một lúc** — chạy người thử lần lượt theo lịch.
+- Đặt hạn mức chi tiêu cho key OpenAI trước khi chia link.
+
 ## 0. Vai trong nhóm (mỗi người thử cần 2 người)
 
 | Vai | Làm gì |
