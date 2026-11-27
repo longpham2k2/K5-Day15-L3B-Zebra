@@ -4,6 +4,19 @@
 > ⚠️ **Không chia sẻ màn hình file này** — bảng mã lượt ở mục 2 để lộ đáp án câu gốc. Chỉ chia sẻ cửa sổ terminal chạy `python run.py`.
 > *(Bản nháp do coding agent soạn từ `metric_spec.yaml`, `codebase/agent.py`, `data/`. Nhóm duyệt trước buổi.)*
 
+## Cách chạy chính: giao diện web (`codebase/web.py`)
+
+Thay cho việc gõ tay vào `python run.py` (mục 2–3 bên dưới giữ làm phương án dự phòng):
+
+1. Ở thư mục repo: `python codebase/web.py` → mở **http://127.0.0.1:8765** trên máy người cầm máy. Dòng đầu trang ghi model đang dùng — phải đúng model nhóm chốt.
+2. **Chia sẻ đúng cửa sổ trình duyệt này** (không phải cả màn hình — tránh lộ file có đáp án).
+3. Điền mã người thử (U1…U5) → **Bắt đầu**. Trang tự hiện câu gốc theo thứ tự Q1 → Q4 → Q5 → Q6 (sửa `ROOT_ORDER` trong `web.py` nếu nhóm đổi); người thử đọc to lựa chọn, người cầm máy bấm.
+4. Sai câu gốc → trang tự tra mã lượt, hỏi lý do (bấm lý do có sẵn / "Lý do khác" để gõ nguyên văn / "Bỏ qua bước này"), **tự bấm giờ**, đưa gợi ý và câu tương tự, chấm, rồi sang màn hình nhận xét. Đúng hết câu gốc → "không vào vòng", vẫn sang nhận xét.
+5. Màn hình nhận xét: rất tiếc / hơi tiếc / không sao · chỗ khó hiểu nhất · gợi ý có giúp không · nhận xét khác (nguyên văn) · quan sát của người ghi → **Lưu phiên**.
+6. Sau khi lưu: phiên ghi vào `validation/phien-thu/<mã>-<giờ>.json` (không tên; có lý do nguyên văn, nhóm lý do theo đúng quy tắc metric, số giây, tóm tắt trace) và trang hiện **sẵn một dòng** để dán vào bảng "Kết quả vòng hỏi lại" ở `validation/log.md`.
+
+Trang gọi đúng `answer()` của agent với cùng định dạng input như bộ câu thử, nên kết quả giống `run.py`. Đáp án câu gốc không gửi xuống trình duyệt.
+
 ## 0. Vai trong nhóm (mỗi người thử cần 2 người)
 
 | Vai | Làm gì |
