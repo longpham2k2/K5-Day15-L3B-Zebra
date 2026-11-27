@@ -56,14 +56,14 @@
       "passages": [
         {
           "code": "D01-P1",
-          "text": "Khi gọi API, số token lấy từ trường usage trong phản hồi. OpenAI: token vào là usage.prompt_tokens, token ra là usage.completion_tokens. Gemini: token vào là usage_metadata.prompt_token_count, token ra là usage_metadata.candidates_token_count."
+          "text": "Khi gọi API, số token lấy từ trường usage trong phản hồi. OpenAI: token vào là usage.prompt_tokens, token ra là usage.completion_tokens. Gemini: token vào là usage_metadata.prompt_token_count, token ra là usage_metadata.candidates_token_count. Với model có suy nghĩ, token suy nghĩ ghi riêng ở usage_metadata.thoughts_token_count và cũng tính tiền như token ra, nên khi tính chi phí phải cộng thêm trường này."
         }
       ],
       "questions": [
         {
           "id": "Q2",
           "role": "goc",
-          "stem": "Gọi Gemini xong, bạn cần số token model sinh ra (token ra) để tính chi phí. Lấy từ trường nào?",
+          "stem": "Gọi Gemini xong, bạn cần số token của câu trả lời model sinh ra (token ra, chưa tính token suy nghĩ). Lấy từ trường nào?",
           "options": {
             "A": "response.usage_metadata.prompt_token_count",
             "B": "response.usage_metadata.candidates_token_count",
@@ -72,8 +72,8 @@
           "answer": "B",
           "explanation": "[D01-P1] Với Gemini, token ra nằm ở usage_metadata.candidates_token_count; prompt_token_count là token vào.",
           "misconception": {
-            "A": "Nhầm token vào (prompt) với token ra.",
-            "C": "Tự ước lượng từ chữ trả về thay vì đọc số token trong usage của API."
+            "A": "Mình nghĩ prompt_token_count là số token model sinh ra.",
+            "C": "Mình nghĩ đếm chữ trong câu trả lời rồi ước lượng là đủ, không cần đọc usage của API."
           }
         },
         {
@@ -123,8 +123,8 @@
           "answer": "B",
           "explanation": "[D01-P2] 3 lượt hội thoại tương đương 6 tin nhắn, nên cắt history[-6:] để giữ 6 tin nhắn gần nhất.",
           "misconception": {
-            "A": "Nhầm một lượt hội thoại với một tin nhắn (một lượt gồm tin người dùng và tin trả lời).",
-            "C": "Lấy 6 tin nhắn đầu tiên thay vì 6 tin nhắn gần nhất."
+            "A": "Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.",
+            "C": "Mình nghĩ history[:6] giữ 6 tin nhắn gần nhất."
           }
         },
         {
