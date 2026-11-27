@@ -18,39 +18,39 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 - **Người dùng chính:** học viên AI20K khoá 5 đang làm build phase, ít thời gian tự học ngoài giờ (P1: ~30 phút / tuần), **vừa trả lời sai một câu kiểm tra trong khoá** (bản chạy thử: câu ôn tập cuối ngày trên pre-class — nơi có data để đo).
 - **Việc họ cố làm xong:** hiểu đúng một ý của bài ngay sau khi trả lời sai, trước khi lên lớp và làm lab.
-- **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** **tự tra lại** — hỏi ChatGPT / AI ngoài (khảo sát 8/11), đọc lời giải (7/11), xem lại slide / video (7/11), hỏi bạn / lab coach (5/11); không ai chỉ đọc đáp án rồi bỏ qua (0/11). Hỏng ở chỗ: (1) **tốn thời gian** tìm lại tài liệu, hỏi lại (8/11); (2) **không có bước kiểm xem đã hiểu đúng chưa** — app không có câu thứ hai cùng ý, ChatGPT giảng lại nhưng không biết học viên sai ở đâu và không hỏi lại → **6/11 chưa kiểm lại**, 4/11 bị vướng lại ý đó về sau. Chưa bỏ vì các cách này nhanh, sẵn có, và không ai biết mình chưa hiểu cho tới khi bị vướng lại.
-- **Pain (không chữ AI):** học viên khoá 5 trả lời sai một câu kiểm tra → tự tra lại (tài liệu, hỏi người, công cụ tra cứu), mất thời gian → nhưng không có cách nhanh để kiểm xem mình đã hiểu lại đúng chưa, nên hơn nửa bỏ bước kiểm → một phần bị vướng lại ý đó ở buổi học, lab, build phase, mất thêm 16–30 phút mỗi lần.
+- **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** **tự tra lại** — hỏi ChatGPT / AI ngoài (khảo sát 16/23), xem lại slide / video (14/23), đọc lời giải (13/23), hỏi bạn / lab coach (8/23); chỉ 2/23 chỉ đọc đáp án / bỏ qua. Hỏng ở chỗ: (1) **tốn thời gian** tìm lại tài liệu, hỏi lại (khảo sát 19/23, 83%; R21: "mất cả buổi chiều"); (2) **kiểm lại không chắc**: app không có câu thứ hai cùng ý, ChatGPT giảng lại nhưng không biết học viên sai ở đâu và không hỏi lại → dù 14/23 có kiểm lại, **7/23 (30%) vẫn bị vướng lại** ý đó về sau, phần lớn 16–30 phút; 7/23 chưa kiểm lại. Chưa bỏ vì các cách này nhanh, sẵn có, và không ai biết mình chưa hiểu cho tới khi bị vướng lại.
+- **Pain (không chữ AI):** học viên khoá 5 trả lời sai một câu kiểm tra → phải tự xoay xở để kiểm lại (mở lại tài liệu, hỏi người, công cụ tra cứu), **mất thời gian** → mà vẫn không có cách nhanh để biết chắc mình đã hiểu đúng → gần một phần ba bị vướng lại ý đó ở buổi học, lab, build phase, mất thêm 16–30 phút mỗi lần.
 - **Bằng chứng** (chi tiết `evidence/summary.md`, đang làm):
   - Data: 399/1.968 (20,3%) câu ôn tập sai lần đầu, làm lại 2/424, không có câu cùng ý để luyện; 98,9% lời bạn học AI xen vào không được đáp lại.
   - Phỏng vấn học viên khoá 5 (3 người): **1/3 gặp pain một phần** (P4: "chưa kịp hiểu", quên kiến thức buổi trước, ~30 phút nhớ lại); 2/3 không (P1 không nhận ra lần hiểu sai nào; P5 tự kiểm bằng tra mạng, ghi chép, làm lab). Đọc chung: người có thời gian tự kiểm được, người ít thời gian thì không. Ngoài khoá (P2, P3) ghi riêng.
-  - Khảo sát (**tạm, n = 12 / cần 20**): lần sai gần nhất trong 7 ngày qua 10/11 · **chưa kiểm lại 6/11** · mất thời gian tìm lại / hỏi lại 8/11 · vướng lại về sau 4/11 (phần lớn 16–30 phút) · 2–3 lần / 7 ngày sai mà không chắc đã hiểu lại: 6/12. Trích: *"Mất công hỏi lại, và tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin cần tìm"* (R07).
+  - Khảo sát (n = 24, chưa chốt): lần sai gần nhất trong 7 ngày qua 21/23 · có kiểm lại 14/23, chưa kiểm 7/23 · **mất thời gian tìm lại / hỏi lại 19/23 (83%)** · vướng lại về sau 7/23 (phần lớn 16–30 phút) · 2–3 lần / 7 ngày sai mà không chắc đã hiểu lại: 12/24. Trích: *"mất cả buổi chiều để xem hiểu là rốt quộc bài lab muốn làm gì"* (R21).
   - **Độ phủ:** chỉ 77/436 (17,7%) học viên có hoạt động từng làm câu ôn tập, 69 người từng sai ≥1 câu.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| **H1 · Học từ lỗi:** hỏi lại ngay sau câu ôn tập sai | 69 học viên / khoá (data) | ~13 câu sai / người *(399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày — tự ước tính)* | ~8,7 phút / lần sai *(4/11 bị vướng lại × ~24 phút — khảo sát câu 6, 6b; tự ước tính)* | **≈ 7.800 phút ≈ 130 giờ / tháng / khoá** | Có — 1 workflow, 4 công cụ | ✅ |
+| **H1 · Học từ lỗi:** hỏi lại ngay sau câu ôn tập sai | 69 học viên / khoá (data) | ~13 câu sai / người *(399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày — tự ước tính)* | ~6,6 phút / lần sai *(7/23 bị vướng lại × ~22 phút — khảo sát câu 6, 6b; tự ước tính)* | **≈ 5.900 phút ≈ 99 giờ / tháng / khoá** | Có — 1 workflow, 4 công cụ | ✅ |
 | H2 · Làm lời bạn học AI xen vào trong lúc giảng được đáp lại nhiều hơn | 273 học viên từng thấy lời xen vào | trung vị 12 lời / người trong 13 ngày | chưa rõ | __ | Có | ❌ |
 | H3 · Kéo học viên dùng pre-class nhiều hơn | 285/721 chưa từng dùng | — | — | __ | Khó đo trong 2 ngày | ❌ |
 
-- **Impact / tháng** của H1 = 69 người × ~13 lần × ~8,7 phút ≈ **7.800 phút ≈ 130 giờ / tháng / khoá** *(tự ước tính)* — nguồn từng thừa số:
+- **Impact / tháng** của H1 = 69 người × ~13 lần × ~6,6 phút ≈ **5.900 phút ≈ 99 giờ / tháng / khoá** *(tự ước tính)* — nguồn từng thừa số:
   - **69 người:** học viên từng sai ≥1 câu ôn tập trên pre-class (data, `count.py` mục 10).
-  - **~13 lần / người / tháng:** 399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày *(quy đổi tự ước tính)*. Kiểm chéo khảo sát câu 7: 2–3 lần / 7 ngày ≈ 9–13 lần / tháng — cùng cỡ.
-  - **~8,7 phút / lần sai:** khảo sát câu 6: 4/11 bị vướng lại × câu 6b lấy điểm giữa khoảng (5–15 → 10 · 16–30 → 23 · trên 30 → 40) = trung bình ~24 phút *(điểm giữa khoảng, mức "trên 30" tự đặt 40 — tự ước tính)*. Chưa tính thời gian tự tra lại ngay sau khi sai (8/11 có, chưa hỏi số phút) → con số này **thấp hơn thực tế**.
-  - **Giả định:** chi phí mỗi lần sai trong khảo sát (mọi chỗ trong khoá) áp được cho câu ôn tập pre-class. Khảo sát mới 12 / 20 người.
+  - **~13 lần / người / tháng:** 399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày *(quy đổi tự ước tính)*. Kiểm chéo khảo sát câu 7: phần lớn 2–3 lần / 7 ngày ≈ 9–13 lần / tháng — cùng cỡ.
+  - **~6,6 phút / lần sai:** khảo sát câu 6: 7/23 bị vướng lại × câu 6b lấy điểm giữa khoảng (5–15 → 10 · 16–30 → 23 · trên 30 → 40; n = 7: 2×10 + 4×23 + 1×40 = 152 → ~22 phút) *(điểm giữa khoảng, mức "trên 30" tự đặt 40 — tự ước tính)*. **Chưa tính** thời gian tự kiểm lại ngay sau khi sai (19/23 nói mất thời gian, khảo sát không hỏi số phút) → con số này **thấp hơn thực tế**.
+  - **Giả định:** chi phí mỗi lần sai trong khảo sát (mọi chỗ trong khoá) áp được cho câu ôn tập pre-class. Khảo sát chưa chốt.
 - **Hướng đã loại:**
   - H2: học viên từng đáp lại bạn học AI đúng lần đầu 85,1% vs 82,4% không đáp → chênh 2,7 điểm, không có dấu hiệu đáp lại nhiều hơn làm học tốt hơn. Đẩy tỉ lệ đáp lại không phải chỉ số về học.
   - H3: là bài toán độ phủ / thói quen, không phải "hiểu sâu hơn" của A4.
-- **Số lần / tháng theo kiểu người dùng (cho §8):** khảo sát câu 7 (n = 12): 1 lần / 7 ngày: 1 · 2–3 lần: 6 · 4–6 lần: 1 · không nhớ: 4; data (69 người từng sai, 13 ngày): số câu ôn tập sai / người p25 = 2 · trung vị = 4 · p75 = 7 · cao nhất 37 → gợi ý 3 persona: ít (≈2), vừa (≈4), nhiều (≈7) câu sai / 13 ngày.
+- **Số lần / tháng theo kiểu người dùng (cho §8):** khảo sát câu 7 (n = 24): 0 lần: 1 · 1 lần: 3 · 2–3 lần: 12 · 4–6 lần: 3 · không nhớ: 5; data (69 người từng sai, 13 ngày): số câu ôn tập sai / người p25 = 2 · trung vị = 4 · p75 = 7 · cao nhất 37 → gợi ý 3 persona: ít (≈2), vừa (≈4), nhiều (≈7) câu sai / 13 ngày.
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 - **Lớp học AI hiện có trên pre-class:** đáng học — đã có sẵn bạn học AI nhiều tính cách và bộ điều phối · đáng né — xen vào lúc học viên đang thụ động xem, 98,9% không được đáp · mình khác — chỉ lên tiếng **ngay sau một câu sai**, có việc cụ thể cho học viên làm.
 - **Ôn lại câu sai kiểu app học ngôn ngữ / thẻ nhớ (Duolingo, Anki):** đáng học — đưa lại đúng thứ người học vừa sai · đáng né — lặp lại nguyên câu, dễ nhớ đáp án mà không hiểu · mình khác — đưa **câu khác cùng ý** và hỏi lý do. *(mô tả theo hiểu biết chung, chưa kiểm chi tiết)*
 - **Trợ giảng AI kiểu hỏi gợi mở, không đưa đáp án (vd Khanmigo):** đáng học — không đưa đáp án ngay · đáng né — hội thoại dài, cần học viên gõ nhiều (data: học viên ít gõ) · mình khác — một vòng ngắn, chủ yếu bấm chọn. *(chưa kiểm chi tiết)*
-- **ChatGPT / AI ngoài — đối thủ chính** (khảo sát: 8/11 dùng ngay sau khi sai; P1 ~4 lần / tháng):
+- **ChatGPT / AI ngoài — đối thủ chính** (khảo sát: 16/23 dùng ngay sau khi sai; P1 ~4 lần / tháng):
   - Đáng học: có sẵn, nhanh, giảng lại theo cách học viên hỏi.
-  - Đáng né: học viên phải tự mô tả mình sai gì, tự dán tài liệu (P2 "đưa slide cho GPT"), tự lọc thông tin (R07: *"tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin"*), và cuối cùng **không ai kiểm** xem đã hiểu chưa (P2: tra xong chỉ "có thể hiểu"; khảo sát 6/11 chưa kiểm lại). Có thể giảng sai mà không có căn cứ trong bài.
+  - Đáng né: học viên phải tự mô tả mình sai gì, tự dán tài liệu (P2 "đưa slide cho GPT"), tự lọc thông tin (R07: *"tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin"*), và cuối cùng không có gì xác nhận đã hiểu đúng (P2: tra xong chỉ "có thể hiểu"; khảo sát 7/23 vẫn bị vướng lại). Có thể giảng sai mà không có căn cứ trong bài.
   - **Mình khác:** (1) **bắt đầu từ đúng đáp án học viên đã chọn** — không phải tự mô tả lỗi; (2) chỉ nói trong đoạn bài của khoá, có mã đoạn; (3) **kết thúc bằng một câu tương tự chấm theo đáp án** — học viên biết chắc đã hiểu hay chưa, thay vì "có thể hiểu"; (4) một vòng ngắn, chủ yếu bấm chọn.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
