@@ -18,7 +18,7 @@
 | Giờ mở | 27/11/2026 12:42 (giờ đăng tin) · phản hồi đầu tiên 12:44 |
 | Tin nhắn thật đã gửi | *"Hi mọi người, nhóm mình đang làm một khảo sát nhỏ về cách mọi người học và ôn bài trong khoá ạ. Mọi người dành giúp tụi em khoảng 3 phút làm form nhé, ẩn danh hoàn toàn nha. Cảm ơn mọi người nhiều ạ 🙏"* + link form (Discord tự hiện tiêu đề và lời mở đầu form bên dưới) |
 | Giờ chốt | 27/11/2026 ~21:05 (Khoa tắt "Chấp nhận câu trả lời" trên form) · phản hồi cuối lúc 19:30 |
-| Số phản hồi lúc chốt | **25** · trong đó học viên ngoài nhóm: R01–R24 nhóm đã xác nhận (27/11) · **R25 (19:30, L3A) chưa xác nhận** (16 L3A · 9 L3B · 0 "Khác") → `results.csv` bản chốt, R01–R24 giữ nguyên, R25 nối thêm |
+| Số phản hồi lúc chốt | **25** · trong đó học viên ngoài nhóm: **25/25** (16 L3A · 9 L3B · 0 "Khác"; R01–R24 nhóm xác nhận 27/11, R25 Khoa xác nhận 27/11 ~21:10 — không thành viên nào trả lời) → `results.csv` bản chốt, R01–R24 giữ nguyên, R25 nối thêm |
 
 ## Cài đặt Google Form
 
