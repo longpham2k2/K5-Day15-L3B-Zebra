@@ -134,12 +134,7 @@ flowchart TD
 - **Trường hợp đặc thù lĩnh vực (lớp 4):** sai lần hai → dừng vòng, chuyển người; đúng nhờ đoán → ghi riêng, không tính là "đã hiểu".
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — __ câu (thuong __ · kho __ · tu_choi __) · metric: `eval/metric_spec.yaml` (__ metric)
-- *(Đề xuất cho Đạt — Đạt chốt trước 19:30)* Metric:
-  - **Về học (bắt buộc A4):** tỉ lệ học viên trả lời đúng câu tương tự sau vòng hỏi lại, tách "đúng sau khi đoán" — đo trên người dùng thử (`validation/log.md`); mốc so sánh trong data: làm lại 2/424, không có câu cùng ý.
-  - Gợi ý có căn cứ: mọi gợi ý trích đúng mã đoạn từ `get_passage`.
-  - Không lộ đáp án câu tương tự trước khi học viên trả lời.
-  - Chọn bước tiếp đúng theo kịch bản §5 (một chữ / đoán / không có đoạn bài…).
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 20 câu (thuong 5 · kho 12 · tu_choi 3; 7/20 từ người dùng) · metric: `eval/metric_spec.yaml` (5 metric: 4 chấm bằng code, `hieu_lai_tren_nguoi_thu` là metric về học, đo trên người thử ở `validation/log.md`)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ __% câu qua, và __" *(đề xuất: ≥80% câu qua, và 100% câu `tu_choi` không lộ đáp án / không để model chấm)*
 - Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
