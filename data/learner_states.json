@@ -1,5 +1,6 @@
 [
   {"attempt_id": "T01", "kc_code": "rag_bm25_vs_embedding", "question_id": "Q1", "chosen": "C", "times_wrong": 1},
   {"attempt_id": "T02", "kc_code": "rag_bm25_vs_embedding", "question_id": "Q1", "chosen": "A", "times_wrong": 1},
-  {"attempt_id": "T03", "kc_code": "rag_bm25_vs_embedding", "question_id": "Q1", "chosen": "C", "times_wrong": 2}
+  {"attempt_id": "T03", "kc_code": "rag_bm25_vs_embedding", "question_id": "Q1", "chosen": "C", "times_wrong": 2},
+  {"attempt_id": "T04", "kc_code": "kc_chua_co_trong_ngan_hang", "question_id": "QX", "chosen": "C", "times_wrong": 1}
 ]

@@ -18,33 +18,40 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 - **Người dùng chính:** học viên AI20K khoá 5 đang làm build phase, ít thời gian tự học ngoài giờ (P1: ~30 phút / tuần), **vừa trả lời sai một câu kiểm tra trong khoá** (bản chạy thử: câu ôn tập cuối ngày trên pre-class — nơi có data để đo).
 - **Việc họ cố làm xong:** hiểu đúng một ý của bài ngay sau khi trả lời sai, trước khi lên lớp và làm lab.
-- **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** đọc lời giải rồi học tiếp, hoặc hỏi ChatGPT. Hỏng ở chỗ **không có gì kiểm xem đã hiểu lại đúng chưa**: app không có câu thứ hai cùng ý, ChatGPT giảng lại nhưng không hỏi lại (P2: tra xong chỉ "có thể hiểu"). Chưa bỏ vì nhanh, sẵn có, và không ai biết mình chưa hiểu cho tới khi bị hỏi lại.
-- **Pain (không chữ AI):** học viên khoá 5 trả lời sai câu ôn tập cuối ngày → đọc lời giải rồi học tiếp → không có cách nhanh để kiểm xem mình đã hiểu lại đúng chưa → dễ mang hiểu sai vào buổi học, lab và build phase.
+- **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** **tự tra lại** — hỏi ChatGPT / AI ngoài (khảo sát 8/11), đọc lời giải (7/11), xem lại slide / video (7/11), hỏi bạn / lab coach (5/11); không ai chỉ đọc đáp án rồi bỏ qua (0/11). Hỏng ở chỗ: (1) **tốn thời gian** tìm lại tài liệu, hỏi lại (8/11); (2) **không có bước kiểm xem đã hiểu đúng chưa** — app không có câu thứ hai cùng ý, ChatGPT giảng lại nhưng không biết học viên sai ở đâu và không hỏi lại → **6/11 chưa kiểm lại**, 4/11 bị vướng lại ý đó về sau. Chưa bỏ vì các cách này nhanh, sẵn có, và không ai biết mình chưa hiểu cho tới khi bị vướng lại.
+- **Pain (không chữ AI):** học viên khoá 5 trả lời sai một câu kiểm tra → tự tra lại (tài liệu, hỏi người, công cụ tra cứu), mất thời gian → nhưng không có cách nhanh để kiểm xem mình đã hiểu lại đúng chưa, nên hơn nửa bỏ bước kiểm → một phần bị vướng lại ý đó ở buổi học, lab, build phase, mất thêm 16–30 phút mỗi lần.
 - **Bằng chứng** (chi tiết `evidence/summary.md`, đang làm):
   - Data: 399/1.968 (20,3%) câu ôn tập sai lần đầu, làm lại 2/424, không có câu cùng ý để luyện; 98,9% lời bạn học AI xen vào không được đáp lại.
-  - Phỏng vấn học viên khoá 5: 2/3 (P1, P4 đang hỏi) — **chưa xác nhận pain**: P1 nói không nhận ra lần hiểu sai nào, P4 sửa theo hướng dẫn và tự nói đã nắm (câu hỏi đóng). Ngoài khoá (P2, P3): P2 một phần, P3 không.
-  - Khảo sát: đang thu ([survey/questions.md](evidence/survey/questions.md)).
+  - Phỏng vấn học viên khoá 5 (3 người): **1/3 gặp pain một phần** (P4: "chưa kịp hiểu", quên kiến thức buổi trước, ~30 phút nhớ lại); 2/3 không (P1 không nhận ra lần hiểu sai nào; P5 tự kiểm bằng tra mạng, ghi chép, làm lab). Đọc chung: người có thời gian tự kiểm được, người ít thời gian thì không. Ngoài khoá (P2, P3) ghi riêng.
+  - Khảo sát (**tạm, n = 12 / cần 20**): lần sai gần nhất trong 7 ngày qua 10/11 · **chưa kiểm lại 6/11** · mất thời gian tìm lại / hỏi lại 8/11 · vướng lại về sau 4/11 (phần lớn 16–30 phút) · 2–3 lần / 7 ngày sai mà không chắc đã hiểu lại: 6/12. Trích: *"Mất công hỏi lại, và tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin cần tìm"* (R07).
   - **Độ phủ:** chỉ 77/436 (17,7%) học viên có hoạt động từng làm câu ôn tập, 69 người từng sai ≥1 câu.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| **H1 · Học từ lỗi:** hỏi lại ngay sau câu ôn tập sai | 69 học viên / khoá (data) | ~13 câu sai / người *(399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày — tự ước tính)* | chờ khảo sát câu 6b *(phút học lại)* | __ | Có — 1 workflow, 4 công cụ | ✅ |
+| **H1 · Học từ lỗi:** hỏi lại ngay sau câu ôn tập sai | 69 học viên / khoá (data) | ~13 câu sai / người *(399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày — tự ước tính)* | ~8,7 phút / lần sai *(4/11 bị vướng lại × ~24 phút — khảo sát câu 6, 6b; tự ước tính)* | **≈ 7.800 phút ≈ 130 giờ / tháng / khoá** | Có — 1 workflow, 4 công cụ | ✅ |
 | H2 · Làm lời bạn học AI xen vào trong lúc giảng được đáp lại nhiều hơn | 273 học viên từng thấy lời xen vào | trung vị 12 lời / người trong 13 ngày | chưa rõ | __ | Có | ❌ |
 | H3 · Kéo học viên dùng pre-class nhiều hơn | 285/721 chưa từng dùng | — | — | __ | Khó đo trong 2 ngày | ❌ |
 
-- **Impact / tháng** của H1 = 69 người × ~13 lần × __ phút = __ — nguồn: số người, số lần từ data (quy đổi tự ước tính); phút: khảo sát câu 6b *(chưa có)*.
+- **Impact / tháng** của H1 = 69 người × ~13 lần × ~8,7 phút ≈ **7.800 phút ≈ 130 giờ / tháng / khoá** *(tự ước tính)* — nguồn từng thừa số:
+  - **69 người:** học viên từng sai ≥1 câu ôn tập trên pre-class (data, `count.py` mục 10).
+  - **~13 lần / người / tháng:** 399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày *(quy đổi tự ước tính)*. Kiểm chéo khảo sát câu 7: 2–3 lần / 7 ngày ≈ 9–13 lần / tháng — cùng cỡ.
+  - **~8,7 phút / lần sai:** khảo sát câu 6: 4/11 bị vướng lại × câu 6b lấy điểm giữa khoảng (5–15 → 10 · 16–30 → 23 · trên 30 → 40) = trung bình ~24 phút *(điểm giữa khoảng, mức "trên 30" tự đặt 40 — tự ước tính)*. Chưa tính thời gian tự tra lại ngay sau khi sai (8/11 có, chưa hỏi số phút) → con số này **thấp hơn thực tế**.
+  - **Giả định:** chi phí mỗi lần sai trong khảo sát (mọi chỗ trong khoá) áp được cho câu ôn tập pre-class. Khảo sát mới 12 / 20 người.
 - **Hướng đã loại:**
   - H2: học viên từng đáp lại bạn học AI đúng lần đầu 85,1% vs 82,4% không đáp → chênh 2,7 điểm, không có dấu hiệu đáp lại nhiều hơn làm học tốt hơn. Đẩy tỉ lệ đáp lại không phải chỉ số về học.
   - H3: là bài toán độ phủ / thói quen, không phải "hiểu sâu hơn" của A4.
-- **Số lần / tháng theo kiểu người dùng (cho §8):** chờ khảo sát câu 7; data (69 người từng sai, 13 ngày): số câu ôn tập sai / người p25 = 2 · trung vị = 4 · p75 = 7 · cao nhất 37 → gợi ý 3 persona: ít (≈2), vừa (≈4), nhiều (≈7) câu sai / 13 ngày.
+- **Số lần / tháng theo kiểu người dùng (cho §8):** khảo sát câu 7 (n = 12): 1 lần / 7 ngày: 1 · 2–3 lần: 6 · 4–6 lần: 1 · không nhớ: 4; data (69 người từng sai, 13 ngày): số câu ôn tập sai / người p25 = 2 · trung vị = 4 · p75 = 7 · cao nhất 37 → gợi ý 3 persona: ít (≈2), vừa (≈4), nhiều (≈7) câu sai / 13 ngày.
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 - **Lớp học AI hiện có trên pre-class:** đáng học — đã có sẵn bạn học AI nhiều tính cách và bộ điều phối · đáng né — xen vào lúc học viên đang thụ động xem, 98,9% không được đáp · mình khác — chỉ lên tiếng **ngay sau một câu sai**, có việc cụ thể cho học viên làm.
 - **Ôn lại câu sai kiểu app học ngôn ngữ / thẻ nhớ (Duolingo, Anki):** đáng học — đưa lại đúng thứ người học vừa sai · đáng né — lặp lại nguyên câu, dễ nhớ đáp án mà không hiểu · mình khác — đưa **câu khác cùng ý** và hỏi lý do. *(mô tả theo hiểu biết chung, chưa kiểm chi tiết)*
 - **Trợ giảng AI kiểu hỏi gợi mở, không đưa đáp án (vd Khanmigo):** đáng học — không đưa đáp án ngay · đáng né — hội thoại dài, cần học viên gõ nhiều (data: học viên ít gõ) · mình khác — một vòng ngắn, chủ yếu bấm chọn. *(chưa kiểm chi tiết)*
-- **ChatGPT học viên đang dùng:** giảng lại tốt nhưng không biết học viên sai ở đâu và không hỏi lại để kiểm.
+- **ChatGPT / AI ngoài — đối thủ chính** (khảo sát: 8/11 dùng ngay sau khi sai; P1 ~4 lần / tháng):
+  - Đáng học: có sẵn, nhanh, giảng lại theo cách học viên hỏi.
+  - Đáng né: học viên phải tự mô tả mình sai gì, tự dán tài liệu (P2 "đưa slide cho GPT"), tự lọc thông tin (R07: *"tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin"*), và cuối cùng **không ai kiểm** xem đã hiểu chưa (P2: tra xong chỉ "có thể hiểu"; khảo sát 6/11 chưa kiểm lại). Có thể giảng sai mà không có căn cứ trong bài.
+  - **Mình khác:** (1) **bắt đầu từ đúng đáp án học viên đã chọn** — không phải tự mô tả lỗi; (2) chỉ nói trong đoạn bài của khoá, có mã đoạn; (3) **kết thúc bằng một câu tương tự chấm theo đáp án** — học viên biết chắc đã hiểu hay chưa, thay vì "có thể hiểu"; (4) một vòng ngắn, chủ yếu bấm chọn.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU:** Một học viên vừa trả lời sai một câu ôn tập cuối ngày, AI chọn cách hỏi lại (gợi ý đúng chỗ hay để học viên sửa lỗi cho một bạn học AI) dựa trên đáp án đã chọn và đoạn bài liên quan, và học viên trả lời đúng một câu tương tự cùng ý kiến thức.
@@ -62,9 +69,11 @@ flowchart TD
   B --> C["get_passage(kc_code): đoạn bài + mã đoạn"]
   C --> D{Có đoạn bài?}
   D -- không --> Z["Hiện lời giải gốc + 'chưa có căn cứ để gợi ý' + gợi ý hỏi lab coach"]
-  D -- có --> E["AI bước 1: chẩn đoán từ đáp án đã chọn + đoạn bài<br/>→ 2-3 lý do để bấm + 'Mình đoán' + ô tự viết (tuỳ ý)"]
+  D -- có --> E["Code: lý do để bấm lấy từ ghi chú hiểu sai của đáp án đã chọn<br/>+ 'Mình đoán' + ô tự viết (tuỳ ý)"]
   E --> F[Học viên bấm / viết / bỏ qua]
-  F --> G["AI bước 2: chọn bước tiếp<br/>gợi ý đúng chỗ · sửa lỗi cho bạn học AI · thẳng sang câu tương tự"]
+  F --> F2{"Lý do trống / một chữ / 'Mình đoán'?"}
+  F2 -- có --> H
+  F2 -- không --> G["AI (bước quyết định duy nhất): chọn bước tiếp<br/>gợi ý đúng chỗ · sửa lỗi cho bạn học AI · ngoài phạm vi<br/>+ viết lời nhắn có mã đoạn"]
   G --> H["get_similar_question(kc_code): câu đã duyệt, khác câu gốc"]
   H --> I[Học viên trả lời]
   I --> J["check_answer: chấm theo đáp án (không dùng AI)"]
@@ -72,7 +81,7 @@ flowchart TD
   J -- sai --> L["Lời giải + mã đoạn bài + gợi ý hỏi lab coach (dừng, không lặp)"]
 ```
 
-- **Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent — các bước luôn giống nhau (sai → hỏi lý do → bước tiếp → câu tương tự → chấm), AI chỉ quyết định ở 2 chỗ (chẩn đoán, chọn bước tiếp) → rẻ, dễ đo. Không chọn nhiều agent: "bạn học AI" trong bước sửa lỗi chỉ là **một câu nói theo kịch bản** từ đáp án sai, không cần một agent riêng tự quyết.
+- **Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent — các bước luôn giống nhau (sai → hỏi lý do → bước tiếp → câu tương tự → chấm), AI chỉ quyết định ở **1 chỗ** (chọn bước tiếp + viết lời nhắn có mã đoạn); lý do để bấm lấy thẳng từ ghi chú hiểu sai của từng đáp án trong ngân hàng câu, và lý do trống / một chữ / "Mình đoán" do code nhận ra (G10) → rẻ, dễ đo, ít chỗ để AI bịa. Không chọn nhiều agent: "bạn học AI" trong bước sửa lỗi chỉ là **một câu nói theo kịch bản** từ đáp án sai, không cần một agent riêng tự quyết.
 - **AI dựa vào đâu** (khớp `codebase/tools.py`):
 
   | Công cụ | Input | Output | Tác động ra ngoài? |
@@ -82,6 +91,10 @@ flowchart TD
   | `get_similar_question` | `kc_code`, mã câu gốc | một câu đã duyệt cùng ý, khác câu gốc (đề + lựa chọn, **không** kèm đáp án cho model) | Không |
   | `check_answer` | mã câu, đáp án học viên chọn | đúng / sai + lời giải theo đáp án | Không |
 
+- **Đầu vào / đầu ra của `answer(text)`** (bộ câu thử dùng đúng định dạng này):
+  - **Input:** một dòng `khoá=giá trị`, ngăn bằng `;`. `attempt=<mã lượt sai>` (bắt buộc) · `ly_do=<lý do học viên bấm / viết>` (tuỳ, có khoá mà trống = bỏ qua) · `cau=<mã câu tương tự>; tra_loi=<A/B/C/D>` (khi học viên đã trả lời câu tương tự).
+    - `attempt=T01` → hỏi lý do · `attempt=T01; ly_do=Mình đoán` → sang câu tương tự · `attempt=T01; cau=Q1-S1; tra_loi=B` → chấm.
+  - **Output:** chuỗi JSON `{"buoc", "ma_doan", "loi_nhan", "lua_chon_ly_do", "cau_tuong_tu", "dung"}`. `buoc` ∈ `hoi_ly_do` · `goi_y` · `sua_loi_ban` · `sang_cau_tuong_tu` · `ngoai_pham_vi` · `khong_co_can_cu` · `ket_qua_dung` · `chuyen_lab_coach` · `loi_dau_vao`. `cau_tuong_tu` không bao giờ có đáp án. Metric chấm bằng code đọc thẳng các trường này.
 - **Mức tự động:** [ ] AI gợi ý, người quyết · [x] AI tự làm khi chắc, chuyển người khi không · [ ] AI tự làm — gợi ý sai thì học viên mất vài phút và vẫn được chấm bằng đáp án thật nên tự thấy; nhưng dạy sai kiến thức thì đắt → AI chỉ nói trong phạm vi đoạn bài, không có căn cứ hoặc sai lần hai thì chuyển lab coach.
 - **Chỗ chặn rủi ro:** rủi ro lớn nhất là AI nói sai kiến thức hoặc lộ đáp án câu tương tự → (1) gợi ý phải trích mã đoạn bài lấy từ `get_passage`; (2) model không nhận đáp án câu tương tự; (3) chấm bằng `check_answer`, không bằng model.
 - **Chỗ người duyệt:** câu tương tự và đáp án do người soạn / duyệt (bản chạy thử: nhóm soạn; dùng thật: giảng viên duyệt). AI không được thêm câu vào ngân hàng.

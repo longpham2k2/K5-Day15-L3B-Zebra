@@ -24,12 +24,19 @@ def learner_state(attempt_id: str) -> dict:
     """learner_state — tra lượt trả lời sai đã lưu.
 
     Input: mã lượt trả lời attempt_id.
-    Output: kc_code, question_id, chosen và times_wrong, hoặc {} nếu thiếu lượt.
+    Output: kc_code, question_id, chosen, times_wrong, cộng stem (đề câu gốc) và
+    misconception (ghi chú hiểu sai của đáp án đã chọn, "" nếu không có), hoặc {} nếu thiếu lượt.
+    Không trả answer / explanation của câu gốc.
     Tác động ra ngoài: Không.
     """
     for attempt in _read_data("learner_states.json"):
         if attempt["attempt_id"] == attempt_id:
-            return {key: attempt[key] for key in ("kc_code", "question_id", "chosen", "times_wrong")}
+            state = {key: attempt[key] for key in ("kc_code", "question_id", "chosen", "times_wrong")}
+            question = next((q for q in _get_concept(attempt["kc_code"]).get("questions", [])
+                             if q["id"] == attempt["question_id"]), {})
+            state["stem"] = question.get("stem", "")
+            state["misconception"] = question.get("misconception", {}).get(attempt["chosen"], "")
+            return state
     return {}
 
 
