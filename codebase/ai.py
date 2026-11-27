@@ -53,6 +53,8 @@ def call_model(system: str, user: str) -> dict:
         return _call_openai(system, user)
     if MODEL_PROVIDER == "anthropic":
         return _call_anthropic(system, user)
+    if MODEL_PROVIDER == "gemini":
+        return _call_gemini(system, user)
     raise NotImplementedError(
         "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — xem docs/connect-model.md"
         % MODEL_PROVIDER)
@@ -125,3 +127,28 @@ def _call_anthropic(system: str, user: str) -> dict:
         "tokens_in": resp.usage.input_tokens,
         "tokens_out": resp.usage.output_tokens,
     }
+
+
+URL_GEMINI = "https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent"
+
+
+def _call_gemini(system: str, user: str) -> dict:
+    """Gemini qua REST generateContent — thư viện chuẩn (urllib), không cần pip install.
+
+    .env: MODEL_PROVIDER=gemini · MODEL_NAME=<mã model, vd gemini-3.1-flash-lite> · API_KEY=…
+    Token lấy từ usageMetadata: vào = promptTokenCount; ra = candidatesTokenCount + thoughtsTokenCount
+    (token suy nghĩ tính riêng nên cộng vào, đúng hợp đồng call_model).
+    """
+    model = MODEL_NAME or "gemini-3.1-flash-lite"
+    body = {"contents": [{"role": "user", "parts": [{"text": user}]}]}
+    if system:
+        body["systemInstruction"] = {"parts": [{"text": system}]}
+    data = _post_json(URL_GEMINI % model, {"x-goog-api-key": API_KEY}, body)
+    cands = data.get("candidates") or []
+    parts = (cands[0].get("content") or {}).get("parts", []) if cands else []
+    # bị chặn (promptFeedback.blockReason) hoặc không có câu trả lời → chuỗi rỗng; agent.py coi như không parse được
+    text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
+    u = data.get("usageMetadata") or {}
+    return {"text": text, "model": data.get("modelVersion", model),
+            "tokens_in": int(u.get("promptTokenCount", 0)),
+            "tokens_out": int(u.get("candidatesTokenCount", 0)) + int(u.get("thoughtsTokenCount", 0))}
