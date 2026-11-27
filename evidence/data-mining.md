@@ -42,11 +42,13 @@
 | Học viên thấy lời xen vào mà từng đáp lại ≥1 lần | 31 / 273 | 11,4% | = 31/436 (7,1%) học viên có hoạt động |
 | Câu hỏi giữa video bị bấm bỏ qua | 21 / 2.099 | 1,0% | **ngược giả thuyết**: học viên gần như không bỏ qua |
 | Câu ôn tập cuối ngày sai lần đầu | 399 / 1.968 | 20,3% | 100% số câu sai đều thấy lời giải ngay |
-| **Sai câu ôn tập → sau đó làm câu khác cùng ý kiến thức** | 1 / 399 | **0,3%** | không có vòng "sai → hiểu lại → thử lại" |
+| **Sai câu ôn tập → sau đó làm câu khác cùng ý kiến thức** | 1 / 399 | **0,3%** | ⚠️ **mỗi `kc_code` chỉ có đúng 1 câu ôn tập** (156 ý · 156 câu) → app **không có câu thứ hai** để luyện lại; số này đo thiếu sót của app, không đo ý muốn của học viên |
+| Câu chấm đúng / sai bị sai lần đầu → học viên làm lại **chính câu đó** | 2 / 424 | 0,5% | làm lại được (có 18 dòng `lan_thu = 2`) nhưng gần như không ai làm |
 | Sai câu ôn tập → nhắn AI (câu bất kỳ) trong 30 phút | 74 / 399 | 18,5% | không biết có hỏi về đúng câu sai không |
 | Chat đã chấm có `rubric_y_moi = 0` (chép / hỏi lại nguyên văn, không có ý riêng) | 909 / 1.223 | 74,3% | `= 2` (lý do, so sánh, phản biện): 226 (18,5%) |
 | Chat có câu nhắn ≤15 ký tự | 150 / 1.260 | 11,9% | câu đáp lại lời xen vào: 25/144 (17,4%) |
-| Học viên có hoạt động từng tự giải thích ≥1 lần | 18 / 436 | 4,1% | tổng 20 dòng |
+| Học viên có hoạt động từng tự giải thích ≥1 lần | 18 / 436 | 4,1% | tổng 20 dòng, chỉ trên **5 mục** (đều là bước lab) → ô tự giải thích hiếm khi được hiện ra; 4% là "ít được mời", không phải "từ chối viết" |
+| Học viên có hoạt động từng trả lời câu ôn tập cuối ngày | 77 / 436 | 17,7% | 69 người sai ≥1 câu → độ phủ của lát cắt nếu chỉ bắt đầu từ câu ôn tập |
 | Học viên có hoạt động từng mở Sổ hiểu bài | 51 / 436 | 11,7% | |
 | Đúng lần đầu: từng đáp lại bạn học AI vs thấy nhưng không đáp | 468/550 vs 1.575/1.911 | 85,1% vs 82,4% | chênh 2,7 điểm, **dưới ngưỡng 10 điểm**; tương quan, có thể do học viên chăm hơn |
 
@@ -54,7 +56,8 @@
 - ✅ ≥80% lời xen vào không được đáp lại → **98,9%**.
 - ❌ ≥25% câu hỏi giữa video bị bỏ qua / tua qua → chỉ **1,0%** bỏ qua (không đo được tua qua).
 - ❌ Chênh đúng lần đầu ≥10 điểm → chỉ **2,7 điểm**.
-- ➕ Phát hiện thêm, ngoài giả thuyết: **sai xong không ai luyện lại ý đó (1/399)**.
+- ➕ Phát hiện thêm, ngoài giả thuyết: **sai xong gần như không ai luyện lại** — làm lại chính câu đó 2/424; và app không có câu thứ hai cùng ý để luyện (mỗi ý 1 câu).
+- ➕ Bộ điều phối cho bạn học AI xen vào **chỉ trong lúc giảng** (`lesson_phase = content` ở 385/385 lượt), không lượt nào ngay sau khi học viên trả lời sai.
 
 ## 4. ≥5 ví dụ cụ thể (mã dòng / mã đã ẩn danh, không đoán ai là ai)
 

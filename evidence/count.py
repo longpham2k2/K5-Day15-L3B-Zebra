@@ -277,3 +277,17 @@ for e in events:
 for k in (1, 2, 3, 5, 8):
     print(f"  dùng ≥{k} ngày: {pct(sum(len(v) >= k for v in days.values()), len(learners))}")
 print(f"  chưa từng dùng: {pct(len(learners) - len(days), len(learners))}")
+
+# ---------------------------------------------------------------- 10. Cấu trúc câu hỏi & độ phủ lát cắt
+h("10. Cấu trúc câu ôn tập, ô tự giải thích, độ phủ lát cắt")
+kq = defaultdict(set)
+for a in answers:
+    if a["nguon"] == "pre_post_post":
+        kq[a["kc_code"]].add(a["ref"])
+print("kc_code có câu ôn tập:", len(kq), "· có ≥2 câu ôn tập cùng kc:", sum(len(v) >= 2 for v in kq.values()))
+print("Ô tự giải thích (giai_thich) xuất hiện trên số mục khác nhau:", len({a["ref"] for a in gt}))
+pp_hv = {a["hv"] for a in answers if a["nguon"] == "pre_post_post"}
+ppw_hv = {a["hv"] for a in ppw}
+print("Học viên từng trả lời câu ôn tập:", pct(len(pp_hv), len(active)), "· từng sai ≥1 câu:", pct(len(ppw_hv), len(active)))
+wc = Counter(a["hv"] for a in ppw)
+print("Số câu ôn tập sai lần đầu / học viên (người từng sai):", q(wc.values(), (25, 50, 75, 100)))
