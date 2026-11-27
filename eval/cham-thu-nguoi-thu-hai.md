@@ -27,7 +27,31 @@ Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp d�
 | B04 | kho | `khong_co_can_cu` | (rỗng) | 1 | 1 | — | 1 | M1 (mơ hồ): phần (a) mở đầu "Câu thử có khoá ly_do…" mà B04 không có ly_do; chấm 1 vì đọc câu "Attempt không có đoạn bài: cau_tuong_tu là null" như luật riêng (cau_tuong_tu đúng là null). Đọc theo cách khác thì là —. M2: dung null ≠ true → áp dụng, không có "bạn đã hiểu lại". M3 —: pass_criterion ghi "ma_doan rỗng", không phải "ma_doan chứa". M4: không có tra_loi → áp dụng; cau_tuong_tu null, dung null, không lộ đáp án. |
 | B05 | kho | `chuyen_lab_coach` | (rỗng) | 1 | 1 | — | — | M1 phần (b): tra_loi=B, đáp án Q1-S1 là A → dung false đúng; trace learner_state → check_answer, không có call_model; buoc chuyen_lab_coach; lời nhắn có nguyên văn explanation; cau_tuong_tu null. M2: dung false ≠ true → áp dụng, không có "bạn đã hiểu lại". M3 —: pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa". M4 —: có tra_loi. |
 
-> **Cách chấm (minh bạch):** Khoa tự chấm mục 1 trước (lưu lúc ~18:57). Sau đó nhờ AI (Claude Code) rà lại theo đúng chữ của định nghĩa: 12 ô được sửa vì đọc sai điều kiện áp dụng hoặc đọc sai cụm bị cấm (vd coi "đã hiểu chưa" là "bạn đã hiểu lại", coi chữ "chấm" là "đã chấm"); 2 ô mơ hồ thật (B01 M3, B04 M1) giữ theo cách hiểu của Khoa, lý do ghi ở cột Ghi chú. Bản Khoa chấm lần đầu: B01 1·1·0·0 · B02 1·0·—·0 · B03 0·0·1·0 · B04 1·—·1·— · B05 —·—·1·0.
+> **Cách chấm (minh bạch):** Khoa tự chấm mục 1 trước (lưu lúc ~18:57, bảng 1a dưới đây — giữ nguyên số). Sau đó nhờ AI (Claude Code) rà lại theo đúng chữ của định nghĩa → bảng trên là bản sau khi rà: 14/20 ô đổi, 6/20 ô giữ nguyên; 2 ô mơ hồ thật (B01 M3, B04 M1) giữ theo cách hiểu của Khoa.
+
+### 1a. Lần chấm đầu của Khoa (trước khi rà) — giữ nguyên số
+
+| Câu | M1 kiem_lai | M2 tach_doan | M3 goi_y | M4 khong_lo |
+|---|---|---|---|---|
+| B01 | 1 ✓ | 1 ✓ | 0 ✓ *(mơ hồ — Khoa nhận ra)* | 0 → 1 |
+| B02 | 1 ✓ | 0 → 1 | — ✓ | 0 → 1 |
+| B03 | 0 → 1 | 0 → 1 | 1 → — | 0 → 1 |
+| B04 | 1 ✓ *(mơ hồ — Khoa nhận ra)* | — → 1 | 1 → — | — → 1 |
+| B05 | — → 1 | — → 1 | 1 → — | 0 → — |
+
+✓ = giữ nguyên sau khi rà · `a → b` = lần đầu ghi a, theo chữ định nghĩa là b.
+
+**Đúng ở đâu:** M1 (kiểm lại đúng cách) 3/5 câu · B01 3/4 ô · tự phát hiện đúng **cả 2 chỗ định nghĩa mơ hồ** (B01 M3, B04 M1) — đây là mục tiêu chính của bước chấm thử.
+
+**Lệch do 3 nguyên nhân** (không phải lệch rải rác):
+
+| Nguyên nhân | Số ô | Ô |
+|---|---|---|
+| Đọc điều kiện áp dụng hẹp hơn chữ định nghĩa: M2 áp dụng cho *mọi* câu có dung ≠ true; M3 chỉ khi pass_criterion có đúng cụm "ma_doan chứa <mã>"; M4 cho *mọi* câu không có tra_loi | 8 | B04 M2, M3, M4 · B05 M2, M3, M4 · B03 M3 · B05 M1 |
+| Coi chữ gần giống là cụm bị cấm ("đã hiểu chưa" ≠ "bạn đã hiểu lại"; "chấm", "đáp án" ≠ "đã chấm", "đáp án X") | 4 | B01 M4 · B02 M2, M4 · B03 M4 |
+| B03 có output giống hệt B02 nhưng chấm khác B02 | 2 | B03 M1, M2 |
+
+→ Gợi ý cho Đạt: nhóm lỗi thứ nhất cho thấy định nghĩa nên **ghi điều kiện áp dụng thành một câu riêng ở đầu mỗi metric** (vd "Áp dụng cho: …"), người chấm sẽ đỡ đọc sót.
 
 *(Cột `buoc`, `ma_doan` chép máy móc từ output; các cột còn lại Khoa tự chấm.)*
 
@@ -47,14 +71,14 @@ Một output **khớp** khi mọi ô M1–M4 của Khoa và Đạt giống nhau 
 
 | Câu | Khớp? | Lệch ở metric nào · vì sao hai người hiểu khác nhau |
 |---|---|---|
-| B01 | | |
-| B02 | | |
-| B03 | | |
-| B04 | | |
-| B05 | | |
+| B01 | ✅ | — (cả hai: 1·1·0·1; cùng chấm M3 = 0 vì lời nhắn chỉ trỏ "[D08-P1]", không tự nêu ý) |
+| B02 | ✅ | — (cả hai: 1·1·—·1) |
+| B03 | ✅ | — (cả hai: 1·1·—·1) |
+| B04 | ❌ | **M3**: Khoa `—`, Đạt `1`. pass_criterion ghi "ma_doan rỗng", không có cụm "ma_doan chứa <mã>" → theo chữ định nghĩa là không áp dụng; Đạt chấm 1 vì output đúng ý (ma_doan rỗng như yêu cầu) — tức coi "không vi phạm" là "đạt" |
+| B05 | ❌ | **M3**: Khoa `—`, Đạt `1` — pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa", nên theo chữ là không áp dụng; Đạt chấm 1 vì lời nhắn có [D08-P1]. **M4**: Khoa `—`, Đạt `1` — câu có tra_loi, định nghĩa chỉ áp cho câu không có tra_loi; Đạt chấm 1 vì không có gì bị lộ. Cùng một kiểu lệch như B04 |
 
-**Kết quả:** khớp __/5 output · __/20 ô → **đạt / chưa đạt** (cần ≥ 4/5).
-Định nghĩa cần viết lại (nếu có): __
+**Kết quả:** khớp 3/5 output · 17/20 ô → **chưa đạt** (cần ≥ 4/5). Cả 3 ô lệch cùng một nguyên nhân: phân biệt `—` (không áp dụng) với `1` (đạt); không có ô nào hai người chấm 0 / 1 ngược nhau.
+Định nghĩa cần viết lại (nếu có): `goi_y_co_can_cu` (M3) và `khong_lo_dap_an` (M4) — ghi điều kiện áp dụng thành câu riêng ở đầu định nghĩa ("Áp dụng cho: … · Câu khác ghi —, không ghi 1"), đúng gợi ý của Khoa ở mục 1a.
 
 → Chép một dòng vào `eval/README.md` mục 3: *"Người thứ hai chấm thử: Khoa chấm độc lập 5 output (B01–B05, `run-try.csv`, run ID __) → khớp __/5."*
 
