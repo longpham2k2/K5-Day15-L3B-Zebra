@@ -1,23 +1,23 @@
 # Người thứ hai chấm thử — 5 output
 
-> Bước "người thứ hai chấm thử" ở `eval/README.md` mục 3 (guide 2.4). Người chấm: **Khoa** (không viết metric). Người viết metric: **Đạt**.
+> Bước "người thứ hai chấm thử" ở `eval/README.md` mục 3 (guide 2.4). Người chấm: **TV3** (không viết metric). Người viết metric: **TV2**.
 > Mục đích: kiểm **định nghĩa metric có đủ rõ** để hai người đọc cùng output ra cùng kết quả — không phải chấm agent tốt hay dở.
-> Luật: Khoa chấm **độc lập**, không xem điểm của Đạt trước khi điền xong cột của mình. Chấm đúng theo chữ trong `eval/metric_spec.yaml` bản chốt, không theo ý mình.
-> Yêu cầu (`eval/README.md` mục 3): khớp **≥ 4/5 output**. Lệch → Đạt viết lại định nghĩa metric bị lệch (trước 19:30 CP2), chấm lại.
+> Luật: TV3 chấm **độc lập**, không xem điểm của TV2 trước khi điền xong cột của mình. Chấm đúng theo chữ trong `eval/metric_spec.yaml` bản chốt, không theo ý mình.
+> Yêu cầu (`eval/README.md` mục 3): khớp **≥ 4/5 output**. Lệch → TV2 viết lại định nghĩa metric bị lệch (trước 19:30 CP2), chấm lại.
 
 ## 0. Đầu vào
 
 | | |
 |---|---|
-| Bản `metric_spec.yaml` đã chấm theo | commit `909977f` (Đạt, 27/11 18:25 — bản chốt; đã kiểm: không đổi tới `origin/main` lúc 18:41) |
-| File output | `eval/run-try.csv` (lệnh `python run.py eval --try 5` → B01–B05) · run ID `run-try@20261127-180931` · model `gemini-3.1-flash-lite` · 5/5 không lỗi. File này bị `.gitignore` chặn và bị ghi đè mỗi lần thử → **nguyên văn 5 output chép ở mục 4** để Đạt và Khoa chấm cùng một bản |
-| Ai chạy | Khoa (máy Khoa, key Gemini của Khoa) · 27/11/2026 18:09 |
+| Bản `metric_spec.yaml` đã chấm theo | commit `909977f` (TV2, 27/11 18:25 — bản chốt; đã kiểm: không đổi tới `origin/main` lúc 18:41) |
+| File output | `eval/run-try.csv` (lệnh `python run.py eval --try 5` → B01–B05) · run ID `run-try@20261127-180931` · model `gemini-3.1-flash-lite` · 5/5 không lỗi. File này bị `.gitignore` chặn và bị ghi đè mỗi lần thử → **nguyên văn 5 output chép ở mục 4** để TV2 và TV3 chấm cùng một bản |
+| Ai chạy | TV3 (máy TV3, key Gemini của TV3) · 27/11/2026 18:09 |
 
-Cột M1–M4 = 4 metric chấm trên output trong `eval/metric_spec.yaml` (Đạt, bản 18:25): **M1** `kiem_lai_dung_cach` · **M2** `tach_doan_voi_hieu` · **M3** `goi_y_co_can_cu` (cả phần code lẫn phần người chấm nội dung) · **M4** `khong_lo_dap_an`. Metric 5 `hieu_lai_tren_nguoi_thu` đo trên người dùng thử, **không** chấm ở đây. Câu nào không thoả điều kiện áp dụng của metric thì ghi `—`.
+Cột M1–M4 = 4 metric chấm trên output trong `eval/metric_spec.yaml` (TV2, bản 18:25): **M1** `kiem_lai_dung_cach` · **M2** `tach_doan_voi_hieu` · **M3** `goi_y_co_can_cu` (cả phần code lẫn phần người chấm nội dung) · **M4** `khong_lo_dap_an`. Metric 5 `hieu_lai_tren_nguoi_thu` đo trên người dùng thử, **không** chấm ở đây. Câu nào không thoả điều kiện áp dụng của metric thì ghi `—`.
 
 Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp dụng cho câu này (ghi lý do ở cột ghi chú).
 
-## 1. Khoa chấm (điền trước, không xem cột của Đạt)
+## 1. TV3 chấm (điền trước, không xem cột của TV2)
 
 | Câu | Loại | `buoc` trong output | `ma_doan` | M1 kiem_lai | M2 tach_doan | M3 goi_y | M4 khong_lo | Ghi chú (vì sao 0 / —; chỗ định nghĩa khó hiểu) |
 |---|---|---|---|---|---|---|---|---|
@@ -27,16 +27,16 @@ Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp d�
 | B04 | kho | `khong_co_can_cu` | (rỗng) | 1 | 1 | — | 1 | M1 (mơ hồ): phần (a) mở đầu "Câu thử có khoá ly_do…" mà B04 không có ly_do; chấm 1 vì đọc câu "Attempt không có đoạn bài: cau_tuong_tu là null" như luật riêng (cau_tuong_tu đúng là null). Đọc theo cách khác thì là —. M2: dung null ≠ true → áp dụng, không có "bạn đã hiểu lại". M3 —: pass_criterion ghi "ma_doan rỗng", không phải "ma_doan chứa". M4: không có tra_loi → áp dụng; cau_tuong_tu null, dung null, không lộ đáp án. |
 | B05 | kho | `chuyen_lab_coach` | (rỗng) | 1 | 1 | — | — | M1 phần (b): tra_loi=B, đáp án Q1-S1 là A → dung false đúng; trace learner_state → check_answer, không có call_model; buoc chuyen_lab_coach; lời nhắn có nguyên văn explanation; cau_tuong_tu null. M2: dung false ≠ true → áp dụng, không có "bạn đã hiểu lại". M3 —: pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa". M4 —: có tra_loi. |
 
-> **Cách chấm (minh bạch):** Khoa tự chấm mục 1 trước (lưu lúc ~18:57, bảng 1a dưới đây — giữ nguyên số). Sau đó nhờ AI (Claude Code) rà lại theo đúng chữ của định nghĩa → bảng trên là bản sau khi rà: 14/20 ô đổi, 6/20 ô giữ nguyên; 2 ô mơ hồ thật (B01 M3, B04 M1) giữ theo cách hiểu của Khoa.
+> **Cách chấm (minh bạch):** TV3 tự chấm mục 1 trước (lưu lúc ~18:57, bảng 1a dưới đây — giữ nguyên số). Sau đó nhờ AI (Claude Code) rà lại theo đúng chữ của định nghĩa → bảng trên là bản sau khi rà: 14/20 ô đổi, 6/20 ô giữ nguyên; 2 ô mơ hồ thật (B01 M3, B04 M1) giữ theo cách hiểu của TV3.
 
-### 1a. Lần chấm đầu của Khoa (trước khi rà) — giữ nguyên số
+### 1a. Lần chấm đầu của TV3 (trước khi rà) — giữ nguyên số
 
 | Câu | M1 kiem_lai | M2 tach_doan | M3 goi_y | M4 khong_lo |
 |---|---|---|---|---|
-| B01 | 1 ✓ | 1 ✓ | 0 ✓ *(mơ hồ — Khoa nhận ra)* | 0 → 1 |
+| B01 | 1 ✓ | 1 ✓ | 0 ✓ *(mơ hồ — TV3 nhận ra)* | 0 → 1 |
 | B02 | 1 ✓ | 0 → 1 | — ✓ | 0 → 1 |
 | B03 | 0 → 1 | 0 → 1 | 1 → — | 0 → 1 |
-| B04 | 1 ✓ *(mơ hồ — Khoa nhận ra)* | — → 1 | 1 → — | — → 1 |
+| B04 | 1 ✓ *(mơ hồ — TV3 nhận ra)* | — → 1 | 1 → — | — → 1 |
 | B05 | — → 1 | — → 1 | 1 → — | 0 → — |
 
 ✓ = giữ nguyên sau khi rà · `a → b` = lần đầu ghi a, theo chữ định nghĩa là b.
@@ -51,11 +51,11 @@ Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp d�
 | Coi chữ gần giống là cụm bị cấm ("đã hiểu chưa" ≠ "bạn đã hiểu lại"; "chấm", "đáp án" ≠ "đã chấm", "đáp án X") | 4 | B01 M4 · B02 M2, M4 · B03 M4 |
 | B03 có output giống hệt B02 nhưng chấm khác B02 | 2 | B03 M1, M2 |
 
-→ Gợi ý cho Đạt: nhóm lỗi thứ nhất cho thấy định nghĩa nên **ghi điều kiện áp dụng thành một câu riêng ở đầu mỗi metric** (vd "Áp dụng cho: …"), người chấm sẽ đỡ đọc sót.
+→ Gợi ý cho TV2: nhóm lỗi thứ nhất cho thấy định nghĩa nên **ghi điều kiện áp dụng thành một câu riêng ở đầu mỗi metric** (vd "Áp dụng cho: …"), người chấm sẽ đỡ đọc sót.
 
-*(Cột `buoc`, `ma_doan` chép máy móc từ output; các cột còn lại Khoa tự chấm.)*
+*(Cột `buoc`, `ma_doan` chép máy móc từ output; các cột còn lại TV3 tự chấm.)*
 
-## 2. Đạt chấm (Đạt điền, hoặc chép từ bảng chấm của Đạt)
+## 2. TV2 chấm (TV2 điền, hoặc chép từ bảng chấm của TV2)
 
 | Câu | M1 | M2 | M3 | M4 |
 |---|---|---|---|---|
@@ -67,20 +67,20 @@ Ký hiệu: `1` = đạt · `0` = không đạt · `—` = metric không áp d�
 
 ## 3. So sánh
 
-Một output **khớp** khi mọi ô M1–M4 của Khoa và Đạt giống nhau (kể cả `—`).
+Một output **khớp** khi mọi ô M1–M4 của TV3 và TV2 giống nhau (kể cả `—`).
 
 | Câu | Khớp? | Lệch ở metric nào · vì sao hai người hiểu khác nhau |
 |---|---|---|
 | B01 | ✅ | — (cả hai: 1·1·0·1; cùng chấm M3 = 0 vì lời nhắn chỉ trỏ "[D08-P1]", không tự nêu ý) |
 | B02 | ✅ | — (cả hai: 1·1·—·1) |
 | B03 | ✅ | — (cả hai: 1·1·—·1) |
-| B04 | ❌ | **M3**: Khoa `—`, Đạt `1`. pass_criterion ghi "ma_doan rỗng", không có cụm "ma_doan chứa <mã>" → theo chữ định nghĩa là không áp dụng; Đạt chấm 1 vì output đúng ý (ma_doan rỗng như yêu cầu) — tức coi "không vi phạm" là "đạt" |
-| B05 | ❌ | **M3**: Khoa `—`, Đạt `1` — pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa", nên theo chữ là không áp dụng; Đạt chấm 1 vì lời nhắn có [D08-P1]. **M4**: Khoa `—`, Đạt `1` — câu có tra_loi, định nghĩa chỉ áp cho câu không có tra_loi; Đạt chấm 1 vì không có gì bị lộ. Cùng một kiểu lệch như B04 |
+| B04 | ❌ | **M3**: TV3 `—`, TV2 `1`. pass_criterion ghi "ma_doan rỗng", không có cụm "ma_doan chứa <mã>" → theo chữ định nghĩa là không áp dụng; TV2 chấm 1 vì output đúng ý (ma_doan rỗng như yêu cầu) — tức coi "không vi phạm" là "đạt" |
+| B05 | ❌ | **M3**: TV3 `—`, TV2 `1` — pass_criterion ghi "loi_nhan có… mã D08-P1", không phải "ma_doan chứa", nên theo chữ là không áp dụng; TV2 chấm 1 vì lời nhắn có [D08-P1]. **M4**: TV3 `—`, TV2 `1` — câu có tra_loi, định nghĩa chỉ áp cho câu không có tra_loi; TV2 chấm 1 vì không có gì bị lộ. Cùng một kiểu lệch như B04 |
 
 **Kết quả:** khớp 3/5 output · 17/20 ô → **chưa đạt** (cần ≥ 4/5). Cả 3 ô lệch cùng một nguyên nhân: phân biệt `—` (không áp dụng) với `1` (đạt); không có ô nào hai người chấm 0 / 1 ngược nhau.
-Định nghĩa cần viết lại (nếu có): `goi_y_co_can_cu` (M3) và `khong_lo_dap_an` (M4) — ghi điều kiện áp dụng thành câu riêng ở đầu định nghĩa ("Áp dụng cho: … · Câu khác ghi —, không ghi 1"), đúng gợi ý của Khoa ở mục 1a.
+Định nghĩa cần viết lại (nếu có): `goi_y_co_can_cu` (M3) và `khong_lo_dap_an` (M4) — ghi điều kiện áp dụng thành câu riêng ở đầu định nghĩa ("Áp dụng cho: … · Câu khác ghi —, không ghi 1"), đúng gợi ý của TV3 ở mục 1a.
 
-→ Chép một dòng vào `eval/README.md` mục 3: *"Người thứ hai chấm thử: Khoa chấm độc lập 5 output (B01–B05, `run-try.csv`, run ID __) → khớp __/5."*
+→ Chép một dòng vào `eval/README.md` mục 3: *"Người thứ hai chấm thử: TV3 chấm độc lập 5 output (B01–B05, `run-try.csv`, run ID __) → khớp __/5."*
 
 ## 4. Nguyên văn 5 output (chép từ `eval/run-try.csv`, run ID `run-try@20261127-180931`)
 

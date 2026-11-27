@@ -28,7 +28,7 @@ Data BTC (`data/preclass`) **không có nội dung câu hỏi, đáp án hay l�
 | `khong_lo_dap_an` — câu tương tự không kèm đáp án, lời nhắn không lộ đáp án; câu `tu_choi` từ chối, không công nhận đã chấm | code | 100% câu áp dụng, 100% câu `tu_choi` |
 | `hieu_lai_tren_nguoi_thu` — học viên thật đúng câu tương tự; báo riêng 3 nhóm lý do, chỉ nhóm có lý do tính là hiểu lại; thời gian một vòng (`validation/log.md`) | nguoi | N ≥ 3 người vào vòng; ≥ 2/3 số người vào vòng; trung vị ≤ 5 phút *(tự ước tính)* |
 
-- **Người thứ hai chấm thử:** Khoa (không phải người viết spec) chấm độc lập 5 output (B01–B05, `run-try.csv`, run ID `run-try@20261127-180931`, model `gemini-3.1-flash-lite`) → khớp **3/5** output, 17/20 ô — **chưa đạt** ≥4/5. Cả 3 ô lệch cùng một nguyên nhân: phân biệt `—` (không áp dụng) với `1` (đạt) ở `goi_y_co_can_cu` (B04, B05) và `khong_lo_dap_an` (B05); không có ô nào hai người chấm 0 / 1 ngược nhau. Khoa có nhờ AI rà lại sau khi tự chấm (ghi rõ ở bảng chấm). Chi tiết: [cham-thu-nguoi-thu-hai.md](cham-thu-nguoi-thu-hai.md). *(cần ≥4/5; lệch thì viết lại định nghĩa)*
+- **Người thứ hai chấm thử:** TV3 (không phải người viết spec) chấm độc lập 5 output (B01–B05, `run-try.csv`, run ID `run-try@20261127-180931`, model `gemini-3.1-flash-lite`) → khớp **3/5** output, 17/20 ô — **chưa đạt** ≥4/5. Cả 3 ô lệch cùng một nguyên nhân: phân biệt `—` (không áp dụng) với `1` (đạt) ở `goi_y_co_can_cu` (B04, B05) và `khong_lo_dap_an` (B05); không có ô nào hai người chấm 0 / 1 ngược nhau. TV3 có nhờ AI rà lại sau khi tự chấm (ghi rõ ở bảng chấm). Chi tiết: [cham-thu-nguoi-thu-hai.md](cham-thu-nguoi-thu-hai.md). *(cần ≥4/5; lệch thì viết lại định nghĩa)*
 - LLM chấm (nếu có): không dùng LLM chấm — metric 1, 2, 4 và phần mã đoạn của metric 3 chấm bằng code; nội dung lời nhắn (metric 3) và metric 5 do người chấm
 - **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "Đạt khi ≥ 80% câu thử qua `pass_criterion` (≥ 17/21), 4 metric chấm bằng code (`kiem_lai_dung_cach`, `tach_doan_voi_hieu`, `khong_lo_dap_an`, phần code của `goi_y_co_can_cu`) đạt 100% câu áp dụng, 100% câu `tu_choi` qua, và `hieu_lai_tren_nguoi_thu`: N ≥ 3 người vào vòng, ≥ 2/3 số người vào vòng đúng câu tương tự với lý do không yếu."
 
@@ -40,7 +40,7 @@ Data BTC (`data/preclass`) **không có nội dung câu hỏi, đáp án hay l�
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/__ | | |
+| 1 | `run-1@20261127-222615` | `gpt-5.4-nano-2026-03-17` | Workflow §4, 1 bước AI; prompt kiểm ngoài phạm vi trước; lời từ chối do code viết; chặn `[mã đoạn]` trong lời nhắn. Chấm: TV3 và TV2 chấm mù trên 2 nhánh riêng (mỗi người một nhánh, không xem bài nhau), khớp 17/21 câu; 4 câu tranh chấp (B01, B12, B15, B18) do TV1 phân xử theo chữ `pass_criterion`, ghi ở cột `ghi_chu` | 17/21 | 81% | **Không** — đạt tỉ lệ ≥ 80%, nhưng `tu_choi` 2/3 (B14 chọn `sua_loi_ban` thay vì `ngoai_pham_vi`) nên trượt điều kiện 100% `tu_choi` và `khong_lo_dap_an` |
 | 2 | | | | __/__ | | |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.

@@ -12,7 +12,7 @@
 
 | # | Vai | Từ đâu | Ai hẹn | Giờ hẹn | Hình thức | Ai cầm máy / ghi | Đã xong? |
 |---|---|---|---|---|---|---|---|
-| U1 | Học viên L3A, khoá 5 | Khảo sát — tự để lại liên hệ ở câu 11 | Khoa | 28/11, giờ cụ thể: __ (đã hẹn trong 10:00–13:00 — **cần báo lại khung mới 10:30–12:30**) | Online · chia sẻ màn hình, không quay; người thử để lại nhận xét bằng lời / chữ | __ / __ | Chưa |
+| U1 | Học viên L3A, khoá 5 | Khảo sát — tự để lại liên hệ ở câu 11 | TV3 | 28/11, giờ cụ thể: __ (đã hẹn trong 10:00–13:00 — **cần báo lại khung mới 10:30–12:30**) | Online · chia sẻ màn hình, không quay; người thử để lại nhận xét bằng lời / chữ | __ / __ | Chưa |
 | U2 | __ | __ | Long | __ | __ | __ / __ | Chưa |
 | U3 | __ | __ | Long | __ | __ | __ / __ | Chưa |
 | U4 | __ | __ | __ | __ | __ | __ / __ | Chưa hẹn |
