@@ -152,6 +152,164 @@
           "explanation": "[D01-P2] Lab cắt history[-6:] để giữ 6 tin nhắn gần nhất, tức 3 lượt hội thoại gần nhất."
         }
       ]
+    },
+    {
+      "kc_code": "react_tool_observation",
+      "ten": "ReAct: chọn công cụ và đọc kết quả",
+      "passages": [
+        {
+          "code": "D04-P1",
+          "text": "Trong vòng ReAct, model chọn hành động dựa trên mục tiêu và thông tin đang có. Nếu hành động là gọi công cụ, chương trình thực thi rồi đưa kết quả (kể cả lỗi) trở lại cho model. Model dựa vào kết quả đó để chọn bước tiếp theo hoặc trả lời khi đã có đủ căn cứ."
+        }
+      ],
+      "questions": [
+        {
+          "id": "Q4",
+          "role": "goc",
+          "stem": "Bạn dựng agent ReAct tra tình trạng giao hàng. Model yêu cầu gọi tra_cuu_don với mã khách nhập. Công cụ trả về hai đơn có mã gần giống và chưa xác định được đơn nào đúng. Bộ điều phối nên xử lý kết quả này thế nào?",
+          "options": {
+            "A": "Chọn đơn đứng đầu kết quả và đưa trạng thái của đơn đó cho model để soạn câu trả lời.",
+            "B": "Gọi công cụ xem lịch giao cho cả hai đơn theo chuỗi đã định, rồi gửi hai trạng thái cho model.",
+            "C": "Đưa kết quả tra cứu vào ngữ cảnh để model quyết định cần tra thêm hay hỏi khách xác nhận mã."
+          },
+          "answer": "C",
+          "explanation": "[D04-P1] Hai kết quả chưa xác định đúng đơn. Chuyển kết quả đầy đủ về cho model giúp nó chọn bước tiếp theo dựa trên điều công cụ vừa trả về.",
+          "misconception": {
+            "A": "Mình nghĩ kết quả đứng đầu đủ đáng tin để dùng khi chưa xác định được đơn.",
+            "B": "Mình nghĩ cứ chạy tiếp các công cụ đã định rồi mới cần cho model xem kết quả."
+          }
+        },
+        {
+          "id": "Q4-S1",
+          "role": "tuong_tu",
+          "stem": "Agent đăng ký một suất học theo yêu cầu của học viên. Công cụ đặt chỗ báo hết thời gian chờ và hệ thống có công cụ tra tình trạng yêu cầu theo mã. Lượt tiếp theo nên làm gì để tránh gửi trùng yêu cầu?",
+          "options": {
+            "A": "Dùng lỗi hết thời gian chờ và mã yêu cầu để tra xem lần gọi trước đã được xử lý chưa.",
+            "B": "Dùng lỗi hết thời gian chờ làm dấu hiệu yêu cầu đã thất bại và gửi lại yêu cầu ngay.",
+            "C": "Dùng việc đã phát lệnh đặt chỗ làm căn cứ để báo suất học đã được giữ."
+          },
+          "answer": "A",
+          "explanation": "[D04-P1] Lỗi hết thời gian chờ là kết quả cần đưa về model. Tra trạng thái theo mã giúp xác định tác động của lần gọi trước khi quyết định bước tiếp."
+        },
+        {
+          "id": "Q4-S2",
+          "role": "tuong_tu",
+          "stem": "Agent lên kế hoạch lấy thiết bị. Trước khi gọi công cụ, nó dự định đến kho A. Kết quả kiểm kho ghi kho A hết hàng, kho B còn hàng. Giờ mở cửa của kho B chưa có. Bước tiếp theo phù hợp nhất là gì?",
+          "options": {
+            "A": "Giữ kế hoạch đến kho A vì đó là bước đã chọn trước khi kiểm kho.",
+            "B": "Dùng kết quả kiểm kho để chuyển sang kiểm tra giờ mở cửa của kho B.",
+            "C": "Chốt ghé kho B ngay vì kết quả còn hàng cũng xác nhận kho đang mở."
+          },
+          "answer": "B",
+          "explanation": "[D04-P1] Kết quả kiểm kho làm thay đổi kế hoạch và cho thấy còn thiếu giờ mở cửa của kho B. Thông tin đó quyết định công cụ cần gọi tiếp."
+        }
+      ]
+    },
+    {
+      "kc_code": "retrieval_precision_recall",
+      "ten": "Precision và recall trong truy xuất",
+      "passages": [
+        {
+          "code": "D07-P1",
+          "text": "Precision là số tài liệu liên quan đã trả về chia cho tổng số tài liệu trả về. Recall là số tài liệu liên quan đã trả về chia cho tổng số tài liệu liên quan trong tập đánh giá. Hai chỉ số có chung tử số và khác mẫu số."
+        }
+      ],
+      "questions": [
+        {
+          "id": "Q5",
+          "role": "goc",
+          "stem": "Với cùng một truy vấn, tập đánh giá có 10 tài liệu liên quan. Bộ lọc cũ trả 6 tài liệu, trong đó 5 liên quan. Siết bộ lọc thì còn 4 tài liệu, cả 4 đều liên quan. Hai chỉ số thay đổi thế nào?",
+          "options": {
+            "A": "Precision tăng, recall giữ nguyên.",
+            "B": "Precision giảm, recall tăng.",
+            "C": "Precision và recall đều tăng.",
+            "D": "Precision tăng, recall giảm."
+          },
+          "answer": "D",
+          "explanation": "[D07-P1] Precision tăng từ 5/6 lên 4/4. Recall giảm từ 5/10 xuống 4/10 vì bộ lọc đã bỏ sót thêm một tài liệu liên quan.",
+          "misconception": {
+            "A": "Mình nghĩ recall giữ nguyên vì tổng số tài liệu liên quan trong kho vẫn là 10.",
+            "B": "Mình lấy số tài liệu đúng trên 10 để tính precision và trên số trả về để tính recall.",
+            "C": "Mình nghĩ nếu mọi tài liệu trả về đều đúng thì hệ thống cũng đã tìm được hết tài liệu đúng."
+          }
+        },
+        {
+          "id": "Q5-S1",
+          "role": "tuong_tu",
+          "stem": "Có 12 tài liệu liên quan đến một truy vấn. Top 5 chứa 4 tài liệu liên quan. Xem thêm vị trí 6 đến 10 thì có thêm 2 tài liệu liên quan. Khi chuyển từ top 5 sang top 10, cặp precision và recall mới là bao nhiêu?",
+          "options": {
+            "A": "Precision 6/12, recall 6/10.",
+            "B": "Precision 6/10, recall 6/12.",
+            "C": "Precision 2/5, recall 6/12."
+          },
+          "answer": "B",
+          "explanation": "[D07-P1] Top 10 có 4 + 2 = 6 tài liệu liên quan. Precision tính theo 10 tài liệu trả về và recall tính theo 12 tài liệu liên quan trong tập đánh giá."
+        },
+        {
+          "id": "Q5-S2",
+          "role": "tuong_tu",
+          "stem": "Kho có 20 tài liệu liên quan đến truy vấn. Hệ X trả 8 tài liệu, 6 liên quan. Hệ Y trả 15 tài liệu, 9 liên quan. Nếu ưu tiên bỏ sót ít tài liệu liên quan hơn, nên chọn hệ nào và vì sao?",
+          "options": {
+            "A": "Chọn X vì 6/8 lớn hơn 9/15.",
+            "B": "Chọn Y vì 15/20 lớn hơn 8/20.",
+            "C": "Chọn Y vì 9/20 lớn hơn 6/20."
+          },
+          "answer": "C",
+          "explanation": "[D07-P1] Mục tiêu bỏ sót ít tương ứng với recall. Cả hai hệ có mẫu số 20; Y tìm được 9 tài liệu liên quan còn X tìm được 6."
+        }
+      ]
+    },
+    {
+      "kc_code": "chatbot_vs_agent",
+      "ten": "Phân biệt chatbot và agent qua cách chọn bước",
+      "passages": [
+        {
+          "code": "D08-P2",
+          "text": "Giao diện chat là cách người dùng tương tác. Chatbot có thể nhớ hội thoại hoặc dùng công cụ tra cứu theo luồng cố định. Trong một agent, model được giao mục tiêu và có quyền chọn hành động tiếp theo dựa trên kết quả trung gian, trong phạm vi công cụ và quyền được cấp."
+        }
+      ],
+      "questions": [
+        {
+          "id": "Q6",
+          "role": "goc",
+          "stem": "Một chatbot phòng thiết bị nhớ hội thoại. Mỗi yêu cầu đều chạy cùng một API tra cứu rồi dùng model để viết câu trả lời. Thay đổi nào thể hiện rõ nhất việc giao cho model vai trò agent?",
+          "options": {
+            "A": "Cho model chọn xem lịch, tìm thiết bị thay thế hoặc hỏi thêm, tùy mục tiêu và kết quả từng bước.",
+            "B": "Cho ứng dụng tự gọi thêm API danh mục sau API lịch ở mọi lượt và để model tổng hợp hai kết quả.",
+            "C": "Cho model đọc thêm lịch sử các lượt mượn để cá nhân hóa câu trả lời sau khi tra cứu."
+          },
+          "answer": "A",
+          "explanation": "[D08-P2] Ở A, model chọn hành động tiếp theo theo mục tiêu và thông tin vừa nhận được. Hai phương án còn lại mở rộng dữ liệu mà model dùng để soạn câu trả lời.",
+          "misconception": {
+            "B": "Mình nghĩ cứ tự động gọi nhiều API trong một lượt là chatbot đã thành agent.",
+            "C": "Mình nghĩ nhớ nhiều thông tin về người dùng là đủ để chatbot thành agent."
+          }
+        },
+        {
+          "id": "Q6-S1",
+          "role": "tuong_tu",
+          "stem": "Hệ A có giao diện chat và tra cứu theo một kịch bản cố định. Hệ B nhận mục tiêu qua API, rồi model chọn tra dữ liệu bổ sung hoặc dừng dựa trên dữ liệu vừa lấy. Nhận định nào đúng theo cách phân loại của bài?",
+          "options": {
+            "A": "Hệ A có tính agent rõ hơn vì có thể hỏi đáp với người dùng nhiều lượt.",
+            "B": "Hệ B có tính agent rõ hơn vì model quyết định bước tiếp theo khi xử lý mục tiêu.",
+            "C": "Hai hệ có mức tự chủ như nhau vì cả hai đều truy xuất dữ liệu từ công cụ."
+          },
+          "answer": "B",
+          "explanation": "[D08-P2] Hệ B để model quyết định có cần lấy thêm dữ liệu dựa trên kết quả đang có. Quyền chọn bước thuộc về model dù người dùng gửi mục tiêu qua API."
+        },
+        {
+          "id": "Q6-S2",
+          "role": "tuong_tu",
+          "stem": "Luồng hỗ trợ gửi kết quả tra cứu cho model. Model có thể tìm thêm dữ liệu hoặc đề xuất cập nhật hồ sơ. Việc cập nhật cần người dùng duyệt. Chi tiết nào thể hiện tính agent trong thiết kế này?",
+          "options": {
+            "A": "Ứng dụng xin xác nhận trước khi cập nhật hồ sơ.",
+            "B": "Ứng dụng có thể cập nhật hồ sơ sau khi người dùng duyệt.",
+            "C": "Model chọn tìm thêm hay đề xuất cập nhật dựa trên kết quả tra cứu."
+          },
+          "answer": "C",
+          "explanation": "[D08-P2] Model được tự chọn bước trong phạm vi cho phép. Bước duyệt giới hạn quyền cập nhật, còn quyền chọn giữa tra cứu và đề xuất vẫn thuộc về model."
+        }
+      ]
     }
   ]
 }

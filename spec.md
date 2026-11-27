@@ -170,6 +170,7 @@ flowchart TD
 |---|---|---|
 | 27/11 ~22:25 | Gộp nhánh `khoa` vào `main` (bảng chấm 1a của người thứ hai, bản chốt khảo sát, R25). Khảo sát chốt **n = 25** (thêm R25, xác nhận ngoài nhóm); cập nhật số khảo sát ở `evidence/summary.md`, §1–§2, `canvas.md` dòng 4: câu 7 thành 13/25 (2–3 lần), 19/25 có ≥1 lần; người dùng pre-class ≥3 ngày 10/25, trả lời bạn học AI 0/10. Câu 3–6 không đổi (R25 chọn "Không nhớ" ở câu 2) | Form đóng ~21:05 theo kế hoạch chốt trước CP3 (`evidence/survey/questions.md` mục Log gửi). Không đổi metric, ngưỡng "đạt" hay câu thử |
 | 27/11 ~22:35 (trước lượt 1) | `codebase/agent.py`: model chọn `goi_y` / `sua_loi_ban` mà lời nhắn không ghi mã đoạn nào trong ngoặc vuông thì code tự thêm "Xem [mã đoạn]." | Metric `goi_y_co_can_cu` phần code (100%) đòi lời nhắn có mã trong ngoặc vuông, mà agent trước đó chỉ kiểm trường `ma_doan`, không kiểm chữ trong lời nhắn — một lần model quên ngoặc là trượt metric 100%. Các lượt thử chưa gặp lỗi này; đây là chặn phòng trước. Sửa hành vi chung (G11), không dựa trên câu chữ của câu thử nào. Model cho lượt 1 và lượt 2: OpenAI `gpt-5.4-nano` |
+| 27/11, sau 23:30 | Thêm câu Q4–Q6 về ReAct, precision/recall và chatbot/agent, kèm lượt sai mẫu và bảng tra mã. | Bổ sung câu tình huống cho buổi thử đo `hieu_lai_tren_nguoi_thu`. T05–T06 dùng cho Q4; hai lượt của Q2 chuyển sang T14–T15. |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

@@ -13,7 +13,7 @@
 
 ## 1. Chuẩn bị (trước 10:30, ~10 phút)
 
-1. `git pull --rebase origin main` — để có ngân hàng câu mới (Q1, Q2, Q3; lượt T01–T08).
+1. `git pull --rebase origin main` — để có ngân hàng câu mới (Q1–Q6, lượt T01–T15).
 2. Kiểm `.env` trên máy cầm máy: có `MODEL_PROVIDER`, `MODEL_NAME`, `API_KEY`. **Model dùng: __** (thống nhất với Long — nên cùng model với eval lượt 1 / lượt 2; ghi vào log).
 3. Chạy thử 1 vòng không người: `python run.py` → gõ `attempt=T05` → phải thấy agent hỏi lý do. Gõ `Enter` 2 lần để thoát.
 4. Mở sẵn: link họp online · `data/question_bank.json` (để đọc câu gốc) · `validation/log.md` (để ghi) · đồng hồ bấm giờ.
@@ -23,13 +23,16 @@
 
 Người thử chọn sai ở câu gốc nào, lựa chọn nào → gõ mã lượt tương ứng:
 
-| Câu gốc | Chọn A | Chọn C | Câu tương tự agent sẽ đưa |
-|---|---|---|---|
-| Q1 (BM25 vs embedding) | `T02` | `T01` | Q1-S1 |
-| Q2 (token usage) | `T05` | `T06` | Q2-S1 |
-| Q3 (lịch sử chatbot) | `T07` | `T08` | Q3-S1 |
+| Câu gốc | Chọn A | Chọn B | Chọn C | Chọn D | Câu tương tự agent sẽ đưa |
+|---|---|---|---|---|---|
+| Q1 (BM25 vs embedding) | `T02` | Đúng | `T01` | — | Q1-S1 |
+| Q2 (token usage) | `T14` | Đúng | `T15` | — | Q2-S1 |
+| Q3 (lịch sử chatbot) | `T07` | Đúng | `T08` | — | Q3-S1 |
+| Q4 (ReAct) | `T05` | `T06` | Đúng | — | Q4-S1 |
+| Q5 (precision và recall) | `T09` | `T10` | `T11` | Đúng | Q5-S1 |
+| Q6 (chatbot và agent) | Đúng | `T12` | `T13` | — | Q6-S1 |
 
-Lựa chọn không có trong bảng = **chọn đúng** → sang câu gốc tiếp theo.
+Ô **Đúng** → sang câu gốc tiếp theo.
 
 ## 3. Kịch bản cho một người thử (~10 phút)
 
@@ -39,9 +42,9 @@ Lựa chọn không có trong bảng = **chọn đúng** → sang câu gốc ti�
 ### 3.2 Câu gốc (người cầm máy đọc, chưa chạy agent)
 1. Đọc **Q1**: đề + 3 lựa chọn A/B/C (lấy từ `data/question_bank.json`). Người thử chọn.
 2. Tra bảng mục 2:
-   - **Chọn đúng** → đọc tiếp **Q2**, rồi **Q3**.
+   - **Chọn đúng** → đọc tiếp **Q4**, **Q5**, rồi **Q6**.
    - **Chọn sai** → sang 3.3 ngay. **Chỉ chạy 1 vòng / người** (dừng ở câu sai đầu tiên).
-   - **Đúng cả 3** → ghi **"không vào vòng"**, nhảy tới 3.5 (vẫn hỏi nhận xét).
+   - **Đúng cả 4** → ghi **"không vào vòng"**, nhảy tới 3.5 (vẫn hỏi nhận xét).
 
 ### 3.3 Vòng hỏi lại (người cầm máy gõ — người ghi bấm giờ)
 

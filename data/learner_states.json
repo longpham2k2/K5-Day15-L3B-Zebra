@@ -3,8 +3,15 @@
   {"attempt_id": "T02", "kc_code": "rag_bm25_vs_embedding", "question_id": "Q1", "chosen": "A", "times_wrong": 1},
   {"attempt_id": "T03", "kc_code": "rag_bm25_vs_embedding", "question_id": "Q1", "chosen": "C", "times_wrong": 2},
   {"attempt_id": "T04", "kc_code": "kc_chua_co_trong_ngan_hang", "question_id": "QX", "chosen": "C", "times_wrong": 1},
-  {"attempt_id": "T05", "kc_code": "llm_api_token_usage", "question_id": "Q2", "chosen": "A", "times_wrong": 1},
-  {"attempt_id": "T06", "kc_code": "llm_api_token_usage", "question_id": "Q2", "chosen": "C", "times_wrong": 1},
+  {"attempt_id": "T05", "kc_code": "react_tool_observation", "question_id": "Q4", "chosen": "A", "times_wrong": 1},
+  {"attempt_id": "T06", "kc_code": "react_tool_observation", "question_id": "Q4", "chosen": "B", "times_wrong": 1},
   {"attempt_id": "T07", "kc_code": "chatbot_history_window", "question_id": "Q3", "chosen": "A", "times_wrong": 1},
-  {"attempt_id": "T08", "kc_code": "chatbot_history_window", "question_id": "Q3", "chosen": "C", "times_wrong": 1}
+  {"attempt_id": "T08", "kc_code": "chatbot_history_window", "question_id": "Q3", "chosen": "C", "times_wrong": 1},
+  {"attempt_id": "T09", "kc_code": "retrieval_precision_recall", "question_id": "Q5", "chosen": "A", "times_wrong": 1},
+  {"attempt_id": "T10", "kc_code": "retrieval_precision_recall", "question_id": "Q5", "chosen": "B", "times_wrong": 1},
+  {"attempt_id": "T11", "kc_code": "retrieval_precision_recall", "question_id": "Q5", "chosen": "C", "times_wrong": 1},
+  {"attempt_id": "T12", "kc_code": "chatbot_vs_agent", "question_id": "Q6", "chosen": "B", "times_wrong": 1},
+  {"attempt_id": "T13", "kc_code": "chatbot_vs_agent", "question_id": "Q6", "chosen": "C", "times_wrong": 1},
+  {"attempt_id": "T14", "kc_code": "llm_api_token_usage", "question_id": "Q2", "chosen": "A", "times_wrong": 1},
+  {"attempt_id": "T15", "kc_code": "llm_api_token_usage", "question_id": "Q2", "chosen": "C", "times_wrong": 1}
 ]
