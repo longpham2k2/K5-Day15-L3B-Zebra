@@ -50,6 +50,8 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 - **Trợ giảng AI kiểu hỏi gợi mở, không đưa đáp án (vd Khanmigo):** đáng học — không đưa đáp án ngay · đáng né — hội thoại dài, cần học viên gõ nhiều (data: học viên ít gõ) · mình khác — một vòng ngắn, chủ yếu bấm chọn. *(chưa kiểm chi tiết)*
 - **ChatGPT / AI ngoài — đối thủ chính** (khảo sát: 16/23 dùng ngay sau khi sai; P1 ~4 lần / tháng):
   - Đáng học: có sẵn, nhanh, giảng lại theo cách học viên hỏi.
+  - **Giao diện (ghi nhận khi sử dụng):** Bố cục và cách sắp xếp tính năng chưa trực quan. Một số tính năng ít cần thiết với người dùng phổ thông. Có thể ưu tiên các thao tác thường dùng và gom tùy chọn nâng cao vào một chỗ.
+  - **Chọn mô hình theo tác vụ (ghi nhận khi sử dụng):** Có lúc tác vụ đơn giản vẫn dùng mô hình phức tạp. Có thể cải thiện việc tự chọn mô hình theo độ khó của tác vụ, ưu tiên mô hình nhẹ hơn cho yêu cầu đơn giản.
   - Đáng né: học viên phải tự mô tả mình sai gì, tự dán tài liệu (P2 "đưa slide cho GPT"), tự lọc thông tin (R07: *"tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin"*), và cuối cùng không có gì xác nhận đã hiểu đúng (P2: tra xong chỉ "có thể hiểu"; khảo sát 7/23 vẫn bị vướng lại). Có thể giảng sai mà không có căn cứ trong bài.
   - **Mình khác:** (1) **bắt đầu từ đúng đáp án học viên đã chọn** — không phải tự mô tả lỗi; (2) chỉ nói trong đoạn bài của khoá, có mã đoạn; (3) **kết thúc bằng một câu tương tự chấm theo đáp án** — học viên biết chắc đã hiểu hay chưa, thay vì "có thể hiểu"; (4) một vòng ngắn, chủ yếu bấm chọn.
 

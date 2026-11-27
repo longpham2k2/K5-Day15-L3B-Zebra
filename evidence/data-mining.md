@@ -84,3 +84,10 @@ Data cho biết người ta **làm gì**, không cho biết **vì sao**. Thiếu
 - Lần gần nhất bạn học AI xen vào giữa video, bạn làm gì? Vì sao không trả lời? (không thấy / không muốn ngắt mạch / câu hỏi không đáng / không biết trả lời ở đâu)
 - Lần gần nhất sai câu ôn tập cuối ngày: đọc lời giải xong bạn làm gì? Có chắc mình đã hiểu chưa? Muốn được hỏi lại một câu tương tự không?
 - Khi nào bạn thấy mình *thật sự* hiểu một ý trong pre-class?
+
+## 6. Ghi nhận khi trực tiếp dùng pre-class
+
+Hai điểm dưới đây được ghi nhận khi trực tiếp sử dụng trang pre-class.
+
+1. **Khó tìm lại câu hỏi đã hỏi trợ giảng.** Khi trả lời sai rồi hỏi lại trợ giảng, khung chat không hiển thị câu hỏi gốc và bài học tương ứng, nên khó tìm lại ngữ cảnh khi mở lại cuộc trò chuyện. Có thể hiển thị câu hỏi gốc và tên bài học ngay trong đoạn chat liên quan.
+2. **Video đôi khi phát tiếp khi bôi đen câu hỏi đề xuất.** Một số câu hỏi đề xuất xuất hiện trên video khi kết thúc một phần kiến thức. Khi bôi đen câu hỏi để hỏi trợ giảng, video đôi khi tiếp tục phát ngoài ý muốn. Có thể giữ video ở trạng thái tạm dừng trong lúc người học chọn văn bản.
