@@ -18,6 +18,26 @@
 | U4 | __ | __ | __ | __ | __ | __ / __ | Chưa hẹn |
 | U5 | __ | __ | __ | __ | __ | __ / __ | Chưa hẹn |
 
+Cách chạy từng người: [quy-trinh.md](quy-trinh.md).
+
+## Kết quả vòng hỏi lại (metric `hieu_lai_tren_nguoi_thu`)
+
+Model dùng: __ · máy cầm: __
+
+| # | Câu gốc sai (lựa chọn) | Mã lượt | Lý do (nguyên văn) | Nhóm lý do (có lý do / yếu / bỏ qua) | Câu tương tự | Trả lời | Đúng? | Thời gian (phút) | Ghi chú |
+|---|---|---|---|---|---|---|---|---|---|
+| U1 | | | | | | | | | |
+| U2 | | | | | | | | | |
+| U3 | | | | | | | | | |
+| U4 | | | | | | | | | |
+| U5 | | | | | | | | | |
+
+Người đúng cả 3 câu gốc: ghi "không vào vòng" ở cột "Câu gốc sai", để trống các cột còn lại.
+
+**Tổng kết:** N (vào vòng) = __ · đúng với **có lý do** __/N · đúng với **yếu (đoán)** __ · đúng với **bỏ qua** __ · trung vị thời gian __ phút → **đạt / chưa đạt** (cần N ≥ 3, có lý do ≥ 2/3 N, trung vị ≤ 5 phút).
+
+## Quan sát (bonus)
+
 | Người thử (vai) | Việc giao (theo kết quả, không theo nút) | Quan sát (làm gì đầu tiên, chỗ do dự, chỗ hiểu sai) | Trích nguyên văn | Mức nghiêm trọng (cao / vừa / thấp) |
 |---|---|---|---|---|
 | | | | | |
