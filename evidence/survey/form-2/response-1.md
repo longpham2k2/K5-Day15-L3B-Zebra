@@ -1,8 +1,8 @@
-# P1 · Học viên khóa V - Level 3 · Google Form · 27/11/2026
+# Form 2 · phản hồi 1 · Học viên khóa V - Level 3 · Google Form · 27/11/2026
 
-Người ghi nhận: Trần Trọng Đạt (tên thành viên ghi nhận).
+Người ghi nhận: TV2.
 
-> Bản ghi theo mẫu TEMPLATE.md, lấy từ phản hồi Google Form do nhóm cung cấp; chưa phải biên bản phỏng vấn trực tiếp/video. Mã P1/P2 là tạm để ghép với phần của các thành viên sau. Không lưu email người trả lời.
+> Bản ghi theo mẫu TEMPLATE.md, lấy từ phản hồi Google Form do nhóm cung cấp; chưa phải biên bản phỏng vấn trực tiếp/video. **Đây là phản hồi khảo sát, không phải phỏng vấn** → không tính vào ngưỡng phỏng vấn. Form này (10 câu, hỏi "7 ngày qua") khác form chính ở `../questions.md`, nên **không cộng** vào `../results.csv`; ghi riêng là "form 2, n = 2". Trước đây lưu nhầm ở `evidence/interviews/P6.md`, `P7.md`. Không lưu email người trả lời.
 
 ## Câu đã hỏi (giữ nguyên câu)
 
