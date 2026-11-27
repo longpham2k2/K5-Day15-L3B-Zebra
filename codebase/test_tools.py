@@ -19,7 +19,13 @@ def main() -> None:
         "question_id": "Q1",
         "chosen": "C",
         "times_wrong": 1,
+        "stem": questions["Q1"]["stem"],
+        "misconception": questions["Q1"]["misconception"]["C"],
     }, "learner_state: sai dữ liệu lượt T01"
+    assert "answer" not in learner_state("T01") and "explanation" not in learner_state("T01"), (
+        "learner_state: không được trả đáp án / lời giải câu gốc"
+    )
+    assert learner_state("T04")["misconception"] == "", "learner_state: thiếu ý kiến thức phải trả misconception rỗng"
     assert learner_state(missing_id) == {}, "learner_state: thiếu lượt phải trả {}"
 
     passages = [{"code": item["code"], "text": item["text"]} for item in concept["passages"]]
