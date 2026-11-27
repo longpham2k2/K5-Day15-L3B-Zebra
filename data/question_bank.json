@@ -50,6 +50,108 @@
           "explanation": "[D08-P1] Khi chỉ mục giữ nguyên mã, BM25 có thể dùng mã khớp giữa truy vấn và tài liệu để xếp hạng."
         }
       ]
+    },
+    {
+      "kc_code": "llm_api_token_usage",
+      "passages": [
+        {
+          "code": "D01-P1",
+          "text": "Khi gọi API, số token lấy từ trường usage trong phản hồi. OpenAI: token vào là usage.prompt_tokens, token ra là usage.completion_tokens. Gemini: token vào là usage_metadata.prompt_token_count, token ra là usage_metadata.candidates_token_count."
+        }
+      ],
+      "questions": [
+        {
+          "id": "Q2",
+          "role": "goc",
+          "stem": "Gọi Gemini xong, bạn cần số token model sinh ra (token ra) để tính chi phí. Lấy từ trường nào?",
+          "options": {
+            "A": "response.usage_metadata.prompt_token_count",
+            "B": "response.usage_metadata.candidates_token_count",
+            "C": "Đếm số chữ trong response.text rồi ước lượng"
+          },
+          "answer": "B",
+          "explanation": "[D01-P1] Với Gemini, token ra nằm ở usage_metadata.candidates_token_count; prompt_token_count là token vào.",
+          "misconception": {
+            "A": "Nhầm token vào (prompt) với token ra.",
+            "C": "Tự ước lượng từ chữ trả về thay vì đọc số token trong usage của API."
+          }
+        },
+        {
+          "id": "Q2-S1",
+          "role": "tuong_tu",
+          "stem": "Gọi OpenAI Chat Completions xong, bạn cần số token của prompt đã gửi (token vào). Lấy từ trường nào?",
+          "options": {
+            "A": "response.usage.completion_tokens",
+            "B": "Đếm số từ trong prompt bằng len(prompt.split())",
+            "C": "response.usage.prompt_tokens"
+          },
+          "answer": "C",
+          "explanation": "[D01-P1] Với OpenAI, token vào nằm ở usage.prompt_tokens; completion_tokens là token ra."
+        },
+        {
+          "id": "Q2-S2",
+          "role": "tuong_tu",
+          "stem": "Gọi Gemini xong, bạn cần số token vào để ghi log. Lấy từ trường nào?",
+          "options": {
+            "A": "response.usage_metadata.candidates_token_count",
+            "B": "response.usage_metadata.prompt_token_count",
+            "C": "Độ dài chuỗi response.text"
+          },
+          "answer": "B",
+          "explanation": "[D01-P1] Với Gemini, token vào nằm ở usage_metadata.prompt_token_count."
+        }
+      ]
+    },
+    {
+      "kc_code": "chatbot_history_window",
+      "passages": [
+        {
+          "code": "D01-P2",
+          "text": "Trong chatbot có lịch sử hội thoại, lab giới hạn lịch sử ở 3 lượt hội thoại gần nhất, tương đương 6 tin nhắn, bằng cách cắt history = history[-6:]."
+        }
+      ],
+      "questions": [
+        {
+          "id": "Q3",
+          "role": "goc",
+          "stem": "Chatbot cần giữ 3 lượt hội thoại gần nhất như lab. Dòng code nào cắt lịch sử đúng?",
+          "options": {
+            "A": "history = history[-3:]",
+            "B": "history = history[-6:]",
+            "C": "history = history[:6]"
+          },
+          "answer": "B",
+          "explanation": "[D01-P2] 3 lượt hội thoại tương đương 6 tin nhắn, nên cắt history[-6:] để giữ 6 tin nhắn gần nhất.",
+          "misconception": {
+            "A": "Nhầm một lượt hội thoại với một tin nhắn (một lượt gồm tin người dùng và tin trả lời).",
+            "C": "Lấy 6 tin nhắn đầu tiên thay vì 6 tin nhắn gần nhất."
+          }
+        },
+        {
+          "id": "Q3-S1",
+          "role": "tuong_tu",
+          "stem": "Theo cùng quy ước của lab (3 lượt tương đương 6 tin nhắn), muốn giữ 2 lượt gần nhất thì giữ bao nhiêu tin nhắn?",
+          "options": {
+            "A": "2 tin nhắn",
+            "B": "4 tin nhắn",
+            "C": "6 tin nhắn"
+          },
+          "answer": "B",
+          "explanation": "[D01-P2] 3 lượt tương đương 6 tin nhắn, tức mỗi lượt 2 tin nhắn; 2 lượt là 4 tin nhắn."
+        },
+        {
+          "id": "Q3-S2",
+          "role": "tuong_tu",
+          "stem": "Dòng history = history[-6:] giữ lại những tin nhắn nào?",
+          "options": {
+            "A": "6 tin nhắn đầu tiên của hội thoại",
+            "B": "6 tin nhắn gần nhất",
+            "C": "Mọi tin nhắn trừ 6 tin cuối"
+          },
+          "answer": "B",
+          "explanation": "[D01-P2] Lab cắt history[-6:] để giữ 6 tin nhắn gần nhất, tức 3 lượt hội thoại gần nhất."
+        }
+      ]
     }
   ]
 }
