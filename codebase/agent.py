@@ -107,6 +107,11 @@ def answer(text: str) -> dict:
         if res.get("error"):
             return _result("loi_dau_vao", "Không có câu %s." % inp.get("cau", ""))
         if res.get("correct"):
+            if "ly_do" in inp and _weak(inp["ly_do"]) and inp["ly_do"].strip():
+                # §9: đúng sau khi đoán → không nói "đã hiểu"
+                note("đúng sau khi đoán — không kết luận đã hiểu")
+                return _result("ket_qua_dung", "Đúng câu này — nhưng ở câu trước bạn đã đoán, nên mình chưa dám nói "
+                               "bạn đã hiểu chắc. " + res.get("explanation", ""), dung=True)
             return _result("ket_qua_dung", "Đúng rồi — bạn đã hiểu lại ý này. " + res.get("explanation", ""), dung=True)
         note("dừng: sai lần hai, không lặp vòng")
         return _result("chuyen_lab_coach", "Chưa đúng. " + res.get("explanation", "") + " Ý này nên hỏi lab coach để chắc hơn.", dung=False)
@@ -123,8 +128,12 @@ def answer(text: str) -> dict:
                        lua_chon_ly_do=options)
 
     reason = inp["ly_do"]
-    if _weak(reason):  # G10: lý do trống / một chữ / đoán → không chẩn đoán
-        return _similar(state, "sang_cau_tuong_tu", "Không sao, mình thử ngay một câu cùng ý nhé.")
+    if not reason.strip():  # bỏ qua bước lý do → thẳng sang câu tương tự (G8/G9)
+        return _similar(state, "sang_cau_tuong_tu", "Mình thử ngay một câu cùng ý nhé.")
+    if _weak(reason):  # G10: một chữ / đoán → không chẩn đoán, chỉ gợi ý ngắn trỏ đoạn bài (code, không gọi model)
+        p = passages[0]
+        first = p["text"].split(". ")[0].rstrip(".") + "."
+        return _similar(state, "sang_cau_tuong_tu", "Không sao. Gợi ý ngắn: %s [%s]" % (first, p["code"]), [p["code"]])
 
     decided = _ask_model(state, reason, passages)
     if decided is None:
