@@ -38,8 +38,13 @@ Chấm: TV3 và TV2 chấm mù trên 2 nhánh riêng, khớp 17/21 câu; 4 câu 
 
 ## 3. Một lần cải tiến
 
-- Nhắm vào nhóm lỗi: __ — vì sao là nhóm **đau nhất với người dùng**: __
-- Đã sửa gì (có thể vài thay đổi cùng nhắm nhóm lỗi đó): __
+- Nhắm vào nhóm lỗi: **chọn sai bước** — gộp 3 nhóm ở §2 vì cùng một gốc: model chọn bước (`ngoai_pham_vi` / `sua_loi_ban` / `goi_y`) không theo điều học viên thật sự nói (B14, B01, B12, B18; thêm B13, B19 ở phần quan sát) — vì sao là nhóm **đau nhất với người dùng**: model **gán cho học viên một ý sai họ không hề nói** (B14: hỏi chuyện lab mà bị "sửa" kiến thức; B12, B13, B19: bạn An nói ý lấy từ ghi chú đáp án, không phải lời học viên) — học viên thấy mình bị hiểu sai ngay lúc vừa trả lời sai, mất lòng tin vào bước hỏi lại; và chiều ngược lại, yêu cầu hợp lệ bị từ chối (B20) thì học viên bị chặn, không kiểm lại được. Đây cũng là nhóm làm trượt điều kiện 100% `tu_choi`.
+- Đã sửa gì (có thể vài thay đổi cùng nhắm nhóm lỗi đó) — `codebase/agent.py`, chi tiết ở `spec.md` §10 (28/11 ~01:15 và sáng 28/11):
+  1. Luật chọn bước: `sua_loi_ban` **chỉ khi học viên tự nêu niềm tin sai**; lý do mơ hồ / xin giải thích / xin đoạn bài / xin thêm câu → `goi_y`; ghi chú hiểu sai của đáp án không bao giờ được đặt vào lời bạn An.
+  2. Ngoài phạm vi ghi cụ thể (lịch, phòng, deadline, nộp bài, bài lab khác) và liệt kê rõ những gì **không** phải ngoài phạm vi (xin thêm câu, xin gợi ý, kể lại lời ChatGPT về chính ý này).
+  3. Model chỉ trả trường có cấu trúc (`buoc`, `ma_doan`, `niem_tin_sai`, `y_dung`); **code ghép lời nhắn** theo khung cố định ("Bạn An nói… An đang nhầm ở đâu? Gợi ý: … [mã]" / "Gợi ý: … [mã]").
+  4. Câu trả lời model không dùng được → hỏi lại đúng 1 lần; mã đoạn model ghi kèm ngoặc (`[D08-P1]`) được chuẩn hoá trước khi so với mã có thật.
+  Luật chung, không so khớp câu chữ câu thử nào; không đổi câu thử, metric hay chuẩn "đạt".
 - Kết quả: nhóm lỗi đó __/__ → __/__ · tổng __% → __%
 - Câu nào **tệ đi** sau khi sửa: __
 
