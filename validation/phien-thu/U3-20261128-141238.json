@@ -1,0 +1,379 @@
+{
+  "tester": "U3",
+  "entered_loop": true,
+  "roots_tried": [
+    {
+      "qid": "Q1",
+      "chosen": "B",
+      "correct": true
+    },
+    {
+      "qid": "Q2",
+      "chosen": "B",
+      "correct": true
+    },
+    {
+      "qid": "Q3",
+      "chosen": "B",
+      "correct": true
+    },
+    {
+      "qid": "Q4",
+      "chosen": "B",
+      "correct": false
+    },
+    {
+      "qid": "Q5",
+      "chosen": "B",
+      "correct": false
+    },
+    {
+      "qid": "Q6",
+      "chosen": "B",
+      "correct": false
+    }
+  ],
+  "root_wrong": "Q4 (chọn B)",
+  "attempt": "T06",
+  "reason": "Mình đoán",
+  "reason_meta": {
+    "kind": "chip_doan",
+    "seconds": 5.9,
+    "chars": 9
+  },
+  "an_fix": "",
+  "an_fix_meta": {
+    "kind": "bo_qua",
+    "weak": false,
+    "tries": 1,
+    "seconds": 15.6,
+    "chars": 0
+  },
+  "similar": "Q4-S1",
+  "answer": "A",
+  "correct": true,
+  "seconds": 61.5,
+  "loops": [
+    {
+      "attempt": "T06",
+      "rootWrong": "Q4 (chọn B)",
+      "rootQid": "Q4",
+      "rootChosen": "B",
+      "reason": "Mình đoán",
+      "reasonMeta": {
+        "kind": "chip_doan",
+        "seconds": 5.9,
+        "chars": 9
+      },
+      "anFix": "",
+      "anFixMeta": {
+        "kind": "bo_qua",
+        "weak": false,
+        "tries": 1,
+        "seconds": 15.6,
+        "chars": 0
+      },
+      "similar": "Q4-S1",
+      "answer": "A",
+      "correct": true,
+      "seconds": 61.5,
+      "anFixGroup": "bỏ qua"
+    },
+    {
+      "attempt": "T10",
+      "rootWrong": "Q5 (chọn B)",
+      "rootQid": "Q5",
+      "rootChosen": "B",
+      "reason": "Mình đoán",
+      "reasonMeta": {
+        "kind": "chip_doan",
+        "seconds": 5.8,
+        "chars": 9
+      },
+      "anFix": "",
+      "anFixMeta": {
+        "kind": "bo_qua",
+        "weak": false,
+        "tries": 1,
+        "seconds": 5.7,
+        "chars": 0
+      },
+      "similar": "Q5-S1",
+      "answer": "B",
+      "correct": true,
+      "seconds": 50.2,
+      "anFixGroup": "bỏ qua"
+    },
+    {
+      "attempt": "T12",
+      "rootWrong": "Q6 (chọn B)",
+      "rootQid": "Q6",
+      "rootChosen": "B",
+      "reason": "Mình nghĩ cứ tự động gọi nhiều API trong một lượt là chatbot đã thành agent.",
+      "reasonMeta": {
+        "kind": "chip_ly_do",
+        "seconds": 10.9,
+        "chars": 76
+      },
+      "anFix": "",
+      "anFixMeta": {
+        "kind": "bo_qua",
+        "weak": false,
+        "tries": 1,
+        "seconds": 6,
+        "chars": 0
+      },
+      "similar": "Q6-S1",
+      "answer": "B",
+      "correct": true,
+      "seconds": 39.3,
+      "anFixGroup": "bỏ qua"
+    }
+  ],
+  "feedback": {
+    "tiec": "hơi tiếc",
+    "kho_hieu": "Chỗ chuyển sang An, lúc đầu không hiểu An là gì và làm sao gặp. (TV1 ghi lại từ lời trực tiếp)",
+    "goi_y": "Có, vì mình trả lời lại đúng hết (TV1 ghi lại từ lời trực tiếp)",
+    "nhan_xet": "Không có nhận xét nào khác"
+  },
+  "observation": "Do dự vì không muốn trả lời An",
+  "calls": [
+    {
+      "input": "attempt=T06",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn B vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình nghĩ cứ chạy tiếp các công cụ đã định rồi mới cần cho model xem kết quả.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T06; ly_do=Mình đoán",
+      "result": {
+        "buoc": "sang_cau_tuong_tu",
+        "ma_doan": [
+          "D04-P1"
+        ],
+        "loi_nhan": "Không sao. Gợi ý ngắn: Trong vòng ReAct, model chọn hành động dựa trên mục tiêu và thông tin đang có. [D04-P1] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q4-S1",
+          "stem": "Agent đăng ký một suất học theo yêu cầu của học viên. Công cụ đặt chỗ báo hết thời gian chờ và hệ thống có công cụ tra tình trạng yêu cầu theo mã. Lượt tiếp theo nên làm gì để tránh gửi trùng yêu cầu?",
+          "options": {
+            "A": "Dùng lỗi hết thời gian chờ và mã yêu cầu để tra xem lần gọi trước đã được xử lý chưa.",
+            "B": "Dùng lỗi hết thời gian chờ làm dấu hiệu yêu cầu đã thất bại và gửi lại yêu cầu ngay.",
+            "C": "Dùng việc đã phát lệnh đặt chỗ làm căn cứ để báo suất học đã được giữ."
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 3,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T06; ly_do=Mình đoán; cau=Q4-S1; tra_loi=A",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng câu này — nhưng ở câu trước bạn đã đoán, nên mình chưa dám nói bạn đã hiểu chắc. [D04-P1] Lỗi hết thời gian chờ là kết quả cần đưa về model. Tra trạng thái theo mã giúp xác định tác động của lần gọi trước khi quyết định bước tiếp.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T10",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn B vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình lấy số tài liệu đúng trên 10 để tính precision và trên số trả về để tính recall.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T10; ly_do=Mình đoán",
+      "result": {
+        "buoc": "sang_cau_tuong_tu",
+        "ma_doan": [
+          "D07-P1"
+        ],
+        "loi_nhan": "Không sao. Gợi ý ngắn: Precision là số tài liệu liên quan đã trả về chia cho tổng số tài liệu trả về. [D07-P1] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q5-S1",
+          "stem": "Có 12 tài liệu liên quan đến một truy vấn. Top 5 chứa 4 tài liệu liên quan. Xem thêm vị trí 6 đến 10 thì có thêm 2 tài liệu liên quan. Khi chuyển từ top 5 sang top 10, cặp precision và recall mới là bao nhiêu?",
+          "options": {
+            "A": "Precision 6/12, recall 6/10.",
+            "B": "Precision 6/10, recall 6/12.",
+            "C": "Precision 2/5, recall 6/12."
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 3,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T10; ly_do=Mình đoán; cau=Q5-S1; tra_loi=B",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng câu này — nhưng ở câu trước bạn đã đoán, nên mình chưa dám nói bạn đã hiểu chắc. [D07-P1] Top 10 có 4 + 2 = 6 tài liệu liên quan. Precision tính theo 10 tài liệu trả về và recall tính theo 12 tài liệu liên quan trong tập đánh giá.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0.01,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T12",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn B vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình nghĩ cứ tự động gọi nhiều API trong một lượt là chatbot đã thành agent.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T12; ly_do=Mình nghĩ cứ tự động gọi nhiều API trong một lượt là chatbot đã thành agent.",
+      "result": {
+        "buoc": "sua_loi_ban",
+        "ma_doan": [
+          "D08-P2"
+        ],
+        "loi_nhan": "Bạn An nói: \"Mình nghĩ cứ tự động gọi nhiều API trong một lượt là chatbot đã thành agent.\" An đang nhầm ở đâu? Gợi ý: Trong agent, model được giao mục tiêu và có quyền chọn hành động tiếp theo dựa trên kết quả trung gian, trong phạm vi công cụ và quyền được cấp. [D08-P2] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q6-S1",
+          "stem": "Hệ A có giao diện chat và tra cứu theo một kịch bản cố định. Hệ B nhận mục tiêu qua API, rồi model chọn tra dữ liệu bổ sung hoặc dừng dựa trên dữ liệu vừa lấy. Nhận định nào đúng theo cách phân loại của bài?",
+          "options": {
+            "A": "Hệ A có tính agent rõ hơn vì có thể hỏi đáp với người dùng nhiều lượt.",
+            "B": "Hệ B có tính agent rõ hơn vì model quyết định bước tiếp theo khi xử lý mục tiêu.",
+            "C": "Hai hệ có mức tự chủ như nhau vì cả hai đều truy xuất dữ liệu từ công cụ."
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 2.82,
+      "trace": {
+        "model_calls": 1,
+        "tool_calls": 3,
+        "tokens_in": 1164,
+        "tokens_out": 87,
+        "models": [
+          "gpt-5.4-nano-2026-03-17"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T12; ly_do=Mình nghĩ cứ tự động gọi nhiều API trong một lượt là chatbot đã thành agent.; cau=Q6-S1; tra_loi=B",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng rồi — bạn đã hiểu lại ý này. [D08-P2] Hệ B để model quyết định có cần lấy thêm dữ liệu dựa trên kết quả đang có. Quyền chọn bước thuộc về model dù người dùng gửi mục tiêu qua API.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    }
+  ],
+  "reason_group": "yếu",
+  "an_fix_group": "bỏ qua",
+  "model": "gpt-5.4-nano",
+  "saved_at": "2026-11-28T14:12:38"
+}

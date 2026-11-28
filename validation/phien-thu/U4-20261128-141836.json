@@ -1,0 +1,158 @@
+{
+  "tester": "U4",
+  "entered_loop": true,
+  "roots_tried": [
+    {
+      "qid": "Q1",
+      "chosen": "B",
+      "correct": true
+    },
+    {
+      "qid": "Q2",
+      "chosen": "B",
+      "correct": true
+    },
+    {
+      "qid": "Q3",
+      "chosen": "C",
+      "correct": false
+    }
+  ],
+  "root_wrong": "Q3 (chọn C)",
+  "attempt": "T08",
+  "reason": "Mình đoán",
+  "reason_meta": {
+    "kind": "chip_doan",
+    "seconds": 9.4,
+    "chars": 9
+  },
+  "an_fix": "",
+  "an_fix_meta": {
+    "kind": "bo_qua",
+    "weak": false,
+    "tries": 1,
+    "seconds": 7.1,
+    "chars": 0
+  },
+  "similar": "Q3-S1",
+  "answer": "B",
+  "correct": true,
+  "seconds": 37.8,
+  "loops": [
+    {
+      "attempt": "T08",
+      "rootWrong": "Q3 (chọn C)",
+      "rootQid": "Q3",
+      "rootChosen": "C",
+      "reason": "Mình đoán",
+      "reasonMeta": {
+        "kind": "chip_doan",
+        "seconds": 9.4,
+        "chars": 9
+      },
+      "anFix": "",
+      "anFixMeta": {
+        "kind": "bo_qua",
+        "weak": false,
+        "tries": 1,
+        "seconds": 7.1,
+        "chars": 0
+      },
+      "similar": "Q3-S1",
+      "answer": "B",
+      "correct": true,
+      "seconds": 37.8,
+      "anFixGroup": "bỏ qua"
+    }
+  ],
+  "feedback": {
+    "tiec": "hơi tiếc",
+    "kho_hieu": "Không, có hướng dẫn đầy đủ dễ dùng (TV1 ghi lai)",
+    "goi_y": "Có, nhưng mình cảm thấy tài liệu đang được ra quá sớm, mình bấm là đọc được ngay (TV1 ghi lại)",
+    "nhan_xet": "Không"
+  },
+  "observation": "Hiểu sai câu hỏi lại là không cần đối chiếu tài liệu đã trích dẫn",
+  "calls": [
+    {
+      "input": "attempt=T08",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn C vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình nghĩ history[:6] giữ 6 tin nhắn gần nhất.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T08; ly_do=Mình đoán",
+      "result": {
+        "buoc": "sang_cau_tuong_tu",
+        "ma_doan": [
+          "D01-P2"
+        ],
+        "loi_nhan": "Không sao. Gợi ý ngắn: Trong chatbot có lịch sử hội thoại, lab giới hạn lịch sử ở 3 lượt hội thoại gần nhất, tương đương 6 tin nhắn, bằng cách cắt history = history[-6:]. [D01-P2] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q3-S1",
+          "stem": "Theo cùng quy ước của lab (3 lượt tương đương 6 tin nhắn), muốn giữ 2 lượt gần nhất thì giữ bao nhiêu tin nhắn?",
+          "options": {
+            "A": "2 tin nhắn",
+            "B": "4 tin nhắn",
+            "C": "6 tin nhắn"
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 3,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T08; ly_do=Mình đoán; cau=Q3-S1; tra_loi=B",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng câu này — nhưng ở câu trước bạn đã đoán, nên mình chưa dám nói bạn đã hiểu chắc. [D01-P2] 3 lượt tương đương 6 tin nhắn, tức mỗi lượt 2 tin nhắn; 2 lượt là 4 tin nhắn.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    }
+  ],
+  "reason_group": "yếu",
+  "an_fix_group": "bỏ qua",
+  "model": "gpt-5.4-nano",
+  "saved_at": "2026-11-28T14:18:36"
+}

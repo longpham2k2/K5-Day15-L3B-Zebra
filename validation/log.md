@@ -15,8 +15,8 @@
 |---|---|---|---|---|---|---|---|
 | U1 | Học sinh / sinh viên **ngoài khoá AI20K** (= P3 phỏng vấn) — **không tính vào N** của metric (định nghĩa: học viên khoá 5) | Phỏng vấn P3, đồng ý dùng thử | TV1 | 28/11 ~13:00–13:10 | Trực tiếp · người thử tự thao tác trên máy TV1 | người thử tự bấm / TV1 đứng sau quan sát, ghi | ✅ (bonus, không tính N) |
 | U2 | Học viên L2, khoá 5 (= P4 phỏng vấn) — **tính vào N** | Phỏng vấn P4, đồng ý dùng thử | TV1 | 28/11 ~13:35–13:45 | Trực tiếp · người thử tự thao tác trên máy TV1 | người thử tự bấm / TV1 đứng sau quan sát, ghi, không hướng dẫn thêm | ✅ |
-| U3 | Học viên L3A, khoá 5 | Khảo sát — tự để lại liên hệ ở câu 11 (= P6) | TV3 | 28/11, giờ cụ thể: __ | Online · chia sẻ màn hình, không quay; người thử để lại nhận xét bằng lời / chữ | __ / __ | Chưa |
-| U4 | __ | __ | Long | __ | __ | __ / __ | Chưa |
+| U3 | Học viên L3B, khoá 5 (cùng lớp TV1, ngoài nhóm) — **tính vào N** | Bạn cùng lớp, gặp trực tiếp ở trường | TV1 | 28/11 ~14:00–14:12 | Trực tiếp · người thử tự thao tác trên máy TV1 | người thử tự bấm / TV1 đứng sau quan sát, ghi lại lời nhận xét | ✅ |
+| U4 | Học viên L3B, khoá 5 (cùng lớp TV1, ngoài nhóm) — **tính vào N** | Bạn cùng lớp, gặp trực tiếp ở trường | TV1 | 28/11 ~14:13–14:18 | Trực tiếp · người thử tự thao tác trên máy TV1 | người thử tự bấm / TV1 đứng sau quan sát, ghi lại lời nhận xét | ✅ |
 | U5 | __ | __ | __ | __ | __ | __ / __ | Chưa hẹn |
 
 Cách chạy từng người: [quy-trinh.md](quy-trinh.md).
@@ -29,24 +29,28 @@ Model dùng: OpenAI `gpt-5.4-nano` (cùng model với eval lượt 1, lượt 2)
 |---|---|---|---|---|---|---|---|---|---|
 | U1 *(ngoài khoá — không tính N)* | Q2 (chọn A) | T14 | "Mình nghĩ prompt_token_count là số token model sinh ra." *(bấm lựa chọn có sẵn, 7,2 giây)* | có lý do | Q2-S1 | C | đúng | 0,8 | Agent chọn `sua_loi_ban`, 1 lần gọi model. Giải thích cho An (sau khi đúng): "boi vi dap an A la lay token vao" — có giải thích. File: `phien-thu/U1-20261128-131046.json` |
 | U2 | Q1 (chọn C) | T01 | "Mình đoán" *(bấm lựa chọn có sẵn, 5,4 giây)* | **yếu** | Q1-S1 | A | đúng | 1,0 | **Vòng đầu — vòng tính metric:** đúng với nhóm yếu → không tính là hiểu lại. Agent nhắc "chưa dám nói bạn đã hiểu chắc". Giải thích cho An: bỏ qua. Người thử sai cả 4 câu gốc đã làm và chạy thêm 3 vòng (không tính metric, báo riêng): Q2 có lý do → **sai** (chuyển lab coach, 1,0 phút) · Q3 có lý do ("Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.") → **đúng**, giải thích cho An đúng ý ("vi 3 luot hoi thoai tuong duong voi 6 tin nhan…"), 0,7 phút · Q4 "Mình đoán" → đúng, 1,1 phút. File: `phien-thu/U2-20261128-134509.json` |
-| U3 | | | | | | | | | |
-| U4 | | | | | | | | | |
+| U3 | Q4 (chọn B) | T06 | "Mình đoán" *(bấm lựa chọn có sẵn, 5,9 giây)* | **yếu** | Q4-S1 | A | đúng | 1,0 | **Vòng đầu — vòng tính metric:** đúng với nhóm yếu → không tính là hiểu lại; agent nhắc "chưa dám nói bạn đã hiểu chắc". Giải thích cho An: bỏ qua. Đúng Q1–Q3, sai Q4–Q6 — **chọn B ở cả 6 câu gốc**. Thêm 2 vòng (báo riêng, không tính metric): Q5 "Mình đoán" → đúng, 0,8 phút · Q6 có lý do (bấm lựa chọn có sẵn) → **đúng**, 0,7 phút; cả 3 vòng đều bỏ qua bước giải thích cho An. File: `phien-thu/U3-20261128-141238.json` |
+| U4 | Q3 (chọn C) | T08 | "Mình đoán" *(bấm lựa chọn có sẵn, 9,4 giây)* | **yếu** | Q3-S1 | B | đúng | 0,6 | **Vòng đầu — vòng tính metric:** đúng với nhóm yếu → không tính là hiểu lại. Giải thích cho An: bỏ qua (7 giây). Đúng Q1, Q2; dừng sau 1 vòng. File: `phien-thu/U4-20261128-141836.json` |
 | U5 | | | | | | | | | |
 
 Người đúng cả 3 câu gốc: ghi "không vào vòng" ở cột "Câu gốc sai", để trống các cột còn lại.
 
-**Tổng kết:** N (vào vòng) = __ · đúng với **có lý do** __/N · đúng với **yếu (đoán)** __ · đúng với **bỏ qua** __ · trung vị thời gian __ phút → **đạt / chưa đạt** (cần N ≥ 3, có lý do ≥ 2/3 N, trung vị ≤ 5 phút).
+**Tổng kết (buổi 28/11, chỉ vòng đầu của mỗi người):** N (vào vòng) = **3** (U2, U3, U4; U1 ngoài khoá không tính) · đúng với **có lý do** **0/3** · đúng với **yếu (đoán)** **3** · đúng với **bỏ qua** 0 · trung vị thời gian **1,0 phút** (0,6 · 1,0 · 1,0) → **chưa đạt**: đủ N ≥ 3 và trung vị ≤ 5 phút, nhưng 0/3 < 2/3 — cả 3 người bấm "Mình đoán" ở vòng đầu nên không ai tính là hiểu lại.
+
+*Báo riêng — các vòng sau vòng đầu (không tính metric):* 5 vòng thêm của U2, U3 (U4 dừng sau 1 vòng): có lý do 3 vòng → đúng 2 (U2-Q3, U3-Q6), sai 1 (U2-Q2, chuyển lab coach); "Mình đoán" 2 vòng → đúng 2. Lý do ở cả 9 vòng (kể cả U1) đều là **bấm lựa chọn có sẵn**, chưa ai tự gõ lý do; "Mình đoán" được bấm sau ~5–9 giây. Ba người khoá 5 đều "hơi tiếc" nếu mai không được dùng.
 
 ## Quan sát (bonus)
 
 | Người thử (vai) | Việc giao (theo kết quả, không theo nút) | Quan sát (làm gì đầu tiên, chỗ do dự, chỗ hiểu sai) | Trích nguyên văn | Mức nghiêm trọng (cao / vừa / thấp) |
 |---|---|---|---|---|
 | U2 (L2, khoá 5) | Làm câu gốc đến khi sai, rồi theo vòng hỏi lại, rồi giải thích cho An; tự chọn làm tiếp các câu sau | Lúc đầu bỡ ngỡ với giao diện; **hiểu lầm rằng An sẽ chấm điểm lần nữa**; ở vòng đầu bỏ qua bước giải thích cho An, các vòng sau có giải thích | "An co ve chi tra loi 1 chieu nen giai thich du dung hay sai deu dong y, nen cai thien" · "Cac ly thuyet con kha moi nhung sau khi tra loi sai model tra loi kha ngan gon, nhung co ve kho giai thich lai cho nguoi khac chi sau 1 lan model tra loi" · gợi ý có giúp: "Phan lon giup toi chon duoc cau tuong tu. Vi toi da duoc giai thich nen van ghi nho duoc" | **cao** (An đồng ý cả lời giải thích sai — bước An không phản hồi đúng sai) · vừa (tưởng An chấm điểm) |
+| U3 (khoá 5) | Làm câu gốc đến khi sai, rồi theo vòng hỏi lại; tự chọn làm tiếp các câu sau | **Chọn B ở cả 6 câu gốc**; 2/3 vòng bấm "Mình đoán" trong ~6 giây; **do dự vì không muốn trả lời An**, bỏ qua bước An cả 3 vòng | "Chỗ chuyển sang An, lúc đầu không hiểu An là gì và làm sao gặp" · gợi ý có giúp: "Có, vì mình trả lời lại đúng hết" *(TV1 ghi lại từ lời nói)* | **cao** (bấm "Mình đoán" để đi nhanh — lý do không phản ánh suy nghĩ thật) · vừa (không hiểu An là ai, không muốn trả lời An) |
+| U4 (L3B, khoá 5) | Làm câu gốc đến khi sai, rồi theo vòng hỏi lại | Bấm "Mình đoán"; bỏ qua bước An; **hiểu sai rằng câu kiểm lại không cần đối chiếu đoạn bài đã trích** | "Có, nhưng mình cảm thấy tài liệu đang được ra quá sớm, mình bấm là đọc được ngay" (gợi ý có giúp không) · "Không, có hướng dẫn đầy đủ dễ dùng" (chỗ khó hiểu) *(TV1 ghi lại từ lời nói)* | **cao** (đoạn bài mở ngay trước câu kiểm lại → câu kiểm lại có thể đo đọc chứ không đo hiểu) |
 | U1 (ngoài khoá) | Làm câu gốc đến khi sai, rồi theo vòng hỏi lại, rồi giải thích cho An | Lúc đầu bỡ ngỡ khi chuyển giữa khung câu hỏi và khung trò chuyện; câu 1 làm đúng, sang câu 2 đã thao tác được. **Bất ngờ khi phải giải thích cho An, định bỏ qua, người ghi phải động viên** | "Chờ chuyển tab sang người dùng" (chỗ khó hiểu nhất) · "Kha thuan tien cho viec hoc, nhung can responsive lai phan textbox tin nhan input va output" · gợi ý có giúp: "Co. Boi vi cau hoi tuong tu co de cap den kien thuc cau sai" | vừa (bước An cần người nhắc) · thấp (ô nhập) |
 | | | | | |
 | | | | | |
 
-Câu hỏi sau: *"Nếu mai không được dùng nữa, bạn thấy: rất tiếc / hơi tiếc / không sao?"* → U1 (ngoài khoá): không sao · U2: **hơi tiếc** / __
+Câu hỏi sau: *"Nếu mai không được dùng nữa, bạn thấy: rất tiếc / hơi tiếc / không sao?"* → U1 (ngoài khoá): không sao · U2: **hơi tiếc** · U3: **hơi tiếc** · U4: **hơi tiếc**
 
 ## Tổng hợp
 
