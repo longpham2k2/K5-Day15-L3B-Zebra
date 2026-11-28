@@ -1,13 +1,11 @@
 # Reflection — Nguyễn Lê Đăng Khoa
 
-> Làm ở guide bước 5.3. Mỗi người một file: chép file này thành `reflection/<ten-khong-dau>.md` (viết thường, không dấu). Hạn: **23:59 Thứ Bảy 28/11**. Mỗi câu 3–6 dòng.
-
 1. Vai trò + phần mình làm (trỏ tới file / commit):
    Mình là TV3 trong các file eval. Mình làm phần bằng chứng từ người dùng và phần chuẩn bị buổi thử.\
    Bằng chứng: soạn và gửi [khảo sát](../evidence/survey/questions.md), lưu kết quả đã bỏ thông tin cá nhân đến khi chốt n = 25 (`b9c6755`, `9c4fc7f`, `052d033`, `e78a431`). Chép [phỏng vấn P6](../evidence/interviews/P6.md) từ log chat (`9846a87`, `95f0eb4`).\
    Đánh giá: thêm câu thử B11–B16 có nguồn từ khảo sát và phỏng vấn (`d8472a7`). Chấm thử với vai người thứ hai ([cham-thu-nguoi-thu-hai.md](../eval/cham-thu-nguoi-thu-hai.md), `19a4f8c`, `174a8cd`). Chấm mù run-2 trên nhánh `grade2-khoa`.\
    Buổi thử: thêm 2 ý Q2, Q3 từ hướng dẫn Lab 01 (`fbe2225`). Viết [quy trình buổi thử](../validation/quy-trinh.md) (`9c50250`) và giao diện web bản đầu (`af7a939`, `a963de7`).\
-   Bàn giao và thuyết trình: viết [HANDS-OFF.md](../HANDS-OFF.md) cho Long (`b8ecce6`), slide và [script thuyết trình](../slides/script-thuyet-trinh.md) (`0f5e5a2`).
+   Bàn giao và thuyết trình: viết HANDS-OFF.md cho Long (`b8ecce6`), slide và [script thuyết trình](../slides/script-thuyet-trinh.md) (`0f5e5a2`).
 
 2. AI hỗ trợ mình thế nào (việc gì, công cụ gì, chỗ nào phải sửa lại output AI):
    Mình dùng Claude Code cho khảo sát, câu thử, data Q2/Q3, quy trình buổi thử, giao diện web và script, và Claude (Design) cho slide. Chi tiết ở [khai báo dùng AI](../docs/ai-usage.md).\
