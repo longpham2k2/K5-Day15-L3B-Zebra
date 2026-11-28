@@ -115,7 +115,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
-Nhóm dùng **Claude Code** để viết code (agent, công cụ, giao diện web, script đếm data và khảo sát), soạn nháp kịch bản phỏng vấn, khảo sát, spec, báo cáo; **Claude (Design)** để dựng slide. Người kiểm: mỗi người duyệt phần có tên mình — phỏng vấn do người thật hỏi, cột `pass` do người chấm mù (không dùng LLM chấm), chuẩn "đạt" và các quyết định thiết kế do nhóm chốt. Không dùng AI để tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát hay sửa kết quả các lượt đã chạy.
+Nhóm dùng **Claude Code** để viết luồng agent, giao diện web, script đếm data và khảo sát, soạn nháp kịch bản phỏng vấn, khảo sát, spec và báo cáo. Nhóm dùng **Codex** để cấu hình và rà lại ước tính chi phí CP4, **Claude (Design)** để dựng slide. Thành viên phụ trách kiểm phần có tên mình. Thành viên nhóm trực tiếp phỏng vấn, chấm mù cột `pass` và chốt chuẩn đạt cùng các quyết định thiết kế.
 
 ## File mẫu — điền ở bước nào
 
