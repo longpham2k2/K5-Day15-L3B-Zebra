@@ -1,8 +1,8 @@
-"""Khung chạy bản chạy thử tối thiểu (dòng lệnh): gõ đầu vào → answer() trong agent.py → in kết quả.
+"""Bản chạy thử: `python run.py` mở giao diện web (codebase/web.py) và mở trình duyệt.
 
-Chạy bằng: python run.py   (macOS/Linux có thể là python3, Windows có thể là py)
-Nhóm thay bằng giao diện của mình (web, bot…) nhưng giữ `python run.py` là lệnh duy nhất
-để chạy bản chạy thử (sửa hàm run_app() trong run.py nếu cần).
+- Mặc định: web — cùng answer() trong agent.py, cùng input như bộ câu thử.
+- `NO_BROWSER=1` để không tự mở trình duyệt. `python codebase/app.py --cli`: khung dòng lệnh cũ — gõ đầu vào → answer() → in kết quả.
+Không sửa run.py (khung); run.py gọi file này.
 """
 import os
 import sys
@@ -26,7 +26,22 @@ def _where(e):
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return os.path.relpath(p, base).replace(os.sep, "/") if p.startswith(base) else path
 
+def web() -> int:
+    try:
+        import web as web_ui
+    except Exception as e:
+        print("Không nạp được codebase/ — lỗi ở %s: %s: %s" % (_where(e), type(e).__name__, e))
+        return 1
+    if not web_ui.ON_HOST and not os.environ.get("NO_BROWSER"):
+        import threading
+        import webbrowser
+        threading.Timer(1.0, webbrowser.open, ["http://127.0.0.1:%d" % web_ui.PORT]).start()
+    return web_ui.main()
+
+
 def main() -> int:
+    if "--cli" not in sys.argv:
+        return web()
     try:
         import tracing
         from agent import answer

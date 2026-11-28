@@ -26,8 +26,8 @@ Buổi thử chốt dùng **`gpt-5.4-nano`** (cùng model với eval). Chỉ Lon
 - [ ] **Ai bấm?** `eval/metric_spec.yaml` (đã khoá) ghi metric `hieu_lai_tren_nguoi_thu` chạy bằng `python run.py`, *người trong nhóm gõ input theo lựa chọn học viên đọc ra*.
   - Người trong nhóm bấm trên `web.py` (cùng `answer()`) → gần đúng định nghĩa, chỉ cần 1 dòng changelog (mục 3).
   - Người thử tự bấm qua link Render → **lệch định nghĩa**: changelog phải ghi rõ và báo cáo kết quả kèm lưu ý này.
-- [ ] **Thứ tự câu gốc**: `web.py` đang dùng `ROOT_ORDER = ["Q1", "Q4", "Q5", "Q6"]` theo `quy-trinh.md` (Huy) — tức **bỏ Q2, Q3**. Đúng ý nhóm không? Nếu muốn dùng cả 6 câu: sửa danh sách đó.
-- [ ] `quy-trinh.md` dòng "đề + 3 lựa chọn A/B/C" — **Q5 có 4 lựa chọn** (A–D); sửa chữ cho khớp (giao diện web đã hiện đủ 4).
+- [x] **Thứ tự câu gốc** (Long chốt: đủ 6 câu Q1–Q6, làm tiếp được sau một vòng; metric tính vòng đầu): `web.py` đang dùng `ROOT_ORDER = ["Q1", "Q4", "Q5", "Q6"]` theo `quy-trinh.md` (Huy) — tức **bỏ Q2, Q3**. Đúng ý nhóm không? Nếu muốn dùng cả 6 câu: sửa danh sách đó.
+- [x] `quy-trinh.md` dòng "đề + 3 lựa chọn A/B/C" — **Q5 có 4 lựa chọn** (A–D); sửa chữ cho khớp (giao diện web đã hiện đủ 4).
 - [ ] Bảng hẹn ở `validation/log.md`: điền **U2, U3** (vai, nguồn, giờ, ai cầm máy / ghi). Cần **4–5 người** để chắc ≥ 3 người vào vòng — U4, U5 chưa hẹn.
 
 ## 3. Trước CP4 14:30 — changelog `spec.md` §10 (bảng "CP2 → CP4")

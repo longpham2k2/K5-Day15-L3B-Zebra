@@ -109,7 +109,12 @@ def _ask_model(state, reason, passages):
         note("model trả không đúng JSON → bỏ gợi ý, sang thẳng câu tương tự")
         return None
     valid = {p["code"] for p in passages}
-    codes = [c for c in d.get("ma_doan", []) if c in valid]
+    raw_codes = d.get("ma_doan") or []
+    if isinstance(raw_codes, str):
+        raw_codes = [raw_codes]
+    # model hay viết "[D08-P1]" thay vì "D08-P1" → bỏ ngoặc / khoảng trắng rồi mới so với mã có thật
+    codes = [str(c).strip().strip("[]").strip() for c in raw_codes]
+    codes = [c for c in codes if c in valid]
     if d["buoc"] != "ngoai_pham_vi" and not codes:
         note("gợi ý không có mã đoạn hợp lệ → bỏ gợi ý (G10)")
         return None

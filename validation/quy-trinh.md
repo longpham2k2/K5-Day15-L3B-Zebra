@@ -6,12 +6,13 @@
 
 ## Cách chạy chính: giao diện web (`codebase/web.py`)
 
-Thay cho việc gõ tay vào `python run.py` (mục 2–3 bên dưới giữ làm phương án dự phòng):
+Thay cho việc gõ tay vào khung dòng lệnh `python codebase/app.py --cli` (mục 2–3 bên dưới giữ làm phương án dự phòng):
 
-1. Ở thư mục repo: `python codebase/web.py` → mở **http://127.0.0.1:8765** trên máy người cầm máy. Dòng đầu trang ghi model đang dùng — phải đúng model nhóm chốt.
+1. Ở thư mục repo: `python run.py` (tự mở trình duyệt; hoặc `python codebase/web.py`) → **http://127.0.0.1:8765** trên máy người cầm máy. Dòng đầu trang ghi model đang dùng — phải đúng model nhóm chốt.
 2. **Chia sẻ đúng cửa sổ trình duyệt này** (không phải cả màn hình — tránh lộ file có đáp án).
-3. Điền mã người thử (U1…U5) → **Bắt đầu**. Trang tự hiện câu gốc theo thứ tự Q1 → Q4 → Q5 → Q6 (sửa `ROOT_ORDER` trong `web.py` nếu nhóm đổi); người thử đọc to lựa chọn, người cầm máy bấm.
-4. Sai câu gốc → trang tự tra mã lượt, hỏi lý do (bấm lý do có sẵn / "Lý do khác" để gõ nguyên văn / "Bỏ qua bước này"), **tự bấm giờ**, đưa gợi ý và câu tương tự, chấm, rồi sang màn hình nhận xét. Đúng hết câu gốc → "không vào vòng", vẫn sang nhận xét.
+3. Điền mã người thử (U1…U5) → **Bắt đầu**. Trang tự hiện câu gốc theo thứ tự Q1 → Q2 → Q3 → Q4 → Q5 → Q6 (sửa `ROOT_ORDER` trong `web.py` nếu nhóm đổi); người thử đọc to lựa chọn, người cầm máy bấm.
+4. Sai câu gốc → trang tự tra mã lượt; **Zebra tự hỏi lý do ngay** trong cuộc nhắn riêng với Zebra ở khung bên phải (bấm lý do có sẵn / gõ nguyên văn / "Bỏ qua"), **tự bấm giờ**. Zebra đưa gợi ý + nguồn rồi câu tương tự. **Kiểm lại đúng** → An nhắn riêng (tab mới; tab Zebra khoá tới khi trả lời) hỏi "vì sao lựa chọn đầu chưa đúng", người thử gõ một câu giải thích cho An (hoặc "Để sau"); bước này sau khi đã dừng đồng hồ. Sau đó câu tương tự, chấm.
+   - Xong một vòng, người thử **được làm tiếp câu gốc kế** ("Câu tiếp theo") hoặc dừng ("Kết thúc — sang nhận xét"). **Metric chỉ tính vòng đầu tiên của mỗi người**; các vòng sau lưu ở `loops` của phiên, báo riêng. Đúng hết câu gốc → "không vào vòng", vẫn sang nhận xét.
 5. Màn hình nhận xét: rất tiếc / hơi tiếc / không sao · chỗ khó hiểu nhất · gợi ý có giúp không · nhận xét khác (nguyên văn) · quan sát của người ghi → **Lưu phiên**.
 6. Sau khi lưu: phiên ghi vào `validation/phien-thu/<mã>-<giờ>.json` (không tên; có lý do nguyên văn, nhóm lý do theo đúng quy tắc metric, số giây, tóm tắt trace) và trang hiện **sẵn một dòng** để dán vào bảng "Kết quả vòng hỏi lại" ở `validation/log.md`.
 
@@ -32,7 +33,7 @@ Render → **New → Web Service** → nối repo GitHub của nhóm, nhánh `ma
 - Thiếu `APP_PASSCODE` thì máy chủ **không khởi động** (tránh lộ key). Mã chỉ nhóm giữ, người cầm máy nhập ở màn hình đầu; không gửi mã cho người thử.
 - Gói Free **ngủ sau 15 phút** không dùng, lần mở đầu mất ~50 giây → mở trang trước giờ hẹn mỗi người.
 - **Ổ đĩa Render bị xoá khi khởi động lại / deploy lại** → sau mỗi người thử bấm **"Tải toàn bộ phiên (JSON)"**; cuối buổi tải lần nữa, tách thành file `validation/phien-thu/<mã>-<giờ>.json` rồi commit. Bản dự phòng: mỗi phiên in một dòng `[phien] …` trong Logs của Render.
-- Máy chủ xử lý **một người một lúc** — chạy người thử lần lượt theo lịch.
+- Vẫn nên chạy người thử **lần lượt** theo lịch (giới hạn lượt gọi / phút tính chung cả máy chủ).
 - Đặt hạn mức chi tiêu cho key OpenAI trước khi chia link.
 
 ## 0. Vai trong nhóm (mỗi người thử cần 2 người)
@@ -46,7 +47,7 @@ Render → **New → Web Service** → nối repo GitHub của nhóm, nhánh `ma
 
 1. `git pull --rebase origin main` — để có ngân hàng câu mới (Q1–Q6, lượt T01–T15).
 2. Kiểm `.env` trên máy cầm máy: có `MODEL_PROVIDER`, `MODEL_NAME`, `API_KEY`. **Model dùng: OpenAI `gpt-5.4-nano`** — cùng model với eval lượt 1 và lượt 2 (chốt 28/11 ~00:27): `.env` = `MODEL_PROVIDER=openai`, `MODEL_NAME=gpt-5.4-nano`, `API_KEY=<key OpenAI của nhóm>`. Mở giao diện web, dòng đầu trang phải ghi `model gpt-5.4-nano`.
-3. Chạy thử 1 vòng không người: `python run.py` → gõ `attempt=T05` → phải thấy agent hỏi lý do. Gõ `Enter` 2 lần để thoát.
+3. Chạy thử 1 vòng không người: `python codebase/app.py --cli` → gõ `attempt=T05` → phải thấy agent hỏi lý do. Gõ `Enter` 2 lần để thoát.
 4. Mở sẵn: link họp online · `data/question_bank.json` (để đọc câu gốc) · `validation/log.md` (để ghi) · đồng hồ bấm giờ.
 5. **`python run.py` không tự lưu trace** → sau mỗi người, **chép toàn bộ chữ trong terminal** vào một file tạm (vd `validation/raw-U1.txt`, KHÔNG có tên người thử) để làm bằng chứng.
 
@@ -71,11 +72,11 @@ Người thử chọn sai ở câu gốc nào, lựa chọn nào → gõ mã lư
 > "Cảm ơn bạn. Nhóm mình đang thử một công cụ giúp ôn lại sau khi trả lời sai. Mình **thử công cụ, không chấm bạn** — sai là bình thường, thậm chí giúp nhóm hơn. Không ghi tên, không quay. Bạn cứ nói to lựa chọn và nghĩ gì thì nói nấy nhé."
 
 ### 3.2 Câu gốc (người cầm máy đọc, chưa chạy agent)
-1. Đọc **Q1**: đề + 3 lựa chọn A/B/C (lấy từ `data/question_bank.json`). Người thử chọn.
+1. Đọc **Q1**: đề + các lựa chọn (3 lựa chọn A–C; riêng Q5 có 4 lựa chọn A–D — lấy từ `data/question_bank.json`). Người thử chọn.
 2. Tra bảng mục 2:
-   - **Chọn đúng** → đọc tiếp **Q4**, **Q5**, rồi **Q6**.
-   - **Chọn sai** → sang 3.3 ngay. **Chỉ chạy 1 vòng / người** (dừng ở câu sai đầu tiên).
-   - **Đúng cả 4** → ghi **"không vào vòng"**, nhảy tới 3.5 (vẫn hỏi nhận xét).
+   - **Chọn đúng** → đọc tiếp **Q2**, **Q3**, **Q4**, **Q5**, rồi **Q6**.
+   - **Chọn sai** → sang 3.3 ngay. **Metric tính vòng đầu tiên**; còn thời gian thì người thử làm tiếp câu gốc kế (ghi riêng).
+   - **Đúng cả 6** → ghi **"không vào vòng"**, nhảy tới 3.5 (vẫn hỏi nhận xét).
 
 ### 3.3 Vòng hỏi lại (người cầm máy gõ — người ghi bấm giờ)
 
