@@ -22,7 +22,7 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 - **Pain (không chữ AI):** học viên khoá 5 trả lời sai một câu kiểm tra → phải tự xoay xở để kiểm lại (mở lại tài liệu, hỏi người, công cụ tra cứu), **mất thời gian** → mà vẫn không có cách nhanh để biết chắc mình đã hiểu đúng → gần một phần ba bị vướng lại ý đó ở buổi học, lab, build phase, mất thêm 16–30 phút mỗi lần.
 - **Bằng chứng** (chi tiết `evidence/summary.md`, đang làm):
   - Data: 399/1.968 (20,3%) câu ôn tập sai lần đầu, làm lại 2/424, không có câu cùng ý để luyện; 98,9% lời bạn học AI xen vào không được đáp lại.
-  - Phỏng vấn học viên khoá 5 (3 người): **1/3 gặp pain một phần** (P4: "chưa kịp hiểu", quên kiến thức buổi trước, ~30 phút nhớ lại); 2/3 không (P1 không nhận ra lần hiểu sai nào; P5 tự kiểm bằng tra mạng, ghi chép, làm lab). Đọc chung: người có thời gian tự kiểm được, người ít thời gian thì không. Ngoài khoá (P2, P3) ghi riêng.
+  - Phỏng vấn học viên khoá 5 (4 người): **1/4 gặp pain một phần** (P4: "chưa kịp hiểu", quên kiến thức buổi trước, ~30 phút nhớ lại); 3/4 không (P1 không nhận ra lần hiểu sai nào; P5 tự kiểm bằng tra mạng, ghi chép, làm lab; P6 hỏi bạn rồi kiểm lại bằng ChatGPT / bài giảng). Đọc chung: người có thời gian tự kiểm được, người ít thời gian thì không. Ngoài khoá (P2, P3) ghi riêng.
   - Khảo sát (n = 25, đã chốt 27/11 ~21:05): lần sai gần nhất trong 7 ngày qua 21/23 · có kiểm lại 14/23, chưa kiểm 7/23 · **mất thời gian tìm lại / hỏi lại 19/23 (83%)** · vướng lại về sau 7/23 (phần lớn 16–30 phút) · có ≥1 lần / 7 ngày sai mà không chắc đã hiểu lại: 19/25 (2–3 lần: 13/25). Trích: *"mất cả buổi chiều để xem hiểu là rốt quộc bài lab muốn làm gì"* (R21).
   - **Độ phủ:** chỉ 77/436 (17,7%) học viên có hoạt động từng làm câu ôn tập, 69 người từng sai ≥1 câu.
 
@@ -31,8 +31,8 @@ Data BTC cấp đã dùng (không commit nguyên file): `data/preclass` (events,
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
 | **H1 · Học từ lỗi:** hỏi lại ngay sau câu ôn tập sai | 69 học viên / khoá (data) | ~13 câu sai / người *(399 câu sai ÷ 69 người trong 13 ngày, quy ra 30 ngày — tự ước tính)* | ~6,6 phút / lần sai *(7/23 bị vướng lại × ~22 phút — khảo sát câu 6, 6b; tự ước tính)* | **≈ 5.900 phút ≈ 99 giờ / tháng / khoá** | Có — 1 workflow, 4 công cụ | ✅ |
-| H2 · Làm lời bạn học AI xen vào trong lúc giảng được đáp lại nhiều hơn | 273 học viên từng thấy lời xen vào | trung vị 12 lời / người trong 13 ngày | chưa rõ | __ | Có | ❌ |
-| H3 · Kéo học viên dùng pre-class nhiều hơn | 285/721 chưa từng dùng | — | — | __ | Khó đo trong 2 ngày | ❌ |
+| H2 · Làm lời bạn học AI xen vào trong lúc giảng được đáp lại nhiều hơn | 273 học viên từng thấy lời xen vào | trung vị 12 lời / người trong 13 ngày | chưa rõ | không tính (đã loại — xem dưới) | Có | ❌ |
+| H3 · Kéo học viên dùng pre-class nhiều hơn | 285/721 chưa từng dùng | — | — | không tính (đã loại — xem dưới) | Khó đo trong 2 ngày | ❌ |
 
 - **Impact / tháng** của H1 = 69 người × ~13 lần × ~6,6 phút ≈ **5.900 phút ≈ 99 giờ / tháng / khoá** *(tự ước tính)* — nguồn từng thừa số:
   - **69 người:** học viên từng sai ≥1 câu ôn tập trên pre-class (data, `count.py` mục 10).

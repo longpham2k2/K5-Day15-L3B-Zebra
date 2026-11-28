@@ -33,7 +33,7 @@
 
 **Lời nói (~40 giây):** "Học viên khoá 5 không lười — sau khi sai, gần như ai cũng làm gì đó: 70% hỏi ChatGPT, 61% xem lại slide. Vấn đề là việc đó tốn thời gian — 83% nói vậy — và kết thúc bằng cảm giác 'chắc là hiểu rồi'. Gần một phần ba bị chính ý đó quay lại làm vướng ở buổi sau hay lúc làm lab. Trong app cũng không có cách kiểm: mỗi ý chỉ có một câu, và chỉ 2 trên 424 câu sai được làm lại."
 
-**Ghi chú cho người nói — đừng nói quá:** phỏng vấn 3 học viên chỉ 1/3 gặp pain một phần (P4); P1, P5 tự xoay xở được. Nếu bị hỏi: "người có thời gian thì tự kiểm được; người ít thời gian thì không — đó là người dùng của mình."
+**Ghi chú cho người nói — đừng nói quá:** phỏng vấn 4 học viên chỉ 1/4 gặp pain một phần (P4); P1, P5, P6 tự xoay xở được. Nếu bị hỏi: "người có thời gian thì tự kiểm được; người ít thời gian thì không — đó là người dùng của mình."
 
 ---
 

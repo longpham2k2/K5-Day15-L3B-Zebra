@@ -3,14 +3,14 @@
 > Điền ở guide bước 1.2, xong trước **CP3 10:00 Thứ Bảy 28/11**. Chấm ở rubric R1.
 > Ba nguồn ngang nhau — tối thiểu **≥1 nguồn đạt ngưỡng**. Mạnh nhất: đào data ra insight → hỏi người dùng để kiểm lại (hoặc ngược lại).
 
-> 🚧 **Bản nháp — cập nhật 27/11/2026 ~22:25.** Khảo sát **đã chốt ~21:05, n = 25** (25/25 ngoài nhóm). Còn chờ: xoá ghi chú này khi cả nhóm duyệt sáng 28/11. Số và kết luận dưới đây **có thể đổi** khi chốt khảo sát hoặc thêm nguồn.
+> **Bản chốt — 28/11/2026, trước CP3.** Khảo sát chốt ~21:05 27/11, n = 25. Phỏng vấn chốt 4 học viên khoá 5 (P1, P4, P5, P6). Không thu thêm nguồn sau mốc này.
 
 ## 1. Nguồn đã dùng
 
 | Nguồn | Đạt ngưỡng? | File |
 |---|---|---|
-| Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☑ *(theo tự soát — chờ cả nhóm duyệt)* | `evidence/data-mining.md` · `evidence/count.py` |
-| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☑ 3 học viên khoá 5 (P1, P4, P5) · thêm 2 người ngoài khoá (P2, P3) không tính | `evidence/interviews/P1.md`… `P5.md` |
+| Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☑ | `evidence/data-mining.md` · `evidence/count.py` |
+| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☑ 4 học viên khoá 5 ngoài nhóm (P1, P4, P5, P6) · thêm 2 người ngoài khoá (P2, P3) không tính · P6 tìm qua khảo sát (tự để lại liên hệ) nên cũng nằm trong 25 người khảo sát | `evidence/interviews/P1.md`… `P6.md` |
 | Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☑ **25/20** (25/25 học viên ngoài nhóm — nhóm xác nhận không thành viên nào trả lời), **đã chốt ~21:05 27/11** · form 2 (câu hỏi khác) n = 2, ghi riêng | `evidence/survey/results.csv` · `evidence/survey/count_survey.py` · `evidence/survey/form-2/` |
 
 ## 2. Số chính
@@ -21,7 +21,7 @@
   - Lời bạn học AI xen vào không được đáp lại: 7.903/7.992 (98,9%); bộ điều phối chỉ cho xen vào trong lúc giảng (385/385).
   - Chat của học viên không có ý riêng (`rubric_y_moi = 0`): 909/1.223 (74,3%).
   - Độ phủ: 220/721 (30,5%) tài khoản dùng pre-class ≥3 ngày; 77/436 (17,7%) học viên có hoạt động từng làm câu ôn tập.
-- **Phỏng vấn** (học viên khoá 5): **1/3 gặp pain một phần** (P4), 2/3 không (P1, P5) · số lần / tháng: P1 không có lần nào nhận ra · P4 không đưa số · P5 "nhiều lúc", không đưa số · mỗi lần mất: P4 ~30 phút để nhớ lại kiến thức buổi trước; P1, P5 không hỏi / không có.
+- **Phỏng vấn** (học viên khoá 5): **1/4 gặp pain một phần** (P4), 3/4 không (P1, P5, P6) · số lần / tháng: P1 không có lần nào nhận ra · P4 không đưa số · P5 "nhiều lúc", không đưa số · P6 không đưa số, nói nay "không còn gặp" · mỗi lần mất: P4 ~30 phút để nhớ lại kiến thức buổi trước; P1, P5, P6 không hỏi / không có.
 - **Khảo sát** (bản chốt, form đóng ~21:05 27/11, n = 25 học viên khoá 5 ngoài nhóm; đếm bằng `count_survey.py`). Câu 3–6 tính trên 23 người có một lần sai cụ thể (bỏ 2 người "Không nhớ"):
   - Lần sai gần nhất trong 7 ngày qua: **21/23 (91%)**.
   - Có kiểm lại xem đã hiểu chưa: **có, ngay trong ngày 12/23 (52%)** · có, vài ngày sau 2/23 · **chưa kiểm lại 7/23 (30%)** · không nhớ 2/23.
@@ -39,10 +39,11 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung. Ngư
 | P1 | Học viên L3A, khoá 5 | Không — không nhận ra lần hiểu sai nào | không có *(dùng ChatGPT giảng lại ~4 lần)* | không hỏi | Hỏi ChatGPT giảng lại |
 | P4 | Học viên L2, khoá 5 | Một phần — "chưa kịp hiểu", quên kiến thức buổi trước | không đưa số | ~30 phút (nhớ lại kiến thức buổi trước) | Sửa theo hướng dẫn · xem lại slide · hỏi người khác |
 | P5 | Học viên L3A, khoá 5 | Không — hiểu sai "nhiều lúc" nhưng tự phát hiện, tự sửa | "nhiều lúc", không đưa số | không hỏi | Tra mạng + hỏi AI → ghi chép → làm lab |
+| P6 | Học viên L3A, khoá 5 | Không — hiểu sai thật (lab Day03: prompt dài = tốt), phát hiện qua kết quả eval, có kiểm lại | không đưa số — "không còn gặp vấn đề này nữa" | không hỏi | Hỏi bạn → làm lại → kiểm lại bằng ChatGPT / bài giảng; nay đọc kỹ + hỏi trước khi làm lab |
 | *P2* | *Ngoài khoá — không tính* | *Một phần* | *~2 lần* | *15 phút học lại khi quên* | *ChatGPT, giải thích cho bạn, áp dụng* |
 | *P3* | *Ngoài khoá — không tính* | *Không* | *2 lần* | *2 ngày để nắm lại* | *Thực hành lại, hỏi bạn nhóm, hỏi lại lab coach* |
 
-**Cách chọn mẫu phỏng vấn:** 3 học viên khoá 5 (2 L3A, 1 L2; không có L3B), tìm qua quen biết của TV1, phỏng vấn qua tin nhắn ngày 27/11. Một số câu có gợi ý sẵn lựa chọn hoặc là câu đóng — đánh dấu ⚠️ trong từng file.
+**Cách chọn mẫu phỏng vấn:** 4 học viên khoá 5 (3 L3A, 1 L2; không có L3B). P1, P4, P5 tìm qua quen biết của TV1; P6 tự để lại liên hệ ở khảo sát, TV3 hỏi. Tất cả phỏng vấn qua tin nhắn ngày 27/11. Một số câu có gợi ý sẵn lựa chọn hoặc là câu đóng — đánh dấu ⚠️ trong từng file. **Giới hạn:** mẫu nhỏ, phần lớn L3A, tìm qua quen biết hoặc tự nguyện → nghiêng về người chủ động.
 
 ## 3. ≥5 trích dẫn hoặc ví dụ nguyên văn (có nguồn, bỏ tên)
 
@@ -53,25 +54,24 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung. Ngư
 5. "Mất công hỏi lại, và tốn thời gian tìm tài liệu rồi chắt lọc đúng thông tin cần tìm" — khảo sát R07, câu 8
 6. "tốn thời gian check lại kiến thức và lại phải mở lại tài liệu" — khảo sát R09, câu 8
 7. "Tốn công và token để check lại việc cần làm đã đạt tiêu chí hay chưa" — khảo sát R05, câu 8
+7a. "thường là mình hỏi bạn xong thì mình sẽ kiểm tra lại bằng chatgpt hoặc bài [giảng] để cho chắc, lần đó cũng vậy" — P6
 7b. "mất cả buổi chiều để xem hiểu là rốt quộc bài lab muốn làm gì, trong khi code rất nhiều, và nội dung kiến thức cũng nhiều" — khảo sát R21, câu 8
 8. Câu ôn tập sai, đã thấy lời giải, không làm lại: `A00611` (`d01-on-chatbot-la-ung-dung`), `A00288`, `A02467`, `A01030`, `A00887` — data `answers.csv`
 9. Lời bạn học AI xen vào không được đáp lại: `L0006` · `program-day01:ai-llm-foundation:module-1:chunk-4:director` — data `events.csv`
 
 ## 4. Các nguồn có khớp nhau không
 
-*(Tạm — khảo sát đã chốt n = 25; chờ cả nhóm duyệt.)*
-
 - **Khớp:**
   - "Bạn học AI chen vào bị bỏ qua": data 98,9% không đáp · khảo sát **0/10** người dùng pre-class ≥3 ngày trả lời.
   - "Kiểm lại tốn thời gian": khảo sát **19/23 (83%)** mất thời gian tìm lại / hỏi lại; 7/23 bị vướng lại, phần lớn 16–30 phút · P4 ~30 phút · R21 "mất cả buổi chiều".
-  - "Học viên không thụ động": khảo sát chỉ 2/23 chỉ đọc đáp án / bỏ qua · phỏng vấn P1, P5 tự tra · data không thấy phần này vì nó xảy ra ngoài app.
+  - "Học viên không thụ động": khảo sát chỉ 2/23 chỉ đọc đáp án / bỏ qua · phỏng vấn P1, P5, P6 tự tra, P6 kiểm lại bằng ChatGPT / bài giảng · data không thấy phần này vì nó xảy ra ngoài app.
 - **Lệch:**
   - **Data** gợi ý "sai rồi không kiểm lại" (làm lại câu sai 2/424, app không có câu cùng ý); **khảo sát** cho thấy đa số **có** kiểm lại — 14/23 (61%) ngay trong ngày hoặc vài ngày sau, chỉ 7/23 (30%) chưa kiểm. Lý do lệch: data chỉ thấy hành vi **trong app**; việc kiểm lại diễn ra **ngoài app** (ChatGPT 16/23, slide 14/23, hỏi người 8/23).
   - Ở n = 12, số "chưa kiểm lại" là 6/11 (55%); thêm 12 người thì còn 30% → kết luận từ mẫu nhỏ không bền, ghi lại để không lặp lỗi này.
 
 ## 5. Kết luận
 
-*(Tạm, chờ khảo sát chốt.)* Giả thuyết ở `evidence/hypothesis.md`: **phải đổi.**
+Giả thuyết ở `evidence/hypothesis.md`: **phải đổi.**
 - **Đúng:** lời bạn học AI xen vào gần như không được đáp lại (data 98,9%, khảo sát 0/10).
 - **Sai:** học viên **không** thụ động sau khi sai và **phần lớn có kiểm lại** (61%); họ không bỏ qua câu hỏi giữa video (data 1%); đáp lại bạn học AI không đi kèm học tốt hơn rõ (85,1% vs 82,4%).
 - **Pain sau khi đổi:** sau khi sai, học viên phải **tự xoay xở để kiểm lại** — hỏi ChatGPT, mở lại slide, hỏi người — và việc đó **tốn thời gian (83%)**; dù vậy 30% vẫn bị vướng lại ý đó về sau, phần lớn mất 16–30 phút. Thứ thiếu không phải ý muốn kiểm lại, mà là **một cách kiểm nhanh, đúng chỗ mình sai, có đáp án để biết chắc**.
@@ -85,4 +85,4 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung. Ngư
 | Học viên L3A, khoá 5 (P1) | 27/11 11:07 | ✅ |
 | Học viên L2, khoá 5 (P4) | 27/11 11:45 | ✅ |
 | Học viên L3A, khoá 5 (P5) | 27/11 13:53 | ✅ |
-| *(các thành viên khác đang tìm thêm)* | | |
+| Học viên L3A, khoá 5 (P6, qua khảo sát) | 27/11 18:36 | ✅ |
