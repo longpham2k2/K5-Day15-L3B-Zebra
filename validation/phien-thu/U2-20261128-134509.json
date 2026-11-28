@@ -1,0 +1,466 @@
+{
+  "tester": "U2",
+  "entered_loop": true,
+  "roots_tried": [
+    {
+      "qid": "Q1",
+      "chosen": "C",
+      "correct": false
+    },
+    {
+      "qid": "Q2",
+      "chosen": "A",
+      "correct": false
+    },
+    {
+      "qid": "Q3",
+      "chosen": "A",
+      "correct": false
+    },
+    {
+      "qid": "Q4",
+      "chosen": "B",
+      "correct": false
+    }
+  ],
+  "root_wrong": "Q1 (chọn C)",
+  "attempt": "T01",
+  "reason": "Mình đoán",
+  "reason_meta": {
+    "kind": "chip_doan",
+    "seconds": 5.4,
+    "chars": 9
+  },
+  "an_fix": "",
+  "an_fix_meta": {
+    "kind": "bo_qua",
+    "weak": false,
+    "tries": 1,
+    "seconds": 15.2,
+    "chars": 0
+  },
+  "similar": "Q1-S1",
+  "answer": "A",
+  "correct": true,
+  "seconds": 60.8,
+  "loops": [
+    {
+      "attempt": "T01",
+      "rootWrong": "Q1 (chọn C)",
+      "rootQid": "Q1",
+      "rootChosen": "C",
+      "reason": "Mình đoán",
+      "reasonMeta": {
+        "kind": "chip_doan",
+        "seconds": 5.4,
+        "chars": 9
+      },
+      "anFix": "",
+      "anFixMeta": {
+        "kind": "bo_qua",
+        "weak": false,
+        "tries": 1,
+        "seconds": 15.2,
+        "chars": 0
+      },
+      "similar": "Q1-S1",
+      "answer": "A",
+      "correct": true,
+      "seconds": 60.8,
+      "anFixGroup": "bỏ qua"
+    },
+    {
+      "attempt": "T14",
+      "rootWrong": "Q2 (chọn A)",
+      "rootQid": "Q2",
+      "rootChosen": "A",
+      "reason": "Mình nghĩ prompt_token_count là số token model sinh ra.",
+      "reasonMeta": {
+        "kind": "chip_ly_do",
+        "seconds": 4.6,
+        "chars": 55
+      },
+      "anFix": null,
+      "anFixMeta": null,
+      "similar": "Q2-S1",
+      "answer": "A",
+      "correct": false,
+      "seconds": 60.9
+    },
+    {
+      "attempt": "T07",
+      "rootWrong": "Q3 (chọn A)",
+      "rootQid": "Q3",
+      "rootChosen": "A",
+      "reason": "Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.",
+      "reasonMeta": {
+        "kind": "chip_ly_do",
+        "seconds": 4.1,
+        "chars": 41
+      },
+      "anFix": "vi 3 luot hoi thoai tuong duong voi 6 tin nhan nen ban phai chon b",
+      "anFixMeta": {
+        "kind": "tu_go",
+        "weak": false,
+        "tries": 1,
+        "seconds": 72.4,
+        "chars": 66
+      },
+      "similar": "Q3-S1",
+      "answer": "B",
+      "correct": true,
+      "seconds": 42.7,
+      "anFixGroup": "có giải thích"
+    },
+    {
+      "attempt": "T06",
+      "rootWrong": "Q4 (chọn B)",
+      "rootQid": "Q4",
+      "rootChosen": "B",
+      "reason": "Mình đoán",
+      "reasonMeta": {
+        "kind": "chip_doan",
+        "seconds": 15.5,
+        "chars": 9
+      },
+      "anFix": "vi ban phai dua ket qua vao de model danh gia roi moi dc gui",
+      "anFixMeta": {
+        "kind": "tu_go",
+        "weak": false,
+        "tries": 1,
+        "seconds": 53.2,
+        "chars": 60
+      },
+      "similar": "Q4-S1",
+      "answer": "A",
+      "correct": true,
+      "seconds": 67.7,
+      "anFixGroup": "có giải thích"
+    }
+  ],
+  "feedback": {
+    "tiec": "hơi tiếc",
+    "kho_hieu": "Cac ly thuyet con kha moi nhung sau khi tra loi sai model tra loi kha ngan gon, nhung co ve kho giai thich lai cho nguoi khac chi sau 1 lan model tra loi",
+    "goi_y": "Phan lon giup toi chon duoc cau tuong tu. Vi toi da duoc giai thich nen van ghi nho duoc",
+    "nhan_xet": "An co ve chi tra loi 1 chieu nen giai thich du dung hay sai deu dong y, nen cai thien"
+  },
+  "observation": "Người dùng có chút bỡ ngỡ khi mới làm quen với giao diện, hiểu lầm rằng An sẽ chấm điểm lần nữa.",
+  "calls": [
+    {
+      "input": "attempt=T01",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn C vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Nhầm độ gần embedding với khớp nguyên văn.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T01; ly_do=Mình đoán",
+      "result": {
+        "buoc": "sang_cau_tuong_tu",
+        "ma_doan": [
+          "D08-P1"
+        ],
+        "loi_nhan": "Không sao. Gợi ý ngắn: BM25 xếp hạng tài liệu dựa trên mức khớp từ giữa truy vấn và tài liệu, nên hữu ích khi cần tìm mã hoặc thuật ngữ viết đúng. [D08-P1] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q1-S1",
+          "stem": "Người dùng tìm “đổi mật khẩu”, còn đoạn hướng dẫn viết “cập nhật thông tin đăng nhập”. Cách xếp hạng nào tận dụng trực tiếp sự gần nhau về nghĩa?",
+          "options": {
+            "A": "So sánh embedding của truy vấn và đoạn hướng dẫn.",
+            "B": "Ưu tiên đoạn lặp lại nguyên văn cụm “đổi mật khẩu”.",
+            "C": "Xếp hạng đoạn chỉ theo số ký tự."
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 3,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T01; ly_do=Mình đoán; cau=Q1-S1; tra_loi=A",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng câu này — nhưng ở câu trước bạn đã đoán, nên mình chưa dám nói bạn đã hiểu chắc. [D08-P1] Embedding có thể biểu diễn hai cách diễn đạt gần nghĩa bằng các vectơ gần nhau.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0.01,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T14",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn A vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình nghĩ prompt_token_count là số token model sinh ra.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T14; ly_do=Mình nghĩ prompt_token_count là số token model sinh ra.",
+      "result": {
+        "buoc": "sua_loi_ban",
+        "ma_doan": [
+          "D01-P1"
+        ],
+        "loi_nhan": "Bạn An nói: \"Mình nghĩ prompt_token_count là số token model sinh ra.\" An đang nhầm ở đâu? Gợi ý: Với Gemini, token ra (token sinh ra, không tính token suy nghĩ) lấy từ trường usage_metadata.candidates_token_count. [D01-P1] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q2-S1",
+          "stem": "Gọi OpenAI Chat Completions xong, bạn cần số token của prompt đã gửi (token vào). Lấy từ trường nào?",
+          "options": {
+            "A": "response.usage.completion_tokens",
+            "B": "Đếm số từ trong prompt bằng len(prompt.split())",
+            "C": "response.usage.prompt_tokens"
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 2.17,
+      "trace": {
+        "model_calls": 1,
+        "tool_calls": 3,
+        "tokens_in": 1168,
+        "tokens_out": 77,
+        "models": [
+          "gpt-5.4-nano-2026-03-17"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T14; ly_do=Mình nghĩ prompt_token_count là số token model sinh ra.; cau=Q2-S1; tra_loi=A",
+      "result": {
+        "buoc": "chuyen_lab_coach",
+        "ma_doan": [],
+        "loi_nhan": "Chưa đúng. [D01-P1] Với OpenAI, token vào nằm ở usage.prompt_tokens; completion_tokens là token ra. Ý này nên hỏi lab coach để chắc hơn.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": false
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T07",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn A vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T07; ly_do=Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.",
+      "result": {
+        "buoc": "sua_loi_ban",
+        "ma_doan": [
+          "D01-P2"
+        ],
+        "loi_nhan": "Bạn An nói: \"Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.\" An đang nhầm ở đâu? Gợi ý: Lưu lịch sử cho 3 lượt hội thoại gần nhất tương đương 6 tin nhắn, nên cần cắt history như history[-6:]. [D01-P2] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q3-S1",
+          "stem": "Theo cùng quy ước của lab (3 lượt tương đương 6 tin nhắn), muốn giữ 2 lượt gần nhất thì giữ bao nhiêu tin nhắn?",
+          "options": {
+            "A": "2 tin nhắn",
+            "B": "4 tin nhắn",
+            "C": "6 tin nhắn"
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 3.23,
+      "trace": {
+        "model_calls": 1,
+        "tool_calls": 3,
+        "tokens_in": 1113,
+        "tokens_out": 81,
+        "models": [
+          "gpt-5.4-nano-2026-03-17"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T07; ly_do=Mình nghĩ 3 lượt hội thoại là 3 tin nhắn.; cau=Q3-S1; tra_loi=B",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng rồi — bạn đã hiểu lại ý này. [D01-P2] 3 lượt tương đương 6 tin nhắn, tức mỗi lượt 2 tin nhắn; 2 lượt là 4 tin nhắn.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T06",
+      "result": {
+        "buoc": "hoi_ly_do",
+        "ma_doan": [],
+        "loi_nhan": "Bạn chọn B vì nghĩ gì? Bấm một lý do, hoặc bỏ qua.",
+        "lua_chon_ly_do": [
+          "Mình nghĩ cứ chạy tiếp các công cụ đã định rồi mới cần cho model xem kết quả.",
+          "Mình đoán",
+          "Lý do khác (tự viết)"
+        ],
+        "cau_tuong_tu": null,
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T06; ly_do=Mình đoán",
+      "result": {
+        "buoc": "sang_cau_tuong_tu",
+        "ma_doan": [
+          "D04-P1"
+        ],
+        "loi_nhan": "Không sao. Gợi ý ngắn: Trong vòng ReAct, model chọn hành động dựa trên mục tiêu và thông tin đang có. [D04-P1] Mình hỏi lại 1 câu cùng ý để bạn kiểm xem đã hiểu chưa — không tính điểm.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": {
+          "id": "Q4-S1",
+          "stem": "Agent đăng ký một suất học theo yêu cầu của học viên. Công cụ đặt chỗ báo hết thời gian chờ và hệ thống có công cụ tra tình trạng yêu cầu theo mã. Lượt tiếp theo nên làm gì để tránh gửi trùng yêu cầu?",
+          "options": {
+            "A": "Dùng lỗi hết thời gian chờ và mã yêu cầu để tra xem lần gọi trước đã được xử lý chưa.",
+            "B": "Dùng lỗi hết thời gian chờ làm dấu hiệu yêu cầu đã thất bại và gửi lại yêu cầu ngay.",
+            "C": "Dùng việc đã phát lệnh đặt chỗ làm căn cứ để báo suất học đã được giữ."
+          }
+        },
+        "dung": null
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 3,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    },
+    {
+      "input": "attempt=T06; ly_do=Mình đoán; cau=Q4-S1; tra_loi=A",
+      "result": {
+        "buoc": "ket_qua_dung",
+        "ma_doan": [],
+        "loi_nhan": "Đúng câu này — nhưng ở câu trước bạn đã đoán, nên mình chưa dám nói bạn đã hiểu chắc. [D04-P1] Lỗi hết thời gian chờ là kết quả cần đưa về model. Tra trạng thái theo mã giúp xác định tác động của lần gọi trước khi quyết định bước tiếp.",
+        "lua_chon_ly_do": [],
+        "cau_tuong_tu": null,
+        "dung": true
+      },
+      "error": "",
+      "seconds": 0,
+      "trace": {
+        "model_calls": 0,
+        "tool_calls": 2,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "models": [],
+        "errors": []
+      }
+    }
+  ],
+  "reason_group": "yếu",
+  "an_fix_group": "bỏ qua",
+  "model": "gpt-5.4-nano",
+  "saved_at": "2026-11-28T13:45:09"
+}

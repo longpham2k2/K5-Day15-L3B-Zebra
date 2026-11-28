@@ -1,6 +1,6 @@
 # Chi phí khi dùng thật
 
-> CP4 · 14:30 Thứ Bảy 28/11/2026 · Ước tính tạm từ token API của lượt eval 2.
+> CP4 · 14:30 Thứ Bảy 28/11/2026 · Lượt mô phỏng chính thức `simulate-1@20261128-131843`.
 
 ## 1. Đầu vào
 
@@ -22,16 +22,26 @@ Một vòng có 3 lượt gọi agent (hỏi lý do → gợi ý → chấm) và
 
 ## 2. Kết quả mô phỏng
 
-Lượt `--try` đi hết 10 phiên ở chế độ giả. Máy chạy cần cấu hình OpenAI để đo token mới và sinh `cost/simulate-1.csv`. Bảng tạm dùng kế hoạch 50 phiên (seed 42), lấy token API và số lần gọi đã ghi cho từng đầu vào tương ứng trong lượt `run-2@20261128-095614`, rồi áp dụng công thức của khung. Token được đo trên `gpt-5.4-nano-2026-03-17` và quy giá theo cả hai model. Chi phí của mini có thể thay đổi khi đo token trực tiếp trên mini. [Lượt eval 2](../eval/run-2.csv)
+Lượt chính thức **`simulate-1@20261128-131843`**: 50 phiên (seed 42) chạy qua bản chạy thử thật, token lấy từ `usage` của API, **0/50 phiên lỗi**. Tỉ lệ đạt lấy từ lượt eval 2 (`--rate-from eval/run-2.csv`): 21/21. Số chép từ [`simulate-1-summary.md`](simulate-1-summary.md) (không sửa tay) · dữ liệu từng phiên: [`simulate-1.csv`](simulate-1.csv).
 
-| Model | USD/phiên | USD/task thành công | USD/tháng · 220 người | USD/tháng · 436 người | USD/tháng · 721 người | USD/người/tháng (cơ sở) |
-|---|---|---|---|---|---|---|
-| `gpt-5.4-nano` | $0.00041 | Chờ chấm lượt 2 | $1.00 | $1.99 | $3.29 | $0.0046 |
-| `gpt-5.4-mini` | $0.0015 | Chờ chấm lượt 2 | $3.72 | $7.36 | $12.18 | $0.0169 |
+| Persona | Số phiên | Lượt hỏi / phiên | Token vào / phiên | Token ra / phiên | Gọi model / phiên |
+|---|---:|---:|---:|---:|---:|
+| Ít (`it`) | 9 | 3 | 1.026 | 69 | 0,9 |
+| Vừa (`vua`) | 33 | 3 | 1.364 | 101 | 1,2 |
+| Nhiều (`nhieu`) | 8 | 3 | 2.018 | 127 | 1,8 |
 
-Khung tính chi phí/task thành công bằng chi phí trung bình mỗi phiên chia cho tỉ lệ đạt. Khi Long chấm xong lượt 2, chạy `python run.py simulate --rate-from eval/run-2.csv` để ghi kế tiếp sau lần đo chính thức và lấy số cho slide 6. Tỉ lệ đạt của lượt 2 đo trên nano. Cột chi phí cho mini khi đó chỉ là ước tính theo giá mini với cùng tỉ lệ đạt.
+| Model | USD / phiên | **USD / task thành công** | USD / tháng · thấp 220 người | USD / tháng · **cơ sở 436 người** | USD / tháng · cao 721 người | USD / người / tháng (cơ sở) |
+|---|---:|---:|---:|---:|---:|---:|
+| **`gpt-5.4-nano`** (model đang dùng) | $0,00041 | **$0,00041** | $0,99 | **$1,97** | $3,25 | $0,0045 |
+| `gpt-5.4-mini` | $0,0015 | $0,0015 | $3,68 | $7,29 | $12,05 | $0,0167 |
+
+- Token **đo trên `gpt-5.4-nano-2026-03-17`**; dòng `gpt-5.4-mini` là **giá mini áp lên token đo trên nano** (chưa đo trực tiếp trên mini) — số thật của mini có thể lệch.
+- Chi phí / task thành công = chi phí / phiên ÷ tỉ lệ đạt. Tỉ lệ đạt 21/21 là **một lượt** trên model có dao động giữa các lần gọi (lượt 1: 17/21) → nếu tỉ lệ đạt thật là 81% như lượt 1, chi phí / task thành công nano ≈ $0,00051 — vẫn cùng bậc.
+- Mô phỏng rút ngẫu nhiên 3 đầu vào / phiên nên gọi model 0,9–1,8 lần / phiên, trong khi một vòng thật gọi model 1 lần → ước tính **dè dặt** (cao hơn thực tế).
+- Chi phí chỉ tính lời gọi model; chưa tính máy chủ (bản thử chạy trên máy nhóm / gói Render miễn phí).
 
 ## 3. So với impact
 
 - Impact ước tính khoảng 86 phút/người/tháng trong nhóm 69 học viên từng sai câu ôn tập (5.900 phút ÷ 69). Kịch bản chi phí cơ sở tính trên 436 học viên có hoạt động pre-class. [Đặc tả §2](../spec.md)
-- Chi phí model ước tính ở kịch bản cơ sở là $0.0046/người/tháng với nano. Mức này phù hợp để chạy thử, còn quyết định mở rộng cần tỉ lệ đạt và thời gian tiết kiệm đo được.
+- Chi phí model ở kịch bản cơ sở: **$1,97 / tháng cho 436 học viên ($0,0045 / người / tháng)** với `gpt-5.4-nano`; cả kịch bản cao (721 người) dùng `gpt-5.4-mini` cũng chỉ ~$12 / tháng. So với ~86 phút / người / tháng tự kiểm lại *(tự ước tính, spec §2)*, chi phí model không phải điểm nghẽn.
+- Điểm nghẽn để quyết định mở rộng là **hiệu quả học đo trên người thật** (metric `hieu_lai_tren_nguoi_thu`, `validation/log.md`) chứ không phải tiền model.

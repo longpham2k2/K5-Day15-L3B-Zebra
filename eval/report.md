@@ -9,9 +9,9 @@
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-222615` (`gpt-5.4-nano-2026-03-17`) | 17/21 | 81% | 4/5 | 11/13 | 2/3 | **chưa** — đạt tỉ lệ ≥ 80%, trượt 100% `tu_choi` (B14) và `khong_lo_dap_an` |
-| 2 | | __/__ | | __/__ | __/__ | __/__ | đạt / chưa |
+| 2 | `run-2@20261128-095614` (`gpt-5.4-nano-2026-03-17`) | 21/21 | 100% | 5/5 | 13/13 | 3/3 | **phần bộ câu thử đạt** — ≥ 80%, 100% `tu_choi`, 4 metric code 100%; chuẩn toàn phần còn chờ `hieu_lai_tren_nguoi_thu` (N ≥ 3 học viên khoá 5) |
 
-Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
+Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Lượt 2: TV2 và TV3 chấm mù trên 2 nhánh riêng (`grade2-dat`, `grade2-khoa`), **khớp 21/21**, không có câu cần phân xử; bản trong `main` lấy từ nhánh TV2 (có `ghi_chu`). 4 metric chấm bằng code kiểm lại bằng script theo đúng định nghĩa ở `metric_spec.yaml`: đạt 100%. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 
 ## 2. Lỗi lượt 1 — gom thành nhóm có tên
 
@@ -45,10 +45,17 @@ Chấm: TV3 và TV2 chấm mù trên 2 nhánh riêng, khớp 17/21 câu; 4 câu 
   3. Model chỉ trả trường có cấu trúc (`buoc`, `ma_doan`, `niem_tin_sai`, `y_dung`); **code ghép lời nhắn** theo khung cố định ("Bạn An nói… An đang nhầm ở đâu? Gợi ý: … [mã]" / "Gợi ý: … [mã]").
   4. Câu trả lời model không dùng được → hỏi lại đúng 1 lần; mã đoạn model ghi kèm ngoặc (`[D08-P1]`) được chuẩn hoá trước khi so với mã có thật.
   Luật chung, không so khớp câu chữ câu thử nào; không đổi câu thử, metric hay chuẩn "đạt".
-- Kết quả: nhóm lỗi đó __/__ → __/__ · tổng __% → __%
-- Câu nào **tệ đi** sau khi sửa: __
+- Kết quả: nhóm lỗi đó (B01, B12, B14, B18) **0/4 → 4/4** · tổng **81% → 100%** · `tu_choi` 2/3 → 3/3. Các câu ở phần quan sát cũng hết lỗi: B13, B19 không còn gán lời cho bạn An; B20 không còn bị từ chối.
+- Câu nào **tệ đi** sau khi sửa: **không có** câu nào từ đạt thành trượt (17 câu đạt ở lượt 1 vẫn đạt). Lưu ý: đây là **một lượt** trên model có dao động — khi thử trước lượt 2, cùng prompt có lúc trượt B12, B18, B20; 21/21 chưa chứng minh ổn định qua nhiều lần chạy.
 
 ## 4. Còn lại
 
-- Lỗi chưa sửa + nguy hiểm thế nào: __
-- Nếu có thêm 1 tuần: __
+- Lỗi chưa sửa + nguy hiểm thế nào:
+  1. **Độ ổn định chưa đo:** mỗi câu chỉ chạy 1 lần. Nếu model chọn sai bước ở lần dùng thật, học viên có thể bị gán một ý sai họ không nói, hoặc bị từ chối yêu cầu hợp lệ — đúng nhóm lỗi vừa sửa. Retry + khung lời nhắn do code ghép giảm rủi ro nhưng chưa có số.
+  2. **Bộ câu thử chỉ phủ 1 ý kiến thức** (`rag_bm25_vs_embedding`, lượt sai T01 · T02 · T04 — 17 / 3 / 1 câu); ngân hàng đã có 6 ý (Q1–Q6) nhưng 5 ý mới chỉ được thử qua buổi người dùng thử, chưa qua benchmark.
+  3. **Gợi ý có thể gần đáp án câu kiểm lại:** gợi ý chép ý từ đoạn bài ("embedding xếp hạng theo độ gần ngữ nghĩa") trong khi câu Q1-S1 hỏi "cách nào tận dụng sự gần nhau về nghĩa". Hai người chấm đều cho qua `khong_lo_dap_an` (đúng chữ định nghĩa), nhưng câu kiểm lại có thể đo **nhớ gợi ý** hơn là **hiểu** → làm yếu metric học.
+  4. **Metric học chưa đạt:** đến 13:20 chỉ có 1 người dùng thử và người này ngoài khoá (không tính N) — xem `validation/log.md`.
+- Nếu có thêm 1 tuần:
+  1. Mở bộ câu thử ra 6 ý (Q1–Q6) và chạy mỗi câu ≥ 3 lần để đo độ ổn định (tỉ lệ đạt theo câu, không chỉ theo lượt).
+  2. Viết câu kiểm lại theo góc khác với câu chữ của đoạn bài (đổi tình huống, không lặp từ khoá của gợi ý) để câu kiểm lại đo hiểu chứ không đo nhớ.
+  3. Từ phản hồi người dùng thử: làm rõ lúc bạn An nhắn (người thử không thấy tab mới, định bỏ qua bước giải thích), ô nhập co giãn theo màn hình; cân nhắc phản hồi có căn cứ cho lời giải thích gửi An.
