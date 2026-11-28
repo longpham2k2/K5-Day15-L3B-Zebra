@@ -1,7 +1,5 @@
 # Reflection — Nguyễn Công Huy
 
-> Làm ở guide bước 5.3. Mỗi người một file: chép file này thành `reflection/<ten-khong-dau>.md` (viết thường, không dấu). Hạn: **23:59 Thứ Bảy 28/11**. Mỗi câu 3–6 dòng.
-
 1. Vai trò + phần mình làm (trỏ tới file / commit):
    Tạo tools cho agent trong tools.py và thực hiện mô phỏng chi phí trong cost-estimate.md.\
    Chốt đầu vào, đầu ra và cách xử lý khi thiếu dữ liệu cho bốn hàm đọc lượt sai, lấy đoạn bài, lấy câu tương tự và chấm đáp án trong [tools.py](../codebase/tools.py) (`588eaa1`).\
