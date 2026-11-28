@@ -35,7 +35,9 @@ Model dùng: OpenAI `gpt-5.4-nano` (cùng model với eval lượt 1, lượt 2)
 
 Người đúng cả 3 câu gốc: ghi "không vào vòng" ở cột "Câu gốc sai", để trống các cột còn lại.
 
-**Tổng kết (buổi 28/11, chỉ vòng đầu của mỗi người):** N (vào vòng) = **3** (U2, U3, U4; U1 ngoài khoá không tính) · đúng với **có lý do** **0/3** · đúng với **yếu (đoán)** **3** · đúng với **bỏ qua** 0 · trung vị thời gian **1,0 phút** (0,6 · 1,0 · 1,0) → **chưa đạt**: đủ N ≥ 3 và trung vị ≤ 5 phút, nhưng 0/3 < 2/3 — cả 3 người bấm "Mình đoán" ở vòng đầu nên không ai tính là hiểu lại.
+**Tổng kết (buổi 28/11, chỉ vòng đầu của mỗi người):** N (vào vòng) = **3** (U2, U3, U4; U1 ngoài khoá không tính) · đúng với **có lý do** **0/3** · đúng với **yếu (đoán)** **3** · đúng với **bỏ qua** 0 · trung vị thời gian **1,0 phút** (0,6 · 1,0 · 1,0) → **chưa đạt**: đủ N ≥ 3 và trung vị ≤ 5 phút, nhưng 0/3 < 2/3 — cả 3 người bấm "Mình đoán" ở vòng đầu nên theo định nghĩa đã khoá không ai **tính là** hiểu lại.
+
+**Đọc kết quả cho đúng:** "Mình đoán" là lý do của **lần chọn sai đầu tiên**, không nói gì về câu kiểm lại. Định nghĩa đã khoá chỉ tính nhóm có lý do vì chỉ khi học viên nêu một ý sai thì mới thấy ý đó được sửa; với người đoán, một câu kiểm lại đúng không tách được hiểu với may (3 lựa chọn → 1/3). Vì vậy 0/3 nghĩa là **chưa chứng minh được** hiểu lại, không phải **đã chứng minh không** hiểu. Cả 3 người đều đúng câu kiểm lại sau gợi ý — nếu cả 3 chỉ đoán thì xác suất 3/3 đúng khoảng (1/3)³ ≈ 4% — nên có tác động thật; nhưng buổi thử không tách được đó là **hiểu** hay **đọc được đáp án từ gợi ý / đoạn bài** (U4: "tài liệu đang được ra quá sớm"). Cần câu kiểm lại không lặp câu chữ đoạn bài hoặc hỏi lại sau một khoảng thời gian (`eval/report.md` §4).
 
 *Báo riêng — các vòng sau vòng đầu (không tính metric):* 5 vòng thêm của U2, U3 (U4 dừng sau 1 vòng): có lý do 3 vòng → đúng 2 (U2-Q3, U3-Q6), sai 1 (U2-Q2, chuyển lab coach); "Mình đoán" 2 vòng → đúng 2. Lý do ở cả 9 vòng (kể cả U1) đều là **bấm lựa chọn có sẵn**, chưa ai tự gõ lý do; "Mình đoán" được bấm sau ~5–9 giây. Ba người khoá 5 đều "hơi tiếc" nếu mai không được dùng.
 
@@ -54,7 +56,8 @@ Câu hỏi sau: *"Nếu mai không được dùng nữa, bạn thấy: rất ti�
 
 ## Tổng hợp
 
-- Chủ đề lặp nhiều nhất: __
-- Sửa gì trước demo (ghi `spec.md` §10): __
-- Giữ gì và vì sao: __
-- Để dành sau: __
+- Chủ đề lặp nhiều nhất: **bước lý do bị đi tắt** (cả 9 vòng dùng lựa chọn có sẵn; 3/3 người khoá 5 bấm "Mình đoán" ở vòng đầu) và **bước An chưa rõ, chưa có phản hồi** (U1, U3 không hiểu An là ai / làm sao gặp; U2: An đồng ý cả lời giải thích sai; bỏ qua bước An 5/9 vòng).
+- Sửa gì trước demo (ghi `spec.md` §10): không sửa thêm agent hay giao diện sau buổi thử — kết quả buổi thử ghi nguyên, đưa vào slide và `eval/report.md` §4.
+- Giữ gì và vì sao: trợ lý tự hỏi ngay khi sai (không cần bấm nút) và câu kiểm lại chấm bằng code — người thử vào vòng nhanh (trung vị 1,0 phút), 3/3 người khoá 5 "hơi tiếc" nếu không được dùng; agent không lỗi lần nào trong 9 vòng.
+- Để dành sau: đổi bước lý do để "Mình đoán" không còn là lối tắt; An hỏi tiếp câu nhiều lựa chọn chấm bằng code; hỏi lại ý đã sai sau một khoảng thời gian; An hỏi cả khi đúng lần đầu (`eval/report.md` §4).
+- **Góp ý giám khảo (Demo Zone 28/11, ghi sau buổi demo):** (1) vì sao An chỉ hỏi khi sai lần đầu rồi đúng lần hai — đề xuất hỏi cả khi đúng ngay lần đầu; (2) làm sao kiểm lời giải thích gửi An, vì học viên có thể quên ý sau khi qua câu kiểm lại và trả lời "Tôi không còn nhớ nữa".
