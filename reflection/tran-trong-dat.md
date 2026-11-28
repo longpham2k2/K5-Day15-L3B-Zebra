@@ -16,4 +16,4 @@ Các phần được đề xuất và liệt kê đều được đọc và xác
 
 ## 3. Một câu thử trượt và điều học được
 
-Câu B08 ở lượt chấm thứ 2, khi người dùng để trống lý do, thì hệ thống cho sang câu hỏi tương tự để xác nhận xem người dùng đã thực sự hiểu chưa thay vì yêu cầu hỏi lại lý do. Điều học được khi học viên bỏ qua lý do, hệ thống vẫn cần cho câu hỏi tương tự để tự kiểm lại, hệ thống vẫn ghi nhận câu đó nếu đúng nhưng chưa kết luận họ đã hiểu lại.
+B01 ở lượt 1 chấm là 0 vì agent chọn sua_loi_ban nhugnw tự giải thích luôn, thay vì yêu cầu người dùng chỉ cho An nhầm khiến học viên mất cơ hội để giải thích lại. ở lượt 2, agent đã nhắc đúng ý sai và yêu cầu xem An đã nhầm ở đâu kèm gợi ý, tiếp tục đưa câu kiểm lại nên được chấm là 1. Học được rằng khi chấm cho sua_loi_ban cần đọc cả lời nhắn để xem agent có thực sự yêu cầu sửa hay không, hay tự đưa lời giải thích luôn.
