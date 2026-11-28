@@ -108,14 +108,14 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
+| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: OpenAI `gpt-5.4-nano` (lượt 1, lượt 2, buổi người dùng thử) |
 |  |  |  |
 
 ## Dùng AI vào việc gì
 
 2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
-____
+Nhóm dùng **Claude Code** để viết code (agent, công cụ, giao diện web, script đếm data và khảo sát), soạn nháp kịch bản phỏng vấn, khảo sát, spec, báo cáo; **Claude (Design)** để dựng slide. Người kiểm: mỗi người duyệt phần có tên mình — phỏng vấn do người thật hỏi, cột `pass` do người chấm mù (không dùng LLM chấm), chuẩn "đạt" và các quyết định thiết kế do nhóm chốt. Không dùng AI để tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát hay sửa kết quả các lượt đã chạy.
 
 ## File mẫu — điền ở bước nào
 

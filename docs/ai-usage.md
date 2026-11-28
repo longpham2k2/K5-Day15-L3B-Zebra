@@ -4,15 +4,31 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 > Luật của đề: dùng AI để làm bài thoải mái, nhưng **ai không giải thích được phần có tên mình thì phần đó nhận 0 điểm**. Khai thiếu không bị trừ; giấu mới bị.
 
+Công cụ chính: **Claude Code** (coding agent, đọc `AGENTS.md`) chạy trên máy từng người; **Claude (Design)** cho slide. Model của bản chạy thử (`gpt-5.4-nano`) là phần sản phẩm, không tính ở đây.
+
 | Việc | Công cụ AI | AI làm gì | Người kiểm/sửa gì | Ai phụ trách |
 |---|---|---|---|---|
-| Code bản chạy thử | | | | |
-| Prompt / thiết kế lời gọi mô hình | | | | |
-| Đào data (viết script đếm, gợi ý nhãn) | | | Kiểm tay __ dòng, khớp __ | |
-| Rà câu hỏi phỏng vấn / khảo sát | | Chỉ rà câu dẫn dắt | | |
-| Viết câu thử (benchmark) | | | Mỗi câu thử có `source`; câu thử AI viết được ghi rõ | |
-| Sinh data `synthetic` (nếu có) | | | Seed __ · kiểm tay __ dòng | |
-| Chấm cột `pass` bằng LLM (nếu có) | | | Kiểm tra thủ công __ câu thử, khớp __/__ | |
-| Slide, văn bản | | | | |
+| Code bản chạy thử — luồng agent | Claude Code | Viết `codebase/agent.py` theo sơ đồ `spec.md` §4 (workflow cố định, 1 bước AI); nhánh OpenAI / Anthropic trong `codebase/ai.py`; thêm `stem`, `misconception` vào `learner_state` (`tools.py`) và sửa test cho khớp | Long chọn hình dạng workflow, duyệt hành vi qua chạy `run.py eval` và thử tay; phát hiện qua giao diện lỗi model ghi mã đoạn kèm ngoặc `[D08-P1]` làm mất gợi ý → cho sửa (ghi `spec.md` §10) | Long |
+| Code bản chạy thử — công cụ | *(Huy tự điền)* | | | Huy |
+| Giao diện web cho buổi thử (bản 2) | Claude Code | Viết lại giao diện `codebase/web.py` (2 cột, trò chuyện riêng với Zebra và bạn học An, nhịp tin nhắn, nhiều vòng / phiên, ghi `reason_meta`, `an_fix`); `codebase/app.py` để `python run.py` mở giao diện web | Long tự thử nhiều vòng trên trình duyệt và **quyết định thiết kế**: tên "Zebra", trợ lý tự hỏi ngay khi sai (không cần bấm nút), không khoá nút "Bỏ qua" mà chỉ ghi lại, chuyển bước giải thích cho An ra sau khi kiểm lại đúng, An nhắn riêng và mở thủ công, chặn lời giải thích dưới 5 chữ bằng luật (không chấm bằng AI) | Long |
+| Giao diện buổi thử (bản 1) | Claude Code | Viết `codebase/web.py` bản đầu, nhánh Gemini trong `codebase/ai.py`, chạy thử trên trình duyệt | Khoa chạy thử và duyệt | Khoa |
+| Prompt / thiết kế lời gọi mô hình | Claude Code | Soạn prompt hệ thống (kiểm ngoài phạm vi trước, chọn bước `goi_y` / `sua_loi_ban`); bản lượt 2: model chỉ trả trường có cấu trúc (`buoc`, `ma_doan`, `niem_tin_sai`, `y_dung`), **code ghép lời nhắn** và lời từ chối, hỏi lại model 1 lần khi trả lời không dùng được | Long phân xử các câu trượt lượt 1 (B01, B12, B14, B18) và duyệt nhóm lỗi cần sửa; Claude Code thử trực tiếp trên 6 input trượt (không tính là lượt); Long đặt giới hạn tối đa 3 lần sửa prompt, dừng sau 2 lần; luật chung, không so khớp câu chữ câu thử | Long |
+| Đào data (viết script đếm, gợi ý nhãn) | Claude Code | Tải data BTC; viết `evidence/count.py` (đếm câu ôn tập sai, làm lại, lời bạn học AI không được đáp, độ phủ); soạn `evidence/data-mining.md` | `count.py` chạy lại được (`python3 evidence/count.py <đường dẫn>/data/preclass`); khi rà lại phát hiện mốc "1/399" sai (mỗi ý chỉ có 1 câu ôn tập nên app không thể có câu làm lại) → sửa ở data-mining, canvas, spec. Long chạy lại kiểm 8 ví dụ ở `data-mining.md` §4 trên data gốc (`answers.csv`, `events.csv`), khớp 8/8: 5 câu ôn tập sai, đã thấy lời giải, không làm lại; 3 lời bạn học AI xen vào không được đáp lại | Long |
+| Rà câu hỏi phỏng vấn / khảo sát | Claude Code | Soạn kịch bản phỏng vấn kiểu Mom Test bản rút gọn (`evidence/interviews/SCRIPT.md`) và bản nháp khảo sát ngắn; rà câu dẫn dắt | Long đưa bối cảnh thật (học viên gần như chưa dùng pre-class) và chọn hướng viết lại; Claude Code viết lại; **Long tự phỏng vấn** P1–P5 qua tin nhắn, đổi câu tại chỗ; câu dẫn dắt / câu đóng được đánh dấu ⚠️ trong từng file | Long |
+| Chép log phỏng vấn | Claude Code | Chuyển log chat Long dán vào thành `P1.md`–`P5.md`: viết đủ chữ tắt trong `[ngoặc vuông]`, bỏ tên, xếp theo mẫu | Long đối chiếu P1–P5 với log chat gốc: khớp; AI chỉ chép từ log Long dán, không thêm câu; người ngoài khoá (P2, P3) ghi riêng, không tính | Long |
+| Khảo sát | Claude Code | Soạn bộ câu hỏi (`evidence/survey/questions.md`) và script tạo form (`create_form.gs`); tham khảo form nhóm khác chỉ về cách trình bày; tải Sheet và xuất `results.csv` đã bỏ email, liên hệ, giờ | Khoa duyệt câu hỏi, sửa câu 1 trên form, gửi form, xác nhận người trả lời ngoài nhóm | Khoa |
+| Đếm khảo sát | Claude Code | Viết `evidence/survey/count_survey.py` (tách câu chọn nhiều; nối lại lựa chọn có dấu phẩy) | Lần đếm đầu tách sai lựa chọn có dấu phẩy → phát hiện khi rà số, đã sửa; ghi lại bài học kết luận ở n = 12 ("55% chưa kiểm lại") không bền, ở n = 24–25 còn 30% | Long |
+| Tổng hợp bằng chứng, canvas, spec | Claude Code | Soạn nháp `evidence/summary.md`, `canvas.md`, `spec.md` §0–§7, §10 từ số đã đếm; bản text form CP1–CP3 | Long **quyết định** đổi giả thuyết (từ "không kiểm lại" sang "tự kiểm lại tốn thời gian và vẫn vướng"), chọn lát cắt, chuẩn "đạt" và ngưỡng; dòng changelog AI viết sai ("model quên ngoặc" → thực ra là chặn phòng trước) được phát hiện khi rà lại và đã sửa | Long |
+| Viết câu thử (benchmark) | Claude Code | Rà bộ câu thử Đạt viết; đề xuất sửa `pass_criterion` B01 cho khớp khung "Bạn An nói…" | Mỗi câu thử có `source`; Long duyệt; không sửa `expected` sau lượt 1 | Long, Đạt |
+| Viết câu thử (B11–B16) | Claude Code | Đề xuất 6 câu có nguồn từ khảo sát / phỏng vấn | Khoa thêm vào bộ câu thử; Đạt sửa lại câu chữ và nguồn | Khoa, Đạt |
+| Viết câu thử, metric spec (phần còn lại) | *(Đạt tự điền)* | | | Đạt |
+| Sinh data `synthetic` — ngân hàng câu | Claude Code | Viết lại 2 ý từ hướng dẫn Lab 01 của khoá thành Q2, Q3 (đoạn bài, câu gốc, câu tương tự, ghi chú hiểu sai) | Khoa chạy kiểm thử; Claude Code rà và chỉ ra lỗi nội dung (đoạn D01-P1 thiếu token suy nghĩ `thoughts_token_count`, đề Q2, ghi chú hiểu sai ở ngôi thứ ba), Long duyệt và cho sửa | Khoa, Long |
+| Sinh data `synthetic` — Q4–Q6 | *(Huy tự điền)* | | | Huy |
+| Chấm thử người thứ hai | Claude Code | Soạn bảng chấm; **sau khi Khoa tự chấm**, rà lại theo chữ định nghĩa (14/20 ô đổi, bản đầu giữ ở mục 1a) | Khoa tự chấm trước; Đạt so sánh | Khoa |
+| Chấm cột `pass` bằng LLM (nếu có) | **Không dùng** | Lượt 1 do TV2, TV3 chấm mù trên 2 nhánh riêng; Claude Code chỉ tạo bảng đọc và script chép điểm vào cột `pass` (không chấm), và liệt kê 4 câu lệch | **Long tự phân xử** 4 câu lệch (B01, B12, B15, B18), lý do ghi ở cột `ghi_chu`; AI kiểm lại không ô nào ngoài `pass`, `ghi_chu` bị đổi | Long, Đạt, Khoa |
+| Báo cáo đánh giá | Claude Code | Soạn `eval/report.md` §1–§2 (nhóm lỗi, 3 lỗi cụ thể) từ bảng đã chấm | Long duyệt cách gom nhóm lỗi và ví dụ | Long |
+| Mô phỏng chi phí | *(Huy tự điền)* | | | Huy |
+| Slide | Claude (Design) | Soạn nội dung từ `evidence/summary.md`, `spec.md` và dựng deck + ghi chú người nói | Khoa duyệt chữ và số | Khoa |
+| Văn bản khác (khai báo này, quy trình buổi thử) | Claude Code | Soạn `docs/ai-usage.md` từ lịch sử làm việc; cập nhật `validation/quy-trinh.md` theo giao diện mới | Long đọc lại phần của mình trước khi commit; mỗi người tự điền / sửa dòng của mình | Long |
 
-**Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
+**Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`); chấm cột `pass`.
