@@ -16,4 +16,4 @@ Các phần được đề xuất và liệt kê đều được đọc và xác
 
 ## 3. Một câu thử trượt và điều học được
 
-B01 ở lượt 1 chấm là 0 vì agent chọn sua_loi_ban nhugnw tự giải thích luôn, thay vì yêu cầu người dùng chỉ cho An nhầm khiến học viên mất cơ hội để giải thích lại. ở lượt 2, agent đã nhắc đúng ý sai và yêu cầu xem An đã nhầm ở đâu kèm gợi ý, tiếp tục đưa câu kiểm lại nên được chấm là 1. Học được rằng khi chấm cho sua_loi_ban cần đọc cả lời nhắn để xem agent có thực sự yêu cầu sửa hay không, hay tự đưa lời giải thích luôn.
+B01 ở lượt 1 chấm là 0 vì agent chọn sua_loi_ban nhưng tự giải thích luôn, thay vì yêu cầu người dùng chỉ cho An nhầm khiến học viên mất cơ hội để giải thích lại. Ở lượt 2, agent đã nhắc đúng ý sai và yêu cầu xem An đã nhầm ở đâu kèm gợi ý, tiếp tục đưa câu kiểm lại nên được chấm là 1. Học được rằng khi chấm cho sua_loi_ban cần đọc cả lời nhắn để xem agent có thực sự yêu cầu sửa hay không, hay tự đưa lời giải thích luôn, đảm bảo để cho học viên giải thích đúng theo mục tiêu của dự án.
